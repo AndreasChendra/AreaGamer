@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Home - AreaGamer')
 
 @section('content')
 <div class="container">
