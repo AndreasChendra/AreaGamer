@@ -4533,7 +4533,7 @@ input[type=button].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
+  padding: 0.6rem 1rem;
 }
 
 .navbar .container,
@@ -4553,7 +4553,7 @@ input[type=button].btn-block {
   padding-top: 0.32rem;
   padding-bottom: 0.32rem;
   margin-right: 1rem;
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   line-height: inherit;
   white-space: nowrap;
 }
@@ -4561,6 +4561,7 @@ input[type=button].btn-block {
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .navbar-nav {
@@ -4888,7 +4889,8 @@ input[type=button].btn-block {
 }
 
 .navbar-light .navbar-brand {
-  color: rgba(0, 0, 0, 0.9);
+  /* color: rgba(0, 0, 0, 0.9); */
+  color: #fff;
 }
 
 .navbar-light .navbar-brand:hover,
@@ -4897,7 +4899,7 @@ input[type=button].btn-block {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color: rgba(0, 0, 0, 0.5);
+  color: #fff;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
@@ -4944,7 +4946,7 @@ input[type=button].btn-block {
 
 .navbar-dark .navbar-brand:hover,
 .navbar-dark .navbar-brand:focus {
-  color: #fff;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -5059,7 +5061,9 @@ input[type=button].btn-block {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
+  /* background-color: #0F227A; */
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  /* border: 1px solid #5E7DEF; */
 }
 
 .card-header:first-child {

@@ -1,7 +1,7 @@
 $(document).ready(function(){
     
     $("#login-click").click(function(){
-        $("#icon-login").toggleClass('fa-eye-slash');
+        $("#icon-login").toggleClass('bi-eye-slash-fill');
 
         var input = $("#password-login");
         if (input.attr("type") === "password") {
@@ -12,7 +12,7 @@ $(document).ready(function(){
     });
 
     $("#regis-click").click(function(){
-        $("#icon-regis").toggleClass('fa-eye-slash');
+        $("#icon-regis").toggleClass('bi-eye-slash-fill');
 
         var input = $("#password-regis");
         if (input.attr("type") === "password") {
@@ -23,7 +23,7 @@ $(document).ready(function(){
     });
 
     $("#confirm-click").click(function(){
-        $("#icon-confirm").toggleClass('fa-eye-slash');
+        $("#icon-confirm").toggleClass('bi-eye-slash-fill');
 
         var input = $("#password-confirm");
         if (input.attr("type") === "password") {

@@ -1,0 +1,241 @@
+.bg-color {
+    background-color: #2b42ac !important;
+}
+
+.text-color {
+    color: #fff;
+}
+
+.con-style {
+    padding-left: 110px;
+    padding-right: 110px;
+}
+
+.home-style {
+    color: #fff;
+    padding-left: 120px;
+    padding-right: 120px;
+}
+
+.pos-pic {
+    padding-top: 110px;
+    padding-bottom: 106px;
+    text-align: center;
+}
+
+.pos-form-login {
+    padding-top: 150px;
+    padding-bottom: 106px;
+}
+
+.pos-form-regis {
+    padding-top: 150px;
+    padding-bottom: 106px;
+}
+
+.title-style {
+    font-size: 45px;
+    text-align: center;
+    color: #fff;
+}
+
+.forgot {
+    float: right;
+}
+
+.bg-auth {
+    background-color: #fff;
+}
+
+.font-auth {
+    font-size: 1.3rem;
+}
+
+.border-style {
+    padding-left: 200px;
+}
+
+.footer-center {
+    text-align: center;
+}
+
+.list-unstyled {
+    padding-left: 0;
+    list-style: none
+}
+
+.navbar-auth {
+    display: inline-block;
+    padding-top: 0.32rem;
+    padding-bottom: 0.32rem;
+    margin-right: 1rem;
+    font-size: 1.5rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+.navbar-auth:hover,
+.navbar-auth:focus {
+    text-decoration: none;
+    color: #0F227A;
+}
+
+.navbar-auth {
+    color: #0F227A;
+}
+
+.navbar-light .navbar-auth:hover,
+.navbar-light .navbar-auth:focus {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-dark .navbar-auth {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-dark .navbar-auth:hover,
+.navbar-dark .navbar-auth:focus {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.nav-auth {
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+.nav-auth:hover,
+.nav-auth:focus {
+    text-decoration: none;
+}
+
+.nav-auth.disabled {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: default;
+}
+
+.nav-tabs .nav-auth {
+    margin-bottom: -1px;
+    border: 1px solid transparent;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.nav-tabs .nav-auth:hover,
+.nav-tabs .nav-auth:focus {
+    border-color: #e9ecef #e9ecef #dee2e6;
+}
+
+.nav-tabs .nav-auth.disabled {
+    color: #6c757d;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.nav-tabs .nav-auth.active,
+.nav-tabs .nav-item.show .nav-auth {
+    color: #495057;
+    background-color: #f8fafc;
+    border-color: #dee2e6 #dee2e6 #f8fafc;
+}
+
+.nav-pills .nav-auth {
+    border-radius: 0.25rem;
+}
+
+.nav-pills .nav-auth.active,
+.nav-pills .show>.nav-auth {
+    color: #fff;
+    background-color: #3490dc;
+}
+
+.nav-fill>.nav-auth,
+.nav-fill .nav-item {
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.nav-justified>.nav-auth,
+.nav-justified .nav-item {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.navbar-nav .nav-auth {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.navbar-expand-sm .navbar-nav .nav-auth {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.navbar-expand-md .navbar-nav .nav-auth {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.navbar-expand .navbar-nav .nav-auth {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.navbar-light .navbar-nav .nav-auth {
+    color: #0F227A;
+}
+
+.navbar-light .navbar-nav .nav-auth:hover,
+.navbar-light .navbar-nav .nav-auth:focus {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.navbar-light .navbar-nav .nav-auth.disabled {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+.navbar-light .navbar-nav .show>.nav-auth,
+.navbar-light .navbar-nav .active>.nav-auth,
+.navbar-light .navbar-nav .nav-auth.show,
+.navbar-light .navbar-nav .nav-auth.active {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar-dark .navbar-nav .nav-auth {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-dark .navbar-nav .nav-auth:hover,
+.navbar-dark .navbar-nav .nav-auth:focus {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.navbar-dark .navbar-nav .nav-auth.disabled {
+    color: rgba(255, 255, 255, 0.25);
+}
+
+.navbar-dark .navbar-nav .show>.nav-auth,
+.navbar-dark .navbar-nav .active>.nav-auth,
+.navbar-dark .navbar-nav .nav-auth.show,
+.navbar-dark .navbar-nav .nav-auth.active {
+    color: #fff;
+}
+
+.bgbanner {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    filter: brightness(75%);
+}
+
+.owl-carousel .item {
+    height: 10rem;
+    background: #4DC7A0;
+    padding: 1rem;
+  }
+  .owl-carousel .item h4 {
+    color: #FFF;
+    font-weight: 400;
+    margin-top: 0rem;
+   }

@@ -14,8 +14,6 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/script.js') }}" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -25,17 +23,15 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style-footer.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/owl.theme.green.min.css') }}" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 </head>
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-color shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-auth shadow-sm">
             <div class="container-fluid con-style">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-auth" href="{{ url('/') }}">
                     <img src="{{ asset('images/app/logo.png') }}" width="55" height="40" alt="Logo not found">
                     AreaGamer
                 </a>
@@ -56,13 +52,17 @@
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('register'))
+                                @if (Request::getPathInfo() == '/register')
+                                    <li>
+                                        <a class="nav-auth font-auth">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                            @endif
+                            @if (Request::getPathInfo() == '/login')
                                 <li>
-                                    <a class="nav-link border-right pr-3" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-auth font-auth">{{ __('Login') }}</a>
                                 </li>
                             @endif
-                            <li>
-                                <a class="nav-link pl-3" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
@@ -72,7 +72,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
