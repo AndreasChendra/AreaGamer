@@ -39,18 +39,4 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-
-    // public function login(Request $request)
-    // {
-    //     $credentials = $request->validate([
-    //         'email' => 'required|email',
-    //         'password' => 'required'
-    //     ]);
-    //     if (Auth::attempt($credentials)) {
-    //         return redirect()->intended('home')->with('success','Berhasil masuk!');
-    //     }else{
-    //         $errors="Email dan Password salah!";
-    //     }
-    //     return back()->with('loginError',$errors);
-    // }
 }

@@ -13,10 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
 Auth::routes();
 
+Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'UserController@profile');
+Route::get('/wallet', 'WalletController@index');
+
+Route::get('/product/detail/{productId}', 'ProductController@show');
+Route::get('/product/type/{typeId}', 'ProductController@type');
+Route::get('/product/category/{categoryId}', 'ProductController@category');
+
+Route::get('/store/info/{storeId}', 'StoreController@show');
+
+Route::get('/cart/{userId}', 'CartController@show');
+Route::post('/addToCart/{productId}/{userId}', 'CartController@store');

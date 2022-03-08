@@ -33,8 +33,8 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-color shadow-sm">
-            <div class="container-fluid con-style">
+        <nav class="navbar navbar-expand-md navbar-light bg-color fixed-top shadow-sm">
+            <div class="container-fluid navcon-style">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ asset('images/app/logo.png') }}" width="55" height="40" alt="Logo not found">
                     AreaGamer
@@ -48,8 +48,46 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <a id="type" class="btn text-white" style="font-size: 16px" role="button" data-toggle="modal"
+                            data-target="#productType">
+                            <i class="bi bi-grid-3x3-gap"></i>
+                            {{ __('Type') }}
+                        </a>
 
+                        <!-- Modal Type -->
+                        <div class="modal fade" id="productType" data-backdrop="static" data-keyboard="false"
+                            tabindex="-1" aria-labelledby="productTypeLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="productTypeLabel">Pilih Type</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row justify-content-center text-center">
+                                            <div class="col-4">
+                                                <a href="/product/type/1"><i class="bi bi-phone"
+                                                        style="font-size: 70px"></i></a>
+                                            </div>
+                                            <div class="col-4">
+                                                <a href="/product/type/2"><i class="bi bi-pc-display-horizontal"
+                                                        style="font-size: 70px"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </ul>
+
+                    <form class="form-inline" action="#">
+                        <input class="form-control" type="search" style="width: 400px;" placeholder="Search"
+                            name="search" value="{{ Request::input('search') }}" aria-label="Search">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -57,7 +95,8 @@
                         @guest
                             @if (Route::has('register'))
                                 <li>
-                                    <a class="nav-link border-right pr-3" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link border-right pr-3"
+                                        href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                             <li>
@@ -65,14 +104,120 @@
                             </li>
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                <a id="cart" class="btn nav-link" style="font-size: 16px" href="/cart/{{ Auth::user()->id }}" role="button">
+                                    <i class="bi bi-cart"></i>
+                                    {{ __('Cart') }}
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                @if (!empty(App\Store::where('user_id', Auth::user()->id)->first()))
+                                    <a id="storeUserDropdown" class="btn nav-link" style="font-size: 16px" href="#"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        v-pre>
+                                        <i class="bi bi-shop"></i>
+                                        {{ App\Store::where('user_id', Auth::user()->id)->first()->name }}
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="storeUserDropdown">
+                                        <a class="dropdown-item"
+                                            href="/store/info/{{ App\Store::where('user_id', Auth::user()->id)->first()->id }}">
+                                            <i class="bi bi-shop-window"></i>
+                                            {{ __('Store Info') }}
+                                        </a>
+                                    </div>
+                                @else
+                                    <a id="storeDropdown" class="btn nav-link" style="font-size: 16px" href="#"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                        v-pre>
+                                        <i class="bi bi-shop"></i>
+                                        {{ __('Store') }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="storeDropdown">
+                                        <a href="#createStore" class="dropdown-item" data-toggle="modal"
+                                            data-target="#createStore">
+                                            {{ __("You don't have a shop yet") }}
+                                            <button type="button" class="btn btn-outline-primary btn-sm"><i
+                                                    class="bi bi-shop-window"></i>&nbsp;Create Store</button>
+                                        </a>
+                                    </div>
+
+                                    <!-- Modal Create Store-->
+                                    <div class="modal fade" id="createStore" data-backdrop="static"
+                                        data-keyboard="false" tabindex="-1" aria-labelledby="createStoreLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="createStoreLabel">Create Store</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group row">
+                                                        <label for="storeName" class="col-md-3 col-form-label">Store
+                                                            Name</label>
+                                                        <div class="col-md-9">
+                                                            <input id="storeName" type="storeName"
+                                                                class="form-control @error('storeName') is-invalid @enderror"
+                                                                name="storeName" placeholder="Store Name" required
+                                                                autocomplete="storeName" autofocus>
+
+                                                            @error('storeName')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <label for="storePicture" class="col-md-3 col-form-label">Store
+                                                            Picture</label>
+                                                        <div class="col-md-9">
+                                                            <div class="custom-file">
+                                                                <input type="file" class="custom-file-input"
+                                                                    id="storePicture">
+                                                                <label class="custom-file-label" for="storePicture">Choose
+                                                                    file</label>
+                                                            </div>
+                                                            <small id="pictureHelp" class="form-text text-muted">Ekstensi
+                                                                file yang diperbolehkan: .JPG .JPEG .PNG</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary">Create Store</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
+                            </li>
+                            &nbsp;
+                            <li class="nav-item dropdown">
+                                <a id="userDropdown" class="btn nav-link" style="font-size: 16px" href="#" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i class="bi bi-person-circle"></i>
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                         document.getElementById('logout-form').submit();">
+                                <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="/profile">
+                                        <i class="bi bi-person"></i>
+                                        {{ __('Profile') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="/wallet">
+                                        <i class="bi bi-wallet"></i>
+                                        {{ __('Wallet') }}
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                                                                                                 document.getElementById('logout-form').submit();">
+                                        <i class="bi bi-box-arrow-right"></i>
                                         {{ __('Logout') }}
                                     </a>
 
@@ -151,7 +296,7 @@
                 </div>
 
                 <div class="row py-3">
-                    <div class="col-md-10 pb-3 border-style">
+                    <div class="col-md-10 pb-1 border-style">
                         <div class="border-top">
 
                         </div>

@@ -2,19 +2,17 @@
     background-color: #2b42ac !important;
 }
 
+.ag-color {
+    color: #2b42ac !important;
+}
+
 .text-color {
     color: #fff;
 }
 
-.con-style {
-    padding-left: 110px;
-    padding-right: 110px;
-}
-
-.home-style {
-    color: #fff;
-    padding-left: 120px;
-    padding-right: 120px;
+.navcon-style {
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .pos-pic {
@@ -29,12 +27,18 @@
 }
 
 .pos-form-regis {
-    padding-top: 150px;
+    padding-top: 140px;
     padding-bottom: 106px;
 }
 
 .title-style {
     font-size: 45px;
+    text-align: center;
+    color: #fff;
+}
+
+.text-desc {
+    font-size: 22px;
     text-align: center;
     color: #fff;
 }
@@ -233,9 +237,19 @@
     height: 10rem;
     background: #4DC7A0;
     padding: 1rem;
-  }
-  .owl-carousel .item h4 {
+}
+
+.owl-carousel .item h4 {
     color: #FFF;
     font-weight: 400;
     margin-top: 0rem;
-   }
+}
+
+.hide {
+    display: none;
+}
+
+#imagePreview {
+    margin: 15px 0 0 0;
+    border: 2px solid #ddd;
+}

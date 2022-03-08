@@ -1,6 +1,6 @@
-$(document).ready(function(){
-    
-    $("#login-click").click(function(){
+$(document).ready(function () {
+
+    $("#login-click").click(function () {
         $("#icon-login").toggleClass('bi-eye-slash-fill');
 
         var input = $("#password-login");
@@ -11,7 +11,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#regis-click").click(function(){
+    $("#regis-click").click(function () {
         $("#icon-regis").toggleClass('bi-eye-slash-fill');
 
         var input = $("#password-regis");
@@ -22,7 +22,7 @@ $(document).ready(function(){
         }
     });
 
-    $("#confirm-click").click(function(){
+    $("#confirm-click").click(function () {
         $("#icon-confirm").toggleClass('bi-eye-slash-fill');
 
         var input = $("#password-confirm");
@@ -33,4 +33,25 @@ $(document).ready(function(){
         }
     });
 
+    $('#imageUpload').change(function () {
+        readImgUrlAndPreview(this);
+
+        function readImgUrlAndPreview(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').removeClass('hide').attr('src', e.target.result);
+                }
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    });
+
+    $(".custom-file-input").on("change", function() {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
+
+    $('#productType').appendTo("body");
+    $('#createStore').appendTo("body");
 });
