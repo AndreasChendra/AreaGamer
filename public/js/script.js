@@ -54,4 +54,10 @@ $(document).ready(function () {
 
     $('#productType').appendTo("body");
     $('#createStore').appendTo("body");
+
+    $("#formCart #selectAll").click(function() {
+        $("#formCart input[type='checkbox']").prop('checked', this.checked);
+    });
+
+    // $('#warning').modal('show');
 });

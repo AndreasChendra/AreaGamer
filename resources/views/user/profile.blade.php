@@ -25,7 +25,7 @@
                                         <img src="" id="imagePreview" alt="Preview Image" width="200px"
                                             class="hide" />
                                     </div>
-                                    <p class="card-text">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</p>
+                                    <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</small>
                                 </div>
                             </div>
                         </div>

@@ -18,13 +18,25 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'UserController@profile');
-Route::get('/wallet', 'WalletController@index');
 
 Route::get('/product/detail/{productId}', 'ProductController@show');
 Route::get('/product/type/{typeId}', 'ProductController@type');
 Route::get('/product/category/{categoryId}', 'ProductController@category');
 
+Route::post('/create/store', 'StoreController@create');
 Route::get('/store/info/{storeId}', 'StoreController@show');
+Route::put('/edit/store/{storeId}', 'StoreController@edit');
+Route::get('/order/{storeId}', 'StoreController@order');
+
+Route::post('/send/review/{productId}', 'ReviewController@review');
 
 Route::get('/cart/{userId}', 'CartController@show');
 Route::post('/addToCart/{productId}/{userId}', 'CartController@store');
+
+Route::get('/buy/{productId}', 'ProductController@buy');
+
+Route::get('/transber/{userName}', 'TransberController@index');
+Route::get('/transber/detail/{transberId}', 'TransberController@show');
+
+Route::get('/transaction/{userId}', 'TransactionController@index');
+Route::get('/transaction/history/{userId}', 'TransactionController@show');

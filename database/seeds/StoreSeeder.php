@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
 
 class StoreSeeder extends Seeder
 {
@@ -16,37 +17,49 @@ class StoreSeeder extends Seeder
             [
                 'user_id' => 1,
                 'name' => 'Chendand Store',
-                'picture' => '-'
+                'picture' => 'images/store/profile/chendand_store.jpg',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
                 'user_id' => 2,
                 'name' => 'Vin Store',
-                'picture' => '-'
+                'picture' => '-',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
                 'user_id' => 3,
                 'name' => 'Jess Jess Store',
-                'picture' => '-'
+                'picture' => '-',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
                 'user_id' => 4,
                 'name' => 'Mellaini Store',
-                'picture' => '-'
+                'picture' => '-',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
                 'user_id' => 5,
                 'name' => 'Zasura Store',
-                'picture' => '-'
+                'picture' => '-',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
             [
                 'user_id' => 6,
                 'name' => 'Son Nel Store',
-                'picture' => '-'
+                'picture' => '-',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ],
 
         ]);

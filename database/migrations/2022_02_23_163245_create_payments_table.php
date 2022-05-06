@@ -17,6 +17,9 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->integer('paymentCategory_id')->unsigned();
             $table->string('name');
+            $table->string('pay_name');
+            $table->string('pay_number');
+            $table->string('picture');
             $table->timestamps();
 
             $table->foreign('paymentCategory_id')->references('id')->on('payment_categories');

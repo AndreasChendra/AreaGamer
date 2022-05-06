@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container-fluid bg-color">
-        <div class="pt-5">
+        <div class="mt-5 pt-5">
             <div class="row justify-content-center">
                 <div class="col-md-5 pos-pic">
                     <img src="{{ asset('images/app/logo.png') }}" width="400" height="300" alt="">

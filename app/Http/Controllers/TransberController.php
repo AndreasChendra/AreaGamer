@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
+use App\Transber;
 
-class ProductController extends Controller
+class TransberController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($userName)
     {
-        //
+        $transber = Transber::where([['usernameA', $userName], ['usernameB', $userName]]);
+        return view('transber.transber', ['transber' => $transber]);
     }
 
     /**
@@ -44,27 +45,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($productId)
+    public function show($transberId)
     {
-        $product = Product::find($productId);
-        return view('product.product_detail', ['product' => $product]);
-    }
-
-    public function type($typeId)
-    {
-        $product = Product::where('productType_id', $typeId)->get();
-        if($typeId == 1) {
-            $type = 'Mobile';
-        } else {
-            $type = 'PC';
-        }
-        return view('product.product_type', ['product' => $product, 'type' => $type]);
-    }
-
-    public function category($categoryId)
-    {
-        $product = Product::where('productCategory_id', $categoryId)->get();
-        return view('product.product_category', ['product' => $product]);
+        return view('transber.transber_detail');
     }
 
     /**
@@ -76,12 +59,6 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
-    }
-
-    public function buy($productId)
-    {
-        $product = Product::find($productId);
-        return view('user.buy', ['product' => $product]);
     }
 
     /**

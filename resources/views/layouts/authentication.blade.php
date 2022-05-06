@@ -29,8 +29,8 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-auth shadow-sm">
-            <div class="container-fluid con-style">
+        <nav class="navbar navbar-expand-md navbar-light bg-auth shadow-sm fixed-top">
+            <div class="container-fluid navcon-style">
                 <a class="navbar-auth" href="{{ url('/') }}">
                     <img src="{{ asset('images/app/logo.png') }}" width="55" height="40" alt="Logo not found">
                     AreaGamer

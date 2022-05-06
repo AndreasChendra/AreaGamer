@@ -3,21 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\PaymentCategory;
-use App\Payment;
 
-class WalletController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($userId)
     {
-        $payCategory = PaymentCategory::all();
-        $payment = Payment::all();
-        return view('wallet.wallet', ['payCategories' => $payCategory, 'payments' => $payment]);
+        return view('transaction.transaction');
     }
 
     /**
@@ -47,9 +43,9 @@ class WalletController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($userId)
     {
-        //
+        return view('transaction.transaction_history');
     }
 
     /**

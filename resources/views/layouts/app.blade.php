@@ -104,7 +104,8 @@
                             </li>
                         @else
                             <li class="nav-item dropdown">
-                                <a id="cart" class="btn nav-link" style="font-size: 16px" href="/cart/{{ Auth::user()->id }}" role="button">
+                                <a id="cart" class="btn nav-link" style="font-size: 16px"
+                                    href="/cart/{{ Auth::user()->id }}" role="button">
                                     <i class="bi bi-cart"></i>
                                     {{ __('Cart') }}
                                 </a>
@@ -147,49 +148,60 @@
                                         aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="createStoreLabel">Create Store</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group row">
-                                                        <label for="storeName" class="col-md-3 col-form-label">Store
-                                                            Name</label>
-                                                        <div class="col-md-9">
-                                                            <input id="storeName" type="storeName"
-                                                                class="form-control @error('storeName') is-invalid @enderror"
-                                                                name="storeName" placeholder="Store Name" required
-                                                                autocomplete="storeName" autofocus>
-
-                                                            @error('storeName')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
+                                                <form method="POST" action="/create/store" enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="createStoreLabel">Create Store</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
                                                     </div>
+                                                    <div class="modal-body">
+                                                        <div class="form-group row">
+                                                            <label for="storeName" class="col-md-3 col-form-label">Store
+                                                                Name</label>
+                                                            <div class="col-md-9">
+                                                                <input id="storeName" type="storeName"
+                                                                    class="form-control @error('storeName') is-invalid @enderror"
+                                                                    name="storeName" placeholder="Store Name" required
+                                                                    autocomplete="storeName" autofocus>
 
-                                                    <div class="form-group row">
-                                                        <label for="storePicture" class="col-md-3 col-form-label">Store
-                                                            Picture</label>
-                                                        <div class="col-md-9">
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input"
-                                                                    id="storePicture">
-                                                                <label class="custom-file-label" for="storePicture">Choose
-                                                                    file</label>
+                                                                @error('storeName')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
-                                                            <small id="pictureHelp" class="form-text text-muted">Ekstensi
-                                                                file yang diperbolehkan: .JPG .JPEG .PNG</small>
+                                                        </div>
+
+                                                        {{-- <div class="form-group row">
+                                                            <label for="storePicture" class="col-md-3 col-form-label">Store
+                                                                Picture</label>
+                                                            <div class="col-md-9">
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input"
+                                                                        id="storePicture">
+                                                                    <label class="custom-file-label" for="storePicture">Choose
+                                                                        file</label>
+                                                                </div>
+                                                                <small id="pictureHelp" class="form-text text-muted">Ekstensi
+                                                                    file yang diperbolehkan: .JPG .JPEG .PNG</small>
+                                                            </div>
+                                                        </div> --}}
+
+                                                        <div class="form-group row">
+                                                            <label for="storePicture" class="col-md-4 col-form-label">{{ __('Store Picture') }}</label>
+                                
+                                                            <div class="col-md-8">
+                                                                <input id="storePicture" type="file" class="form-control-file" name="storePicture" required autocomplete="storePicture" autofocus>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary">Create Store</button>
-                                                </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Create Store</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -209,14 +221,14 @@
                                         {{ __('Profile') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="/wallet">
-                                        <i class="bi bi-wallet"></i>
-                                        {{ __('Wallet') }}
+                                    <a class="dropdown-item" href="/transaction/{{ Auth::user()->id }}">
+                                        <i class="bi bi-card-checklist"></i>
+                                        {{ __('Transaction') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                 document.getElementById('logout-form').submit();">
+                                        document.getElementById('logout-form').submit();">
                                         <i class="bi bi-box-arrow-right"></i>
                                         {{ __('Logout') }}
                                     </a>
