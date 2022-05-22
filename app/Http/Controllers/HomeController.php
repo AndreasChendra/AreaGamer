@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ProductCategory;
 use App\Product;
 use Auth;
+use Alert;
 
 class HomeController extends Controller
 {

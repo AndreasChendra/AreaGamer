@@ -16,6 +16,7 @@
     <script src="{{ asset('js/script.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -191,9 +192,9 @@
                                                         </div> --}}
 
                                                         <div class="form-group row">
-                                                            <label for="storePicture" class="col-md-4 col-form-label">{{ __('Store Picture') }}</label>
+                                                            <label for="storePicture" class="col-md-3 col-form-label">{{ __('Store Picture') }}</label>
                                 
-                                                            <div class="col-md-8">
+                                                            <div class="col-md-9">
                                                                 <input id="storePicture" type="file" class="form-control-file" name="storePicture" required autocomplete="storePicture" autofocus>
                                                             </div>
                                                         </div>
@@ -323,6 +324,7 @@
             </div>
         </footer>
     </div>
+    @include('sweetalert::alert')
 </body>
 
 </html>

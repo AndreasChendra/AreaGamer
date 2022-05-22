@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use Auth;
+use Storage;
 
 class UserController extends Controller
 {
@@ -83,5 +84,32 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function vVerifKTP()
+    {
+        return view('user.verifKTP');
+    }
+
+    public function sVerifKTP(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        $img = $request->image;
+        $folderPath = "images/user/selfie-idcard/";
+        
+        $image_parts = explode(";base64,", $img);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        
+        $image_base64 = base64_decode($image_parts[1]);
+        $fileName = uniqid() . '.png';
+        
+        $file = $folderPath . $fileName;
+
+        $user->selfie_idcard = $file;
+        $user->save();
+        // Storage::put($file, $image_base64);
+        
+        return redirect('/profile')->with('success', 'Upload Image Successfully!');
     }
 }

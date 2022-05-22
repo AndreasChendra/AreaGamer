@@ -62,7 +62,7 @@ class CartController extends Controller
         }
         $cart->save();
 
-        return back();
+        return back()->with('toast_success', 'Add To Cart Successfully!');
     }
 
     /**

@@ -41,6 +41,9 @@
                                     <i class="bi bi-person-plus"></i>
                                     Verif KTP
                                 </button>
+                                <a id="verifKTP" href="/verifKTP" class="btn btn-primary btn-block">
+                                    {{ __('Verif KTP') }}
+                                </a>
                             </div>
                         </div>
                         <div class="col-5 p-5">

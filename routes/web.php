@@ -40,3 +40,6 @@ Route::get('/transber/detail/{transberId}', 'TransberController@show');
 
 Route::get('/transaction/{userId}', 'TransactionController@index');
 Route::get('/transaction/history/{userId}', 'TransactionController@show');
+
+Route::get('/verifKTP', 'UserController@vVerifKTP');
+Route::post('/veritKTP', 'UserController@sVerifKTP');

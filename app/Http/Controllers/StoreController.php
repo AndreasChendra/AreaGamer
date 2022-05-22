@@ -43,7 +43,7 @@ class StoreController extends Controller
             $store->picture = $tujuan_upload.'/'.$nama_file;
         }
         $store->save();
-        return redirect('home');
+        return redirect('home')->with('success', 'Store Created Successfully!');
     }
 
     /**
