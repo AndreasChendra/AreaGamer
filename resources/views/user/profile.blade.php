@@ -36,12 +36,8 @@
                             <div class="pb-4"><b>Phone</b></div>
                             <div class="pb-4"><b>Gender</b></div>
                             <div class="pt-5">
-                                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                                    data-target="#verifKTP">
-                                    <i class="bi bi-person-plus"></i>
-                                    Verif KTP
-                                </button>
                                 <a id="verifKTP" href="/verifKTP" class="btn btn-primary btn-block">
+                                    <i class="bi bi-person-plus"></i>
                                     {{ __('Verif KTP') }}
                                 </a>
                             </div>
@@ -71,120 +67,63 @@
                 </div>
             </div>
 
-            <!-- Modal Verif -->
-            <div class="modal fade" id="verifKTP" data-backdrop="static" data-keyboard="false" tabindex="-1"
-                aria-labelledby="verifKTPLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="verifKTPLabel">Verification KTP</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group row">
-                                <label for="photoKTP" class="col-md-4 col-form-label">Photo KTP</label>
-                                <div class="col-md-12">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="photoKTP">
-                                        <label class="custom-file-label" for="photoKTP">Choose file</label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <label for="selfieKTP" class="col-md-4 col-form-label">Selfie KTP</label>
-                                <div class="col-md-12">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="selfieKTP">
-                                        <label class="custom-file-label" for="selfieKTP">Choose file</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Upload KTP</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Modal Change Pass -->
             <div class="modal fade" id="changePass" data-backdrop="static" data-keyboard="false" tabindex="-1"
                 aria-labelledby="changePassLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="changePassLabel">Change Password</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label">Old Password</label>
-                                <div class="input-group col-md-8">
-                                    <input id="old-password" type="password"
-                                        class="form-control @error('old-password') is-invalid @enderror" name="old-password"
-                                        placeholder="Old Password" required autocomplete="old-password">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <a href="#" class="text-dark" id="regis-click">
-                                                <i class="bi bi-eye-fill" id="icon-regis"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                        <form method="POST" action="/changePass">
+                            @csrf
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="changePassLabel">Change Password</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label">New Password</label>
-                                <div class="input-group col-md-8">
-                                    <input id="new-password" type="password"
-                                        class="form-control @error('new-password') is-invalid @enderror" name="new-password"
-                                        placeholder="New Password" required autocomplete="new-password">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <a href="#" class="text-dark" id="regis-click">
-                                                <i class="bi bi-eye-fill" id="icon-regis"></i>
-                                            </a>
+                            <div class="modal-body">
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label">New Password</label>
+                                    <div class="input-group col-md-8">
+                                        <input id="new-password" type="password"
+                                            class="form-control @error('new-password') is-invalid @enderror"
+                                            name="new-password" placeholder="New Password" required
+                                            autocomplete="new-password">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <a href="#" class="text-dark" id="new-click">
+                                                    <i class="bi bi-eye-fill" id="icon-new"></i>
+                                                </a>
+                                            </div>
                                         </div>
+
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
                                 </div>
-                            </div>
 
-                            <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label">Confirm Password</label>
-                                <div class="input-group col-md-8">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                        name="password-confirm" placeholder="Confirm Password" required
-                                        autocomplete="password-confirm">
-                                    <div class="input-group-append">
-                                        <div class="input-group-text">
-                                            <a href="#" class="text-dark" id="confirm-click">
-                                                <i class="bi bi-eye-fill" id="icon-confirm"></i>
-                                            </a>
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label">Confirm Password</label>
+                                    <div class="input-group col-md-8">
+                                        <input id="password-confirm" type="password" class="form-control"
+                                            name="password-confirm" placeholder="Confirm Password" required
+                                            autocomplete="password-confirm">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <a href="#" class="text-dark" id="confirm-click">
+                                                    <i class="bi bi-eye-fill" id="icon-confirm"></i>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Update Password</button>
-                        </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Change Password</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -194,23 +133,34 @@
                 aria-labelledby="editProfileLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="editProfileLabel">Edit Profile</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <fieldset disabled>
+                        <form method="POST" action="/updateProfile" enctype="multipart/form-data">
+                            @csrf
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editProfileLabel">Edit Profile</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                @if ($user->username == '-')
                                     <div class="form-group row">
                                         <label for="username" class="col-md-2 col-form-label">Username</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="username" class="form-control"
+                                            <input type="text" id="username" class="form-control" name="username"
                                                 value="{{ $user->username }}" placeholder="{{ $user->username }}">
                                         </div>
                                     </div>
-                                </fieldset>
+                                @else
+                                    <fieldset disabled>
+                                        <div class="form-group row">
+                                            <label for="username" class="col-md-2 col-form-label">Username</label>
+                                            <div class="col-md-10">
+                                                <input type="text" id="username" class="form-control" name="username"
+                                                    value="{{ $user->username }}" placeholder="{{ $user->username }}">
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                @endif
 
                                 <div class="form-group row">
                                     <label for="name" class="col-md-2 col-form-label">Name</label>
@@ -263,17 +213,30 @@
                                 <div class="form-group row">
                                     <label for="inputState" class="col-md-2 col-form-label">Gender</label>
                                     <div class="col-md-10">
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Male</option>
-                                            <option>Female</option>
-                                        </select>
+                                        @if ($user->gender == "male")
+                                            <select id="gender" name="gender" class="form-control">
+                                                <option value="male" selected>Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                        @elseif ($user->gender == "female")
+                                            <select id="gender" name="gender" class="form-control">
+                                                <option value="male">Male</option>
+                                                <option value="female" selected>Female</option>
+                                            </select>
+                                        @else
+                                            <select id="gender" name="gender" class="form-control">
+                                                <option value="0" selected>-- Select Gender --</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                            </select>
+                                        @endif
                                     </div>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary">Update Profile</button>
-                        </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

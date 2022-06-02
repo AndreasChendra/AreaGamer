@@ -15,7 +15,10 @@
                             <div class="card p-3">
                                 <div id="my_camera"></div>
                                 <br>
-                                <button type="button" class="btn btn-success"  onClick="take_snapshot()">Take Snapshot</button>
+                                <button type="button" class="btn btn-primary"  onClick="take_snapshot()">
+                                    <i class="bi bi-camera"></i>
+                                    Take Snapshot
+                                </button>
                                 <input type="hidden" name="image" class="image-tag">
                             </div>
                         </div>
@@ -24,7 +27,10 @@
                         </div>
                         <div class="col-md-12 text-center">
                             <br>
-                            <button class="btn btn-success">Submit</button>
+                            <button class="btn btn-primary">
+                                <i class="bi bi-file-earmark-arrow-up"></i>
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </form>

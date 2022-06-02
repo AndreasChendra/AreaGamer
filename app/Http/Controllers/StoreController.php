@@ -101,7 +101,7 @@ class StoreController extends Controller
             $store->picture = $tujuan_upload.'/'.$nama_file;
         }
         $store->save();
-        return back();
+        return back()->with('success', 'Update Store Successfully!');
     }
 
     /**

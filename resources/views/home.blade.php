@@ -73,9 +73,9 @@
                                 terjamin kelancarannya.</p>
                             <div class="text-center">
                                 @if (Auth::user() != null &&
-    App\Transber::where('status', 'On Process')->where(function ($query) {
-        $query->where('usernameA', Auth::user()->username)->orWhere('usernameB', Auth::user()->username);
-    }))
+                                    App\Transber::where('status', 'On Process')->where(function ($query) {
+                                        $query->where('usernameA', Auth::user()->username)->orWhere('usernameB', Auth::user()->username);
+                                    }))
                                     <a href="/transber/{{ Auth::user()->username }}"
                                         class="btn btn-outline-primary btn-block" style="border-radius: 10px"><i
                                             class="bi bi-calculator-fill"></i>&nbsp;My Transber</a>
@@ -354,24 +354,24 @@
             @endforeach
         </div>
 
-        @if (Auth::user() != null)
-            @if (App\User::where('id', 4))
-                <!-- Modal Warning -->
-                <div class="modal fade" id="warning" data-backdrop="static" data-keyboard="false" tabindex="-1"
-                    aria-labelledby="warningLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <div class="text-center">
-                                    <i class="bi bi-exclamation-triangle" style="font-size: 70px; color: #2b42ac"></i>
-                                    <h5 class="pl-5 pr-5 pb-3">Mohon Melakukan Update Profile AreaGamer Anda pada Profile, Edit Profile.</h5>
-                                    <a href="/profile" class="btn btn-primary" style="border-radius: 10px"><i class="bi bi-hand-thumbs-up-fill"></i>&nbsp;Update</a>&nbsp;
-                                </div>
+        @if (Auth::user() != null && Auth::user()->username == '-')
+            <!-- Modal Warning -->
+            <div class="modal fade" id="warning" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="warningLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="text-center">
+                                <i class="bi bi-exclamation-triangle" style="font-size: 70px; color: #2b42ac"></i>
+                                <h5 class="pl-5 pr-5 pb-3">Mohon Melakukan Update Profile AreaGamer Anda pada Profile,
+                                    Edit Profile.</h5>
+                                <a href="/profile" class="btn btn-primary" style="border-radius: 10px"><i
+                                        class="bi bi-hand-thumbs-up-fill"></i>&nbsp;Update</a>&nbsp;
                             </div>
                         </div>
                     </div>
                 </div>
-            @endif
+            </div>
         @endif
     </div>
 

@@ -33,6 +33,17 @@ $(document).ready(function () {
         }
     });
 
+    $("#new-click").click(function () {
+        $("#icon-new").toggleClass('bi-eye-slash-fill');
+
+        var input = $("#new-password");
+        if (input.attr("type") === "password") {
+            input.attr("type", "text");
+        } else {
+            input.attr("type", "password");
+        }
+    });
+
     $('#imageUpload').change(function () {
         readImgUrlAndPreview(this);
 
@@ -58,6 +69,6 @@ $(document).ready(function () {
     $("#formCart #selectAll").click(function() {
         $("#formCart input[type='checkbox']").prop('checked', this.checked);
     });
-
-    // $('#warning').modal('show');
+    
+    $('#warning').modal('show');
 });

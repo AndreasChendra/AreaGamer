@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use Auth;
 use Storage;
@@ -70,9 +71,27 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $this->validate($request, [
+            'username' => ['max:255'],
+            'name' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'min:10', 'numeric'],
+            'gender' => ['required', 'not_in:0'],
+        ]);
+
+        $user = User::find(Auth::user()->id);
+        if($user->username == '-') {
+            $user->username = $request->input('username');
+        }
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        $user->gender = $request->input('gender');
+        $user->save();
+
+        return back()->with('success', 'Successfully Update Profile!');
     }
 
     /**
@@ -111,5 +130,19 @@ class UserController extends Controller
         // Storage::put($file, $image_base64);
         
         return redirect('/profile')->with('success', 'Upload Image Successfully!');
+    }
+
+    public function changePass(Request $request)
+    {
+        $this->validate($request, [
+            'new-password' => ['required'],
+            'password-confirm' => ['required', 'same:new-password'],
+        ]);
+
+        $user = User::find(Auth::user()->id);
+        $user->password = Hash::make($request->input('new-password'));
+        $user->save();
+
+        return back()->with('success', 'Successfully Change Password!');
     }
 }
