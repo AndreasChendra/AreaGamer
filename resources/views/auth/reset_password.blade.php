@@ -1,5 +1,5 @@
 @extends('layouts.authentication')
-@section('title', 'Login')
+@section('title', 'Reset Password')
 
 @section('content')
     <div class="container-fluid bg-color">
@@ -12,10 +12,10 @@
                 </div>
                 <div class="col-md-5 pos-form-login">
                     <div class="card">
-                        <div class="card-header">{{ __('Login') }}</div>
+                        <div class="card-header">{{ __('Reset Password') }}</div>
 
                         <div class="card-body">
-                            <form method="POST" action="{{ route('login') }}">
+                            <form method="POST" action="/resetPassword">
                                 @csrf
 
                                 <div class="form-group row">
@@ -35,17 +35,19 @@
 
                                 <div class="form-group row">
                                     <div class="input-group col-md-12">
-                                        <input id="password-login" type="password"
-                                            class="form-control @error('password') is-invalid @enderror" name="password"
-                                            placeholder="Password" required autocomplete="current-password">
+                                        <input id="new-password" type="password"
+                                            class="form-control @error('new-password') is-invalid @enderror"
+                                            name="new-password" placeholder="New Password" required
+                                            autocomplete="new-password">
                                         <div class="input-group-append">
                                             <div class="input-group-text">
-                                                <a href="#" class="text-dark" id="login-click">
-                                                    <i class="bi bi-eye-fill" id="icon-login"></i>
+                                                <a href="#" class="text-dark" id="new-click">
+                                                    <i class="bi bi-eye-fill" id="icon-new"></i>
                                                 </a>
                                             </div>
                                         </div>
-                                        @error('password')
+
+                                        @error('new-password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -54,20 +56,16 @@
                                 </div>
 
                                 <div class="form-group row">
-                                    <div class="col-md-12">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                                {{ old('remember') ? 'checked' : '' }}>
-
-                                            <label class="form-check-label" for="remember">
-                                                {{ __('Remember Me') }}
-                                            </label>
-
-                                            @if (Route::has('password.request'))
-                                                <a class="forgot" href="/resetPassword">
-                                                    {{ __('Forgot Your Password') }}
+                                    <div class="input-group col-md-12">
+                                        <input id="password-confirm" type="password" class="form-control"
+                                            name="password-confirm" placeholder="Confirm Password" required
+                                            autocomplete="password-confirm">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <a href="#" class="text-dark" id="confirm-click">
+                                                    <i class="bi bi-eye-fill" id="icon-confirm"></i>
                                                 </a>
-                                            @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -75,16 +73,9 @@
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-block btn-primary text-color">
-                                            {{ __('Login') }}
+                                            {{ __('Reset Password') }}
                                         </button>
                                     </div>
-                                </div>
-
-                                <div class="form-group row justify-content-center mb-0">
-                                    <p>Baru di AreaGamer?</p>
-                                    <a class="pl-1" href="{{ route('register') }}">
-                                        {{ __('Register') }}
-                                    </a>
                                 </div>
                             </form>
                         </div>

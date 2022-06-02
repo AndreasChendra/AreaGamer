@@ -63,6 +63,11 @@
                                     <a class="nav-auth font-auth">{{ __('Login') }}</a>
                                 </li>
                             @endif
+                            @if (Request::getPathInfo() == '/resetPassword')
+                                <li>
+                                    <a class="nav-auth font-auth">{{ __('Reset Password') }}</a>
+                                </li>
+                            @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

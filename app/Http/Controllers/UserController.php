@@ -107,7 +107,7 @@ class UserController extends Controller
 
     public function vVerifKTP()
     {
-        return view('user.verifKTP');
+        return view('user.verif_ktp');
     }
 
     public function sVerifKTP(Request $request)
@@ -127,7 +127,7 @@ class UserController extends Controller
 
         $user->selfie_idcard = $file;
         $user->save();
-        // Storage::put($file, $image_base64);
+        Storage::put($file, $image_base64);
         
         return redirect('/profile')->with('success', 'Upload Image Successfully!');
     }
@@ -144,5 +144,29 @@ class UserController extends Controller
         $user->save();
 
         return back()->with('success', 'Successfully Change Password!');
+    }
+
+    public function vResetPass()
+    {
+        return view('auth.reset_password');
+    }
+
+    public function resetPass(Request $request)
+    {
+        $this->validate($request, [
+            'new-password' => ['required'],
+            'password-confirm' => ['required', 'same:new-password'],
+        ]);
+
+        $user = User::select()->where('email', $request->input('email'))->first();
+        if($user == null){
+            return redirect('/register')
+            ->with('warning','Email not Found, Please Register First!'); 
+        }
+        $user->password = Hash::make($request->input('new-password'));
+        $user->save();
+
+        return redirect('/login')
+        ->with('success','You have successfully Reset Password!');
     }
 }

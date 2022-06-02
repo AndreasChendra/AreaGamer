@@ -20,6 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'UserController@profile');
 Route::post('/updateProfile', 'UserController@update');
 Route::post('/changePass', 'UserController@changePass');
+Route::get('/resetPassword', 'UserController@vResetPass');
+Route::post('/resetPassword', 'UserController@resetPass');
 
 Route::get('/product/detail/{productId}', 'ProductController@show');
 Route::get('/product/type/{typeId}', 'ProductController@type');
