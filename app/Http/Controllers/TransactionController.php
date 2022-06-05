@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Transaction;
+use Auth;
 
 class TransactionController extends Controller
 {
@@ -11,9 +13,10 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($userId)
+    public function index()
     {
-        return view('transaction.transaction');
+        $transaction = Transaction::where('user_id', Auth::user()->id)->get();
+        return view('transaction.transaction', ['transaction' => $transaction]);
     }
 
     /**

@@ -39,7 +39,17 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::find(Auth::user()->id);
+
+        if ($request->file('uploadPhoto') != null) {
+            $file = $request->file('uploadPhoto');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            $tujuan_upload = 'images/user/profile';
+            $file->move($tujuan_upload, $nama_file);
+            $user->picture = $tujuan_upload.'/'.$nama_file;
+        }
+        $user->save();
+        return back()->with('success', 'Successfully Upload Photo!');
     }
 
     /**

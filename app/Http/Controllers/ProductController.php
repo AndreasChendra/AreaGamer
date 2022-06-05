@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -35,7 +36,39 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product();
+        $product->store_id = Auth::user()->store->id;
+        $product->productType_id = $request->input('productType');
+        $product->productCategory_id = $request->input('productCategory');
+        $product->name = $request->input('productName');
+        $product->price = $request->input('productPrice');
+        $product->process = $request->input('process');
+        $product->sold_out = '0';
+        $product->description = $request->input('productDescription');
+
+        if ($request->file('productPicture') != null) {
+            $file = $request->file('productPicture');
+            $nama_file = time()."_".$file->getClientOriginalName();
+    
+            if ($product->productCategory_id == 1) {
+                $tujuan_upload = 'images/games/product/moba';
+            } elseif ($product->productCategory_id == 2) {
+                $tujuan_upload = 'images/games/product/pubg';
+            } elseif ($product->productCategory_id == 3) {
+                $tujuan_upload = 'images/games/product/free-fire';
+            } elseif ($product->productCategory_id == 4) {
+                $tujuan_upload = 'images/games/product/valorant';
+            } elseif ($product->productCategory_id == 5) {
+                $tujuan_upload = 'images/games/product/genshin';
+            } elseif ($product->productCategory_id == 6) {
+                $tujuan_upload = 'images/games/product/fortnite';
+            }
+            $file->move($tujuan_upload,$nama_file);
+            $product->picture = $tujuan_upload.'/'.$nama_file;
+        }
+        $product->save();
+        return back()->with('success', 'Add Product Successfully!');
+
     }
 
     /**

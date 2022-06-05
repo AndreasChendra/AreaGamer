@@ -27,60 +27,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="text-center">
-                        <th scope="row" class="align-middle">1</th>
-                        <td class="align-middle">Chend</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/games/product/moba/diamond-57.jpg') }}" alt="..." width="80px"
-                                height="80px">
-                        </td>
-                        <td class="align-middle">57 Diamond</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/payment/bank/bca.png') }}" alt="..." width="145px"
-                                height="80px">
-                        </td>
-                        <td class="align-middle">Jycho. 123724663 (2607)</td>
-                        <td class="align-middle">A Waiting Seller</td>
-                        <td class="align-middle">
-                            <a href="#" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i class="bi bi-x-circle"></i></a>
-                        </td>
-                    </tr>
-                    <tr class="text-center">
-                        <th scope="row" class="align-middle">2</th>
-                        <td class="align-middle">Chend Blaba</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/games/product/pubg/uc-600.jpg') }}" alt="..." width="80px"
-                                height="80px">
-                        </td>
-                        <td class="align-middle">600 UC</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/payment/bank/bni.png') }}" alt="..." width="145px"
-                                height="80px">
-                        </td>
-                        <td class="align-middle">Jycho. 123724663 (2607)</td>
-                        <td class="align-middle">A Waiting Seller</td>
-                        <td class="align-middle">
-                            <a href="#" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i class="bi bi-x-circle"></i></a>
-                        </td>
-                    </tr>
-                    <tr class="text-center">
-                        <th scope="row" class="align-middle">3</th>
-                        <td class="align-middle">Yayay Store</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/games/product/moba/diamond-344.jpg') }}" alt="..." width="80px"
-                                height="80px">
-                        </td>
-                        <td class="align-middle">344 Diamond</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/payment/bank/mandiri.png') }}" alt="..." width="145px"
-                                height="80px">
-                        </td>
-                        <td class="align-middle">Jycho. 123724663 (2607)</td>
-                        <td class="align-middle">A Waiting Seller</td>
-                        <td class="align-middle">
-                            <a href="#" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i class="bi bi-x-circle"></i></a>
-                        </td>
-                    </tr>
+                    @foreach ($transaction as $key => $tr)
+                        <tr class="text-center">
+                            <th scope="row" class="align-middle">{{ $key + 1 }}</th>
+                            <td class="align-middle">{{ $tr->product->store->name }}</td>
+                            <td class="align-middle">
+                                <img src="{{ asset($tr->product->picture) }}" alt="..." width="80px"
+                                    height="80px">
+                            </td>
+                            <td class="align-middle">{{ $tr->product->name }}</td>
+                            <td class="align-middle">
+                                <img src="{{ asset($tr->payment->picture) }}" alt="..." width="145px"
+                                    height="80px">
+                            </td>
+                            <td class="align-middle">{{ $tr->note }}</td>
+                            <td class="align-middle">{{ $tr->status }}</td>
+                            <td class="align-middle">
+                                <a href="#" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i class="bi bi-x-circle"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

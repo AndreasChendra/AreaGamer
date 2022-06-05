@@ -14,17 +14,11 @@
                                 <img src="{{ asset($user->picture) }}" class="p-3"
                                     style="width: 270px; height: 270px;" alt="...">
                                 <div class="card-body">
-                                    <div clas="file_input_wrap">
-                                        <input type="file" name="imageUpload" id="imageUpload" class="hide" />
-                                        <label for="imageUpload" class="btn btn-primary btn-block">
-                                            <i class="bi bi-upload"></i>
-                                            Choose Photo
-                                        </label>
-                                    </div>
-                                    <div class="img_preview_wrap">
-                                        <img src="" id="imagePreview" alt="Preview Image" width="200px"
-                                            class="hide" />
-                                    </div>
+                                    <button type="button" class="btn btn-primary btn-block mb-2" data-toggle="modal"
+                                        data-target="#uploadPhoto">
+                                        <i class="bi bi-upload"></i>
+                                        Upload Photo
+                                    </button>
                                     <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</small>
                                 </div>
                             </div>
@@ -63,6 +57,40 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Upload Photo -->
+            <div class="modal fade" id="uploadPhoto" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                aria-labelledby="uploadPhotoLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <form method="POST" action="/uploadPhoto" enctype="multipart/form-data">
+                            @csrf
+                            {{ method_field('PUT') }}
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="uploadPhotoLabel">Upload Photo</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group row">
+                                    <label for="uploadPhoto" class="col-md-4 col-form-label">Upload Photo</label>
+                                    <div class="col-md-8">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="uploadPhoto" name="uploadPhoto">
+                                            <label class="custom-file-label" for="uploadPhoto">Choose file</label>
+                                        </div>
+                                        <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary">Upload Photo</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -213,12 +241,12 @@
                                 <div class="form-group row">
                                     <label for="inputState" class="col-md-2 col-form-label">Gender</label>
                                     <div class="col-md-10">
-                                        @if ($user->gender == "male")
+                                        @if ($user->gender == 'male')
                                             <select id="gender" name="gender" class="form-control">
                                                 <option value="male" selected>Male</option>
                                                 <option value="female">Female</option>
                                             </select>
-                                        @elseif ($user->gender == "female")
+                                        @elseif ($user->gender == 'female')
                                             <select id="gender" name="gender" class="form-control">
                                                 <option value="male">Male</option>
                                                 <option value="female" selected>Female</option>

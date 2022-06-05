@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Product;
 use App\Cart;
+use App\Payment;
+use App\Transaction;
+use Auth;
 
 class CartController extends Controller
 {
@@ -74,7 +77,8 @@ class CartController extends Controller
     public function show($userId)
     {
         $cart = Cart::where('user_id', $userId)->get();
-        return view('user.cart', ['cart' => $cart]);
+        $payment = Payment::all();
+        return view('user.cart', ['cart' => $cart, 'payment' => $payment]);
     }
 
     /**
@@ -108,7 +112,28 @@ class CartController extends Controller
      */
     public function destroy(Request $request)
     {
-        $cartId = $request->input('check');
-        dd($cartId);
+        foreach ($request->check as $rc) {
+            $cart = Cart::find($rc);
+            $cart->delete();
+        }
+        return back()->with('success', 'Delete Successfully!');
     }
+
+    public function checkOut(Request $request)
+    {
+        foreach ($request->check as $rc) {
+            $cart = Cart::find($rc);
+            $transaction = new Transaction();
+            $transaction->user_id = Auth::user()->id;
+            $transaction->product_id = $cart->product->id;
+            $transaction->payment_id = $request->input('payment');
+            $transaction->status = 'A Waiting Seller';
+            $transaction->note = $cart->note;
+            $transaction->save();
+
+            $cart->delete();
+        }
+        return redirect('/transaction')->with('success', 'Success Buy!');
+    }
+
 }

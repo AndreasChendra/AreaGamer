@@ -44,20 +44,6 @@ $(document).ready(function () {
         }
     });
 
-    $('#imageUpload').change(function () {
-        readImgUrlAndPreview(this);
-
-        function readImgUrlAndPreview(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#imagePreview').removeClass('hide').attr('src', e.target.result);
-                }
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-    });
-
     $(".custom-file-input").on("change", function() {
         var fileName = $(this).val().split("\\").pop();
         $(this).siblings(".custom-file-label").addClass("selected").html(fileName);

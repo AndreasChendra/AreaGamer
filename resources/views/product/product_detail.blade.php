@@ -63,7 +63,7 @@
                                             <label for="rating" class="col-md-4 col-form-label">{{ __('Rating') }}</label>
                                             <div class="col-md-8">
                                                 <select class="form-control" id="rating" name="rating">
-                                                    <option value="0" style="color: black">-- Select Rating --</option>
+                                                    <option value="0" >-- Select Rating --</option>
                                                     <option value="1" style="color: orange; font-size: 16px">&#9733;</option>
                                                     <option value="2" style="color: orange; font-size: 16px">&#9733;&#9733;</option>
                                                     <option value="3" style="color: orange; font-size: 16px">&#9733;&#9733;&#9733;</option>
@@ -79,29 +79,21 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="form-group row">
+                                        <div class="form-group row">
                                             <label for="pictureReview" class="col-md-4 col-form-label">Picture&nbsp;<small class="text-muted">(Optional)</small></label>
                                             <div class="col-md-8">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="pictureReview">
+                                                    <input type="file" class="custom-file-input" id="pictureReview" name="pictureReview">
                                                     <label class="custom-file-label" for="pictureReview">Choose file</label>
                                                 </div>
                                                 <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</small>
-                                            </div>
-                                        </div> --}}
-
-                                        <div class="form-group row">
-                                            <label for="pictureReview" class="col-md-4 col-form-label">{{ __('Review Picture') }}</label>
-                
-                                            <div class="col-md-8">
-                                                <input id="pictureReview" type="file" class="form-control-file" name="pictureReview" required autocomplete="pictureReview" autofocus>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="description" class="col-md-4 col-form-label">Description</label>
                                             <div class="col-md-8">
-                                                <textarea id="description" class="form-control" rows="4"></textarea>
+                                                <textarea id="description" class="form-control" rows="4" name="description"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -141,7 +133,7 @@
                             <div class="card mb-3" style="max-width: 540px;">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img src="{{ asset('images/store/profile/profile.jpg') }}" class="card-img"
+                                        <img src="{{ asset($product->store->picture) }}" class="card-img"
                                             alt="...">
                                     </div>
                                     <div class="col-md-8">

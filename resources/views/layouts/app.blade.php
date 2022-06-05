@@ -176,26 +176,18 @@
                                                             </div>
                                                         </div>
 
-                                                        {{-- <div class="form-group row">
+                                                        <div class="form-group row">
                                                             <label for="storePicture" class="col-md-3 col-form-label">Store
                                                                 Picture</label>
                                                             <div class="col-md-9">
                                                                 <div class="custom-file">
                                                                     <input type="file" class="custom-file-input"
-                                                                        id="storePicture">
+                                                                        id="storePicture" name="storePicture">
                                                                     <label class="custom-file-label" for="storePicture">Choose
                                                                         file</label>
                                                                 </div>
                                                                 <small id="pictureHelp" class="form-text text-muted">Ekstensi
                                                                     file yang diperbolehkan: .JPG .JPEG .PNG</small>
-                                                            </div>
-                                                        </div> --}}
-
-                                                        <div class="form-group row">
-                                                            <label for="storePicture" class="col-md-3 col-form-label">{{ __('Store Picture') }}</label>
-                                
-                                                            <div class="col-md-9">
-                                                                <input id="storePicture" type="file" class="form-control-file" name="storePicture" required autocomplete="storePicture" autofocus>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -222,7 +214,7 @@
                                         {{ __('Profile') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="/transaction/{{ Auth::user()->id }}">
+                                    <a class="dropdown-item" href="/transaction">
                                         <i class="bi bi-card-checklist"></i>
                                         {{ __('Transaction') }}
                                     </a>

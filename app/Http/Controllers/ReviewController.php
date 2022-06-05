@@ -38,10 +38,10 @@ class ReviewController extends Controller
      */
     public function review(Request $request, $productId)
     {
-        $this->validate($request,[
-            'rating' => ['required'],
-            'description' => ['required', 'string'],
-        ]);
+        // $this->validate($request,[
+        //     'rating' => ['required', 'not_in:0'],
+        //     'description' => ['required', 'string'],
+        // ]);
 
         $product = Product::find($productId);
 
@@ -50,7 +50,6 @@ class ReviewController extends Controller
         $review->product_id = $productId;
         $review->description = $request->input('description');
         $review->rating = $request->input('rating');
-        $review->picture = '-';
 
         if ($request->file('pictureReview') != null) {
             $file = $request->file('pictureReview');
@@ -77,7 +76,7 @@ class ReviewController extends Controller
         $review->updated_at = Carbon::now();
 
         $review->save();
-        return redirect('/home');
+        return back()->with('success', 'Successfully Send Review!');
     }
 
     /**

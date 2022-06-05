@@ -9,13 +9,15 @@
                     <div class="card shadow-sm">
                         <div class="p-3">
                             <div class="text-center">
-                                <img src="{{ asset($store->picture) }}"
-                                    class="border border-dark rounded-circle" alt="..." width="110px" height="110px">
+                                <img src="{{ asset($store->picture) }}" class="border border-dark rounded-circle" alt="..."
+                                    width="110px" height="110px">
                             </div>
                             <div class="pt-3 text-center">
                                 <strong style="font-size: 18px">{{ $store->name }}</strong><br>
-                                <small><strong>Created : </strong>{{ date('l, d F Y', strtotime($store->created_at)) }}</small><br>
-                                <small><strong>Updated : </strong>{{ date('l, d F Y', strtotime($store->updated_at)) }}</small>
+                                <small><strong>Created :
+                                    </strong>{{ date('l, d F Y', strtotime($store->created_at)) }}</small><br>
+                                <small><strong>Updated :
+                                    </strong>{{ date('l, d F Y', strtotime($store->updated_at)) }}</small>
                             </div>
 
                             <div class="border-top mt-2 mb-2"></div>
@@ -31,7 +33,8 @@
                                 tabindex="-1" aria-labelledby="editStoreLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
-                                        <form method="POST" action="/edit/store/{{ $store->id }}" enctype="multipart/form-data">
+                                        <form method="POST" action="/edit/store/{{ $store->id }}"
+                                            enctype="multipart/form-data">
                                             @csrf
                                             {{ method_field('PUT') }}
                                             <div class="modal-header">
@@ -43,34 +46,27 @@
                                             </div>
                                             <div class="modal-body">
                                                 <div class="form-group row">
-                                                    <label for="storeName" class="col-md-4 col-form-label">Store Name</label>
+                                                    <label for="storeName" class="col-md-4 col-form-label">Store
+                                                        Name</label>
                                                     <div class="col-md-8">
                                                         <input id="storeName" type="storeName" class="form-control"
-                                                            name="storeName" value="{{ $store->name }}" required autocomplete="storeName"
-                                                            autofocus>
+                                                            name="storeName" value="{{ $store->name }}" required
+                                                            autocomplete="storeName" autofocus>
                                                     </div>
                                                 </div>
 
-                                                {{-- <div class="form-group row">
+                                                <div class="form-group row">
                                                     <label for="storePicture" class="col-md-4 col-form-label">Store
                                                         Picture</label>
                                                     <div class="col-md-8">
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input"
-                                                                id="storePicture">
+                                                            <input type="file" class="custom-file-input" id="storePicture"
+                                                                name="storePicture">
                                                             <label class="custom-file-label" for="storePicture">Choose
                                                                 file</label>
                                                         </div>
                                                         <small class="text-muted">Ekstensi file yang
                                                             diperbolehkan: .JPG .JPEG .PNG</small>
-                                                    </div>
-                                                </div> --}}
-
-                                                <div class="form-group row">
-                                                    <label for="storePicture" class="col-md-4 col-form-label">{{ __('Store Picture') }}</label>
-                        
-                                                    <div class="col-md-8">
-                                                        <input id="storePicture" type="file" class="form-control-file" name="storePicture" required autocomplete="storePicture" autofocus>
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,15 +103,17 @@
                                         tabindex="-1" aria-labelledby="addProductLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="addProductLabel">Add Product</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
+                                                <form method="POST" action="/addProduct"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="addProductLabel">Add Product</h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
                                                         <div class="form-group row">
                                                             <label for="productName" class="col-md-4 col-form-label">Product
                                                                 Name</label>
@@ -150,13 +148,13 @@
                                                             <div class="col-md-8 pt-2">
                                                                 <div class="form-check-inline">
                                                                     <input class="form-check-input" type="radio"
-                                                                        name="productType" value="mobile">
+                                                                        name="productType" value="1">
                                                                     <label class="form-check-label"
                                                                         for="mobile">Mobile</label>
                                                                 </div>
                                                                 <div class="form-check-inline">
                                                                     <input class="form-check-input" type="radio"
-                                                                        name="productType" value="pc">
+                                                                        name="productType" value="2">
                                                                     <label class="form-check-label" for="pc">PC</label>
                                                                 </div>
                                                             </div>
@@ -166,14 +164,14 @@
                                                             <label for="productCategory"
                                                                 class="col-md-4 col-form-label">Product Category</label>
                                                             <div class="col-md-8">
-                                                                <select id="productCategory" class="form-control">
-                                                                    <option selected>Category</option>
-                                                                    <option>Mobile Legend</option>
-                                                                    <option>PUBG Mobile</option>
-                                                                    <option>Free Fire</option>
-                                                                    <option>Valorant</option>
-                                                                    <option>Genshin Impact</option>
-                                                                    <option>Fortnite</option>
+                                                                <select id="productCategory" class="form-control"
+                                                                    name="productCategory">
+                                                                    <option selected value="0">-- Select Category --
+                                                                    </option>
+                                                                    @foreach ($pCategory as $pc)
+                                                                        <option value="{{ $pc->id }}">
+                                                                            {{ $pc->name }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -184,7 +182,7 @@
                                                             <div class="col-md-8">
                                                                 <div class="custom-file">
                                                                     <input type="file" class="custom-file-input"
-                                                                        id="productPicture">
+                                                                        id="productPicture" name="productPicture">
                                                                     <label class="custom-file-label"
                                                                         for="productPicture">Choose file</label>
                                                                 </div>
@@ -195,16 +193,17 @@
 
                                                         <div class="form-group row">
                                                             <label for="productDescription"
-                                                                class="col-md-4 col-form-label">Product Description</label>
+                                                                class="col-md-4 col-form-label">Product
+                                                                Description</label>
                                                             <div class="col-md-8">
-                                                                <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                                                                <textarea class="form-control" id="productDescription" rows="3" name="productDescription"></textarea>
                                                             </div>
                                                         </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary">Add Product</button>
-                                                </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary">Add Product</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
@@ -240,10 +239,11 @@
                                 </div>
                             </div>
 
-                            
+
                             @if (empty($product) || count($product) == 0)
                                 <div class="text-center pt-3 pb-4">
-                                    <img src="{{ asset('images/empty/empty-product.png') }}" alt="..." width="25%" height="300px">
+                                    <img src="{{ asset('images/empty/empty-product.png') }}" alt="..." width="25%"
+                                        height="300px">
                                     <h3 class="pt-4">Tidak Ada Product Pada {{ $store->name }}</h3>
                                 </div>
                             @else
@@ -261,10 +261,12 @@
                                     <tbody class="text-center">
                                         @foreach ($product as $key => $p)
                                             <tr>
-                                                <th scope="row" class="align-middle">{{ $product->firstItem() + $key }}
+                                                <th scope="row" class="align-middle">
+                                                    {{ $product->firstItem() + $key }}
                                                 </th>
                                                 <td>
-                                                    <img src="{{ asset($p->picture) }}" alt="..." width="70px" height="70px">
+                                                    <img src="{{ asset($p->picture) }}" alt="..." width="70px"
+                                                        height="70px">
                                                 </td>
                                                 <td class="align-middle">{{ $p->name }}</td>
                                                 <td class="align-middle">Rp. {{ $p->price }}</td>
@@ -295,71 +297,81 @@
                                             aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="updateProductLabel">Update Product</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            <div class="form-group row">
-                                                                <label for="productName"
-                                                                    class="col-md-4 col-form-label">Product
-                                                                    Name</label>
-                                                                <div class="col-md-8">
-                                                                    <input id="productName" type="productName"
-                                                                        class="form-control" name="productName" required
-                                                                        autocomplete="productName" autofocus>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row">
-                                                                <label for="productPrice"
-                                                                    class="col-md-4 col-form-label">Product Price</label>
-                                                                <div class="col-md-8">
-                                                                    <input type="text" class="form-control" id="productPrice"
-                                                                        name="productPrice" required autofocus>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row">
-                                                                <label for="process"
-                                                                    class="col-md-4 col-form-label">Process</label>
-                                                                <div class="col-md-8">
-                                                                    <input type="number" class="form-control" id="process"
-                                                                        name="process" required autofocus>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="form-group row">
-                                                                <label for="productPicture"
-                                                                    class="col-md-4 col-form-label">Product Picture</label>
-                                                                <div class="col-md-8">
-                                                                    <div class="custom-file">
-                                                                        <input type="file" class="custom-file-input"
-                                                                            id="productPicture">
-                                                                        <label class="custom-file-label"
-                                                                            for="productPicture">Choose file</label>
+                                                    <form method="POST" action="/updateProduct"
+                                                        enctype="multipart/form-data">
+                                                        @csrf
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="updateProductLabel">Update
+                                                                Product</h5>
+                                                            <button type="button" class="close"
+                                                                data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form>
+                                                                <div class="form-group row">
+                                                                    <label for="productName"
+                                                                        class="col-md-4 col-form-label">Product
+                                                                        Name</label>
+                                                                    <div class="col-md-8">
+                                                                        <input id="productName" type="productName"
+                                                                            class="form-control" name="productName"
+                                                                            required autocomplete="productName" autofocus>
                                                                     </div>
-                                                                    <small class="text-muted">Ekstensi file yang
-                                                                        diperbolehkan: .JPG .JPEG .PNG</small>
                                                                 </div>
-                                                            </div>
 
-                                                            <div class="form-group row">
-                                                                <label for="productDescription"
-                                                                    class="col-md-4 col-form-label">Product Description</label>
-                                                                <div class="col-md-8">
-                                                                    <textarea class="form-control" id="productDescription" rows="3"></textarea>
+                                                                <div class="form-group row">
+                                                                    <label for="productPrice"
+                                                                        class="col-md-4 col-form-label">Product
+                                                                        Price</label>
+                                                                    <div class="col-md-8">
+                                                                        <input type="text" class="form-control"
+                                                                            id="productPrice" name="productPrice" required
+                                                                            autofocus>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary">Update Product</button>
-                                                    </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="process"
+                                                                        class="col-md-4 col-form-label">Process</label>
+                                                                    <div class="col-md-8">
+                                                                        <input type="number" class="form-control"
+                                                                            id="process" name="process" required autofocus>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="productPicture"
+                                                                        class="col-md-4 col-form-label">Product
+                                                                        Picture</label>
+                                                                    <div class="col-md-8">
+                                                                        <div class="custom-file">
+                                                                            <input type="file" class="custom-file-input"
+                                                                                id="productPicture" name="productPicture">
+                                                                            <label class="custom-file-label"
+                                                                                for="productPicture">Choose file</label>
+                                                                        </div>
+                                                                        <small class="text-muted">Ekstensi file yang
+                                                                            diperbolehkan: .JPG .JPEG .PNG</small>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="productDescription"
+                                                                        class="col-md-4 col-form-label">Product
+                                                                        Description</label>
+                                                                    <div class="col-md-8">
+                                                                        <textarea class="form-control" id="productDescription" rows="3" name="productDescription"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="submit" class="btn btn-primary">Update
+                                                                Product</button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>

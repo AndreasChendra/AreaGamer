@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Store;
 use App\Product;
+use App\ProductCategory;
+use App\Transaction;
 use Auth;
 use File;
 
@@ -69,13 +71,18 @@ class StoreController extends Controller
         $search = $request->input('search');
         $product = Product::where('store_id', $storeId)
             ->where('name', 'like', "%$search%")
-            ->paginate(4); 
-        return view('store.store_info', ['store' => $store, 'product' => $product]);
+            ->paginate(4);
+        $pCategory = ProductCategory::all();
+        return view('store.store_info', ['store' => $store, 'product' => $product, 'pCategory' => $pCategory]);
     }
 
     public function order($storeId)
     {
-        return view('store.order');
+        $product = Product::where('store_id', $storeId)->get();
+        foreach ($product as $key => $p) {
+            $transaction = Transaction::where('product_id', $p->id)->where('status', 'A Waiting Seller')->get();
+        }
+        return view('store.order', ['transaction' => $transaction]);
     }
 
     /**

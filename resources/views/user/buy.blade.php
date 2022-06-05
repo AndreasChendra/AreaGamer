@@ -81,7 +81,7 @@
                         </div>
                     </div>
 
-                    <!-- Modal Buy -->
+                    <!-- Modal Payment -->
                     <div class="modal fade" id="payment" data-backdrop="static" data-keyboard="false" tabindex="-1"
                         aria-labelledby="paymentLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
