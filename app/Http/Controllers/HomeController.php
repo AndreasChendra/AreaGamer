@@ -24,8 +24,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $category = ProductCategory::all();
-        $search = $request->input('search');
-        $product = Product::where('name', 'like', "%$search%")->get();
+        $product = Product::all();
         return view('home', ['categories' => $category, 'products' => $product]);
     }
 }

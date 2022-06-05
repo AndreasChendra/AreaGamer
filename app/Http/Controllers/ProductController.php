@@ -146,4 +146,11 @@ class ProductController extends Controller
         $product->delete();
         return back()->with('success', 'Delete Product Successfully!');
     }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $product = Product::where('name', 'like', "%$search%")->get();
+        return view('product.search', ['search' => $search, 'product' => $product]);
+    }
 }

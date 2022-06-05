@@ -84,8 +84,8 @@
                         </div>
                     </ul>
 
-                    <form class="form-inline" action="#">
-                        <input class="form-control" type="search" style="width: 400px;" placeholder="Search"
+                    <form class="form-inline" action="/search">
+                        <input class="form-control" type="search" style="width: 400px;" placeholder="Search Product"
                             name="search" value="{{ Request::input('search') }}" aria-label="Search">
                         <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
                     </form>

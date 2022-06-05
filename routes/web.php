@@ -24,6 +24,7 @@ Route::post('/changePass', 'UserController@changePass');
 Route::get('/resetPassword', 'UserController@vResetPass');
 Route::post('/resetPassword', 'UserController@resetPass');
 
+Route::get('/search', 'ProductController@search');
 Route::get('/product/detail/{productId}', 'ProductController@show');
 Route::get('/product/type/{typeId}', 'ProductController@type');
 Route::get('/product/category/{categoryId}', 'ProductController@category');
