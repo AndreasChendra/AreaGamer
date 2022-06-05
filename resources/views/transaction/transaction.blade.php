@@ -43,7 +43,12 @@
                             <td class="align-middle">{{ $tr->note }}</td>
                             <td class="align-middle">{{ $tr->status }}</td>
                             <td class="align-middle">
-                                <a href="#" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i class="bi bi-x-circle"></i></a>
+                                <form method="POST" action="/cancelTransaction/{{ $tr->id }}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger"
+                                        style="border-radius: 10px">Cancel&nbsp;<i class="bi bi-x-circle"></i></button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

@@ -80,8 +80,10 @@ class TransactionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($transactionId)
     {
-        //
+        $transaction = Transaction::findOrFail($transactionId);
+        $transaction->delete();
+        return back()->with('success', 'Cancel Transaction Successfully!');
     }
 }

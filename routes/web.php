@@ -50,6 +50,7 @@ Route::get('/transber/detail/{transberId}', 'TransberController@show');
 
 Route::get('/transaction', 'TransactionController@index');
 Route::get('/transaction/history/{userId}', 'TransactionController@show');
+Route::delete('/cancelTransaction/{transactionId}', 'TransactionController@destroy');
 
 Route::get('/verifKTP', 'UserController@vVerifKTP');
 Route::post('/veritKTP', 'UserController@sVerifKTP');
