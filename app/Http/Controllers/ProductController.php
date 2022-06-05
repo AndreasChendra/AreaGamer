@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Review;
 use Auth;
+use File;
 
 class ProductController extends Controller
 {
@@ -135,8 +137,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($productId)
     {
-        //
+        $product = Product::findOrFail($productId);
+        $review = Review::where('product_id', $product->id)->get();
+        File::delete($product->picture);
+        $review->each->delete();
+        $product->delete();
+        return back()->with('success', 'Delete Product Successfully!');
     }
 }

@@ -282,9 +282,13 @@
                                                             </button>
                                                         </div>
                                                         <div class="mr-1">
-                                                            <button type="button" class="btn btn-danger"
-                                                                style="border-radius: 10px">Delete&nbsp;<i
-                                                                    class="bi bi-x-circle"></i></button>
+                                                            <form method="POST" action="/deleteProduct/{{ $p->id }}">
+                                                                {{ csrf_field() }}
+                                                                {{ method_field('DELETE') }}
+                                                                <button type="submit" class="btn btn-danger"
+                                                                    style="border-radius: 10px">Delete&nbsp;<i
+                                                                        class="bi bi-x-circle"></i></button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </td>
