@@ -82,7 +82,15 @@ class ProductController extends Controller
     public function show($productId)
     {
         $product = Product::find($productId);
-        return view('product.product_detail', ['product' => $product]);
+        $review = Review::where('product_id', $product->id)->get();
+        $totalReview = Review::where('product_id', $product->id)->count();
+        $rate5 = Review::where('product_id', $product->id)->where('rating', '5')->count();
+        $rate4 = Review::where('product_id', $product->id)->where('rating', '4')->count();
+        $rate3 = Review::where('product_id', $product->id)->where('rating', '3')->count();
+        $rate2 = Review::where('product_id', $product->id)->where('rating', '2')->count();
+        $rate1 = Review::where('product_id', $product->id)->where('rating', '1')->count();
+        $avgRate = Review::where('product_id', $product->id)->avg('rating');
+        return view('product.product_detail', ['product' => $product, 'review' => $review, 'totalReview' => $totalReview, 'rate5' => $rate5, 'rate4' => $rate4, 'rate3' => $rate3, 'rate2' => $rate2, 'rate1' => $rate1, 'avgRate' => $avgRate]);
     }
 
     public function type($typeId)

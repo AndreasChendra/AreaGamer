@@ -30,10 +30,17 @@
                             <div class="pb-4"><b>Phone</b></div>
                             <div class="pb-4"><b>Gender</b></div>
                             <div class="pt-5">
-                                <a id="verifKTP" href="/verifKTP" class="btn btn-primary btn-block">
-                                    <i class="bi bi-person-plus"></i>
-                                    {{ __('Verif KTP') }}
-                                </a>
+                                @if ($user->selfie_idcard == '-')
+                                    <a id="verifKTP" href="/verifKTP" class="btn btn-primary btn-block">
+                                        <i class="bi bi-person-plus"></i>
+                                        {{ __('Verif KTP') }}
+                                    </a>
+                                @else
+                                    <a id="verifKTP" href="/verifKTP" class="btn btn-primary btn-block disabled">
+                                        <i class="bi bi-person-plus"></i>
+                                        {{ __('Verif KTP') }}
+                                    </a>
+                                @endif
                             </div>
                         </div>
                         <div class="col-5 p-5">
@@ -174,8 +181,7 @@
                                     <div class="form-group row">
                                         <label for="username" class="col-md-2 col-form-label">Username</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="username" class="form-control" name="username"
-                                                value="{{ $user->username }}" placeholder="{{ $user->username }}">
+                                            <input type="text" id="username" class="form-control" name="username" placeholder="{{ $user->username }}">
                                         </div>
                                     </div>
                                 @else
@@ -226,8 +232,7 @@
                                     <label for="phone" class="col-md-2 col-form-label">Phone</label>
                                     <div class="col-md-10">
                                         <input id="phone" type="phone"
-                                            class="form-control @error('phone') is-invalid @enderror" name="phone"
-                                            value="{{ $user->phone }}" placeholder="{{ $user->phone }}" required
+                                            class="form-control @error('phone') is-invalid @enderror" name="phone" placeholder="{{ $user->phone }}" required
                                             autocomplete="phone" autofocus>
 
                                         @error('phone')

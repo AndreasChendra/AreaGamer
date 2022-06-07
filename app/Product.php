@@ -32,4 +32,9 @@ class Product extends Model
     {
         return $this->hasMany('App\Transaction');
     }
+
+    public function review()
+    {
+        return $this->hasMany('App\Review');
+    }
 }

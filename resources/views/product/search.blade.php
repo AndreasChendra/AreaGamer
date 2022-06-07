@@ -8,9 +8,9 @@
             <div class="border-top mt-4 pb-2"></div>
 
             @if (empty($product) || count($product) == 0)
-                <div class="text-center pt-5 pb-5">
-                    <img src="{{ asset('images/empty/empty-transaction.png') }}" alt="..." width="40%">
-                    <h3>Tidak Ada Transaksi Pada Saat Ini</h3>
+                <div class="text-center pt-3 pb-5">
+                    <img src="{{ asset('images/empty/empty-result.png') }}" alt="..." width="40%">
+                    <h3>Tidak Ada Produk Yang Dicari Pada Saat Ini</h3>
                 </div>
             @else
                 <div class="row row-cols-1 row-cols-md-6 pt-4">
@@ -29,7 +29,7 @@
                                                 5.0
                                             </div>
                                             <div class="col-md-7 text-right">
-                                                <small>{{ $p->sold_out }}x terjual</small>
+                                                <small>{{ $p->total_sold }}x terjual</small>
                                             </div>
                                         </div>
                                     </div>

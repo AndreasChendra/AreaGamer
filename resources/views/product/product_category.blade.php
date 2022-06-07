@@ -25,10 +25,17 @@
                                     <div class="row pt-2">
                                         <div class="col-md-5 text-left">
                                             <i class="bi bi-star-fill" style="color: orange"></i>
-                                            5.0
+                                            @php
+                                                $avgRating = substr(App\Review::where('product_id', $p->id)->avg('rating'),0,3)
+                                            @endphp
+                                            @if ($avgRating == null)
+                                                0
+                                            @else
+                                                {{$avgRating}}
+                                            @endif
                                         </div>
                                         <div class="col-md-7 text-right">
-                                            <small>{{ $p->sold_out }}x terjual</small>
+                                            <small>{{ $p->total_sold }}x terjual</small>
                                         </div>
                                     </div>
                                 </div>

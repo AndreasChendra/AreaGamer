@@ -35,7 +35,8 @@
                                             <h5 id="harga">0</h5>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary btn-block" disabled>Beli</button>
+                                    <button type="button" class="btn btn-primary btn-block" disabled><i
+                                            class="bi bi-cart-check"></i>&nbsp;Checkout</button>
                                 </div>
                             </div>
                         </div>
@@ -129,9 +130,9 @@
                                             <h5 id="harga">0</h5>
                                         </div>
                                     </div>
-                                    {{-- <button type="submit" class="btn btn-primary btn-block">Beli</button> --}}
-                                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
-                                        data-target="#payment"><i class="bi bi-cash-stack"></i>&nbsp;Beli</button>
+                                    <button id="checkOutBtn" type="button" class="btn btn-primary btn-block"
+                                        data-toggle="modal" data-target="#payment" disabled><i
+                                            class="bi bi-cart-check"></i>&nbsp;Checkout</button>
                                 </div>
                             </div>
                         </div>
@@ -187,14 +188,17 @@
             var y = parseInt(document.getElementById("harga").innerHTML);
             var z = parseInt(document.getElementById("produkCheck").innerHTML);
             var hid = document.getElementById("selectedHidden" + cartId);
+            let allId = document.getElementById('selectAll');
             if (a.checked) {
                 document.getElementById("harga").innerHTML = (x + y);
                 document.getElementById("produkCheck").innerHTML = (z + 1);
                 hid.checked = true;
+                document.getElementById("checkOutBtn").disabled = false;
             } else {
                 document.getElementById("harga").innerHTML = (y - x);
                 document.getElementById("produkCheck").innerHTML = (z - 1);
                 hid.checked = false;
+                document.getElementById("checkOutBtn").disabled = true;
             }
         }
 
@@ -208,6 +212,7 @@
                     total = total + x;
                     hid.checked = true;
                 });
+                document.getElementById("checkOutBtn").disabled = false;
                 document.getElementById("harga").innerHTML = total;
                 document.getElementById("produkCheck").innerHTML = cartIds.length;
             } else {
@@ -217,6 +222,7 @@
                     var hid = document.getElementById("selectedHidden" + id);
                     hid.checked = false;
                 });
+                document.getElementById("checkOutBtn").disabled = true;
             }
         }
     </script>
