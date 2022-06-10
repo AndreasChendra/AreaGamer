@@ -7,12 +7,13 @@
         <div class="card shadow bg-white rounded">
             <div class="card-body">
                 <h5 class="card-title">Verification KTP</h5>
-                <div class="border-top"></div>
+                <div class="border-top pb-3"></div>
                 <form method="POST" action="/veritKTP">
                     @csrf
                     <div class="row">
                         <div class="col-md-6">
                             <div class="card p-3">
+                                <img src="/images/guide.png" alt="" class="guide pl-1 pb-1">
                                 <div id="my_camera"></div>
                                 <br>
                                 <button type="button" class="btn btn-primary"  onClick="take_snapshot()">

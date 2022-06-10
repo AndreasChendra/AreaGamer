@@ -259,3 +259,9 @@
     border: 1px solid;
     background: #ccc;
 }
+
+.guide {
+    position: absolute;
+    width: 91%;
+    height: 80.2%;
+}
