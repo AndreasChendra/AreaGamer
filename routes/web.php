@@ -46,7 +46,9 @@ Route::post('/addToCart/{productId}/{userId}', 'CartController@store');
 Route::delete('/delete/cart', 'CartController@destroy');
 Route::post('/checkout', 'CartController@checkout');
 
-Route::get('/buy/{productId}', 'ProductController@buy');
+Route::post('/buy/{productId}', 'ProductController@cBuy');
+Route::get('/buy/{productId}', 'ProductController@vBuy');
+Route::put('/buy/{transactionId}', 'ProductController@buy');
 
 Route::get('/transber/{userName}', 'TransberController@index');
 Route::get('/transber/detail/{transberId}', 'TransberController@show');

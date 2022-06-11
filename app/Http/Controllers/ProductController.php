@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Review;
+use App\Transaction;
 use Auth;
 use File;
 
@@ -121,10 +122,37 @@ class ProductController extends Controller
         //
     }
 
-    public function buy($productId)
+    public function vBuy($productId)
     {
         $product = Product::find($productId);
-        return view('user.buy', ['product' => $product]);
+        $tr = Transaction::where('product_id', $productId)
+                            ->where('status', '-')->first();
+        return view('user.buy', ['product' => $product, 'tr' => $tr]);
+    }
+
+    public function cBuy(Request $request, $productId)
+    {
+        $product = Product::find($productId);
+        $transaction = new Transaction();
+        $transaction->user_id = Auth::user()->id;
+        $transaction->product_id = $product->id;
+        $transaction->payment_id = 1;
+        $transaction->status = '-';
+        $transaction->note = $request->input('note');
+        $transaction->save();
+        $tr = Transaction::where('product_id', $productId)
+                            ->where('status', '-')->first();
+        return view('user.buy', ['product' => $product, 'tr' => $tr]);
+    }
+
+    public function buy(Request $request, $transactionId)
+    {
+        $transaction = Transaction::find($transactionId);
+        $transaction->payment_id = $request->input('payment');
+        $transaction->status = 'A Waiting Seller';
+        $transaction->save();
+            
+        return redirect('/transaction')->with('success', 'Success Buy!');
     }
 
     /**

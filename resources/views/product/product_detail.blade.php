@@ -28,11 +28,13 @@
                         aria-labelledby="sendReviewLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <form method="POST" action="/send/review/{{ $product->id }}" enctype="multipart/form-data">
+                                <form method="POST" action="/send/review/{{ $product->id }}"
+                                    enctype="multipart/form-data">
                                     @csrf
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="sendReviewLabel">Send Review</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
@@ -60,17 +62,23 @@
                                         </div>
 
                                         <div class="form-group row pt-3">
-                                            <label for="rating" class="col-md-4 col-form-label">{{ __('Rating') }}</label>
+                                            <label for="rating"
+                                                class="col-md-4 col-form-label">{{ __('Rating') }}</label>
                                             <div class="col-md-8">
                                                 <select class="form-control" id="rating" name="rating">
-                                                    <option value="0" >-- Select Rating --</option>
-                                                    <option value="1" style="color: orange; font-size: 16px">&#9733;</option>
-                                                    <option value="2" style="color: orange; font-size: 16px">&#9733;&#9733;</option>
-                                                    <option value="3" style="color: orange; font-size: 16px">&#9733;&#9733;&#9733;</option>
-                                                    <option value="4" style="color: orange; font-size: 16px">&#9733;&#9733;&#9733;&#9733;</option>
-                                                    <option value="5" style="color: orange; font-size: 16px">&#9733;&#9733;&#9733;&#9733;&#9733;</option>
+                                                    <option value="0">-- Select Rating --</option>
+                                                    <option value="1" style="color: orange; font-size: 16px">&#9733;
+                                                    </option>
+                                                    <option value="2" style="color: orange; font-size: 16px">&#9733;&#9733;
+                                                    </option>
+                                                    <option value="3" style="color: orange; font-size: 16px">
+                                                        &#9733;&#9733;&#9733;</option>
+                                                    <option value="4" style="color: orange; font-size: 16px">
+                                                        &#9733;&#9733;&#9733;&#9733;</option>
+                                                    <option value="5" style="color: orange; font-size: 16px">
+                                                        &#9733;&#9733;&#9733;&#9733;&#9733;</option>
                                                 </select>
-                
+
                                                 @error('rating')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -83,10 +91,12 @@
                                             <label for="pictureReview" class="col-md-4 col-form-label">Picture</label>
                                             <div class="col-md-8">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="pictureReview" name="pictureReview">
+                                                    <input type="file" class="custom-file-input" id="pictureReview"
+                                                        name="pictureReview">
                                                     <label class="custom-file-label" for="pictureReview">Choose file</label>
                                                 </div>
-                                                <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</small>
+                                                <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG
+                                                    .PNG</small>
                                             </div>
                                         </div>
 
@@ -98,7 +108,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary"><i class="bi bi-gift-fill"></i>&nbsp;Send Review</button>
+                                        <button type="submit" class="btn btn-primary"><i
+                                                class="bi bi-gift-fill"></i>&nbsp;Send Review</button>
                                     </div>
                                 </form>
                             </div>
@@ -110,11 +121,11 @@
                     <h4 class="card-text">{{ $product->name }}</h4>
                     <div class="text-left">
                         {{ $product->total_sold }}x terjual<i class="bi bi-dot"></i>
-                        <i class="bi bi-star-fill" style="color: orange"></i> 
+                        <i class="bi bi-star-fill" style="color: orange"></i>
                         @if ($avgRate == null)
                             0
                         @else
-                            {{substr($avgRate,0,3)}}
+                            {{ substr($avgRate, 0, 3) }}
                         @endif
                     </div>
                     <h2 class="card-title pt-3 pb-3">Rp. {{ $product->price }}</h2>
@@ -155,9 +166,9 @@
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="input-group mb-3">
-                                        <input type="text" id="note" class="form-control @error('note') is-invalid @enderror"
-                                            name="note" required autocomplete="note"
-                                            placeholder="Contoh : Jycho. 123724663 (2601)">
+                                        <input type="text" id="note"
+                                            class="form-control @error('note') is-invalid @enderror" name="note" required
+                                            autocomplete="note" placeholder="Contoh : Jycho. 123724663 (2601)">
                                     </div>
                                     <button class="btn btn-block btn-primary mb-2">
                                         <i class="bi bi-cart-plus"></i>
@@ -183,39 +194,42 @@
                             aria-labelledby="buyNowLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="buyNowLabel">Beli Langsung</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <img src="{{ asset($product->picture) }}" alt="..." width="100px"
-                                                            height="100px">
-                                                    </div>
-                                                    <div class="col-md-4 pt-3">
-                                                        <strong style="font-size: 17px">{{ $product->name }}</strong><br>
-                                                        <span style="font-size: 17px" class="text-muted">Rp.
-                                                            {{ $product->price }}</span>
-                                                    </div>
-                                                    <div class="col-md-5 pt-2 text-center">
-                                                        <div class="input-group">
-                                                            <textarea class="form-control" id="note" rows="3" placeholder="Jycho. 123724663 (2601)"></textarea>
+                                    <form action="/buy/{{ $product->id }}" method="post">
+                                        @csrf
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="buyNowLabel">Beli Langsung</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="card">
+                                                <div class="p-3">
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <img src="{{ asset($product->picture) }}" alt="..."
+                                                                width="100px" height="100px">
+                                                        </div>
+                                                        <div class="col-md-4 pt-3">
+                                                            <strong
+                                                                style="font-size: 17px">{{ $product->name }}</strong><br>
+                                                            <span style="font-size: 17px" class="text-muted">Rp.
+                                                                {{ $product->price }}</span>
+                                                        </div>
+                                                        <div class="col-md-5 pt-2 text-center">
+                                                            <div class="input-group">
+                                                                <textarea class="form-control" id="note" name="note" rows="3" placeholder="Jycho. 123724663 (2601)"></textarea>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="/buy/{{ $product->id }}"><button type="button"
-                                                class="btn btn-primary">Beli</button></a>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Beli</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -256,8 +270,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a href="#"><button type="button"
-                                            class="btn btn-primary">Lihat Keranjang</button></a>
+                                        <a href="#"><button type="button" class="btn btn-primary">Lihat
+                                                Keranjang</button></a>
                                     </div>
                                 </div>
                             </div>
@@ -267,7 +281,7 @@
             </div>
 
             <div>
-                <h4>Ulasan ({{$totalReview}})</h4>
+                <h4>Ulasan ({{ $totalReview }})</h4>
                 <div class="row">
                     <div class="col-md-3">
                         <div class="text-center" style="font-size: 18px">{{ $product->name }}</div>
@@ -279,12 +293,13 @@
                             </div>
                             <div class="col-md-8 p-1">
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$rate5}}%"
-                                        aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                        style="width: {{ $rate5 }}%" aria-valuenow="65" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                {{$rate5}}
+                                {{ $rate5 }}
                             </div>
                         </div>
 
@@ -294,12 +309,13 @@
                             </div>
                             <div class="col-md-8 p-1">
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$rate4}}%"
-                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                        style="width: {{ $rate4 }}%" aria-valuenow="75" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                {{$rate4}}
+                                {{ $rate4 }}
                             </div>
                         </div>
 
@@ -309,12 +325,13 @@
                             </div>
                             <div class="col-md-8 p-1">
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$rate3}}%"
-                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                        style="width: {{ $rate3 }}%" aria-valuenow="75" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                {{$rate3}}
+                                {{ $rate3 }}
                             </div>
                         </div>
 
@@ -324,12 +341,13 @@
                             </div>
                             <div class="col-md-8 p-1">
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$rate2}}%"
-                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                        style="width: {{ $rate2 }}%" aria-valuenow="75" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                {{$rate2}}
+                                {{ $rate2 }}
                             </div>
                         </div>
 
@@ -339,12 +357,13 @@
                             </div>
                             <div class="col-md-8 p-1">
                                 <div class="progress">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: {{$rate1}}%"
-                                        aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar"
+                                        style="width: {{ $rate1 }}%" aria-valuenow="75" aria-valuemin="0"
+                                        aria-valuemax="100"></div>
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                {{$rate1}}
+                                {{ $rate1 }}
                             </div>
                         </div>
                     </div>
@@ -354,7 +373,7 @@
                                 @if ($avgRate == null)
                                     0
                                 @else
-                                    {{substr($avgRate,0,3)}}
+                                    {{ substr($avgRate, 0, 3) }}
                                 @endif
                                 <span style="font-size: 18px">/5</span>
                             </span>
@@ -365,7 +384,7 @@
                                 <i class="bi bi-star-fill"></i>
                                 <i class="bi bi-star-fill"></i>
                             </div>
-                            <small>({{$totalReview}}) Ulasan</small>
+                            <small>({{ $totalReview }}) Ulasan</small>
                         </div>
                     </div>
                 </div>
@@ -374,19 +393,18 @@
                     <div class="row pt-2">
                         <div class="col-md-5">
                             <div class="pt-2 pb-2">
-                                <span><b>FOTO DARI PEMBELI ({{$totalReview}})</b></span>
+                                <span><b>FOTO DARI PEMBELI ({{ $totalReview }})</b></span>
                                 <span style="float: right">Lihat Semua</span><br>
                             </div>
                             <div class="pb-3">
                                 @foreach ($review as $r)
-                                    <img src="{{ asset($r->picture) }}" alt="..." width="108px"
-                                        height="105px">
+                                    <img src="{{ asset($r->picture) }}" alt="..." width="108px" height="105px">
                                 @endforeach
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="pt-2 pb-2">
-                                <span><b>SEMUA ULASAN ({{$totalReview}})</b></span>
+                                <span><b>SEMUA ULASAN ({{ $totalReview }})</b></span>
                             </div>
                         </div>
                     </div>
@@ -398,33 +416,32 @@
                     <div class="row pt-2">
                         <div class="col-md-5">
                             <div class="pt-2 pb-2">
-                                <span><b>FOTO DARI PEMBELI ({{$totalReview}})</b></span>
+                                <span><b>FOTO DARI PEMBELI ({{ $totalReview }})</b></span>
                                 <span style="float: right">Lihat Semua</span><br>
                             </div>
                             <div class="pb-3">
                                 @foreach ($review as $r)
-                                    <img src="{{ asset($r->picture) }}" alt="..." width="108px"
-                                        height="105px">
+                                    <img src="{{ asset($r->picture) }}" alt="..." width="108px" height="105px">
                                 @endforeach
                             </div>
                         </div>
                         <div class="col-md-7">
                             <div class="pt-2 pb-2">
-                                <span><b>SEMUA ULASAN ({{$totalReview}})</b></span>
+                                <span><b>SEMUA ULASAN ({{ $totalReview }})</b></span>
                             </div>
-                            
+
                             @foreach ($review as $r)
                                 <div class="pb-1">
                                     <div class="row">
                                         <div class="col-md-5">
                                             <div class="row">
                                                 <div class="col-md-3">
-                                                    <img src="{{ asset($r->user->picture) }}"
-                                                        class="rounded-circle" alt="..." width="55px" height="55px">
+                                                    <img src="{{ asset($r->user->picture) }}" class="rounded-circle"
+                                                        alt="..." width="55px" height="55px">
                                                 </div>
                                                 <div class="col-md-9 pt-1">
-                                                    <span>{{$r->user->name}}</span><br>
-                                                    <small>{{$r->created_at->diffForHumans()}}</small>
+                                                    <span>{{ $r->user->name }}</span><br>
+                                                    <small>{{ $r->created_at->diffForHumans() }}</small>
                                                 </div>
                                             </div>
                                         </div>
@@ -435,7 +452,7 @@
                                                 @endfor
                                             </div>
                                             <div class="text-justify">
-                                                <p>{{$r->description}}</p>
+                                                <p>{{ $r->description }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -465,12 +482,12 @@
                                         <div class="col-md-5 text-left">
                                             <i class="bi bi-star-fill" style="color: orange"></i>
                                             @php
-                                                $avgRating = substr(App\Review::where('product_id', $p->id)->avg('rating'),0,3)
+                                                $avgRating = substr(App\Review::where('product_id', $p->id)->avg('rating'), 0, 3);
                                             @endphp
                                             @if ($avgRating == null)
                                                 0
                                             @else
-                                                {{$avgRating}}
+                                                {{ $avgRating }}
                                             @endif
                                         </div>
                                         <div class="col-md-7 text-right">

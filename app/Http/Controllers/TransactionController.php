@@ -20,7 +20,8 @@ class TransactionController extends Controller
                                     ->where('status', 'A Waiting Seller')->get();
         $trCancel = Transaction::where('user_id', Auth::user()->id)
                                     ->where('status', '!=', 'A Waiting Seller')
-                                    ->where('status', '!=', 'Success')->get();
+                                    ->where('status', '!=', 'Success')
+                                    ->where('status', '!=', '-')->get();
         return view('transaction.transaction', ['transaction' => $transaction, 'trCancel' => $trCancel]);
     }
 

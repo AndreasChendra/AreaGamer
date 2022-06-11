@@ -85,11 +85,11 @@
                                             <td class="align-middle">{{ $c->product->store->name }}</td>
                                             <td class="align-middle">
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <img src="{{ asset($c->product->picture) }}" alt="..."
-                                                            width="80px" height="80px">
+                                                            width="100px" height="100px">
                                                     </div>
-                                                    <div class="col-md-8">
+                                                    <div class="col-md-6 pt-2">
                                                         <span>{{ $c->product->name }}</span><br>
                                                         <strong style="font-size: 17px">Rp. <span
                                                                 id="selectedPrices{{ $c->id }}">{{ $c->product->price }}</span></strong><br>
@@ -97,11 +97,7 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="align-middle">
-                                                <div class="input-group mb-3">
-                                                    <textarea class="form-control" id="note" rows="3" placeholder="{{ $c->note }}"></textarea>
-                                                </div>
-                                            </td>
+                                            <td class="align-middle">{{ $c->note }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
