@@ -60,6 +60,50 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                @if (empty($trCancel) || count($trCancel) == 0)
+                @else
+                    <div class="pt-3">
+                        <h4 class="mt-2 mb-3">Transaction Cancel</h4>
+                        <table class="table table-hover border-bottom mt-2">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Store</th>
+                                    <th scope="col">Product Picture</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Payment</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($trCancel as $trc)
+                                    <tr class="text-center">
+                                        <td class="align-middle">{{ $trc->product->store->name }}</td>
+                                        <td class="align-middle">
+                                            <img src="{{ asset($trc->product->picture) }}" alt="..." width="80px"
+                                                height="80px">
+                                        </td>
+                                        <td class="align-middle">{{ $trc->product->name }}</td>
+                                        <td class="align-middle">
+                                            <img src="{{ asset($trc->payment->picture) }}" alt="..." width="145px"
+                                                height="80px">
+                                        </td>
+                                        <td class="align-middle">{{ $trc->status }}</td>
+                                        <td class="align-middle">
+                                            <form method="POST" action="/cancelTransaction/{{ $trc->id }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger" style="border-radius: 10px"><i
+                                                        class="bi bi-trash"></i>&nbsp;Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
             @endif
         </div>
     </div>

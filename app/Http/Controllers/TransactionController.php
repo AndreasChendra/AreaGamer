@@ -17,7 +17,10 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::where('user_id', Auth::user()->id)
                                     ->where('status', 'A Waiting Seller')->get();
-        return view('transaction.transaction', ['transaction' => $transaction]);
+        $trCancel = Transaction::where('user_id', Auth::user()->id)
+                                    ->where('status', '!=', 'A Waiting Seller')
+                                    ->where('status', '!=', 'Success')->get();
+        return view('transaction.transaction', ['transaction' => $transaction, 'trCancel' => $trCancel]);
     }
 
     /**
@@ -96,5 +99,13 @@ class TransactionController extends Controller
         $transaction->status = 'Success';
         $transaction->save();
         return back()->with('toast_success', 'Transaction Done!');
+    }
+
+    public function cancel(Request $request, $transactionId)
+    {
+        $transaction = Transaction::find($transactionId);
+        $transaction->status = $request->input('status');
+        $transaction->save();
+        return back()->with('toast_warning', 'Transaction Cancel!');
     }
 }

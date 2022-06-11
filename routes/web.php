@@ -37,6 +37,7 @@ Route::get('/store/info/{storeId}', 'StoreController@show');
 Route::put('/edit/store/{storeId}', 'StoreController@edit');
 Route::get('/order/{storeId}', 'StoreController@order');
 Route::put('/done/{transactionId}', 'TransactionController@done');
+Route::put('/cancel/{transactionId}', 'TransactionController@cancel');
 
 Route::post('/send/review/{productId}', 'ReviewController@review');
 
