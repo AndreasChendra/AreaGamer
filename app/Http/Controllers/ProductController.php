@@ -134,9 +134,33 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $productId)
     {
-        //
+        $product = Product::find($productId);
+        $product->name = $request->input('productName');
+        $product->price = $request->input('productPrice');
+        $product->process = $request->input('process');
+        if ($request->file('productPicture') != null) {
+            $file = $request->file('productPicture');
+            $nama_file = time()."_".$file->getClientOriginalName();
+            if ($product->productCategory_id == 1) {
+                $tujuan_upload = 'images/games/product/moba';
+            } elseif ($product->productCategory_id == 2) {
+                $tujuan_upload = 'images/games/product/pubg';
+            } elseif ($product->productCategory_id == 3) {
+                $tujuan_upload = 'images/games/product/free-fire';
+            } elseif ($product->productCategory_id == 4) {
+                $tujuan_upload = 'images/games/product/valorant';
+            } elseif ($product->productCategory_id == 5) {
+                $tujuan_upload = 'images/games/product/genshin';
+            } elseif ($product->productCategory_id == 6) {
+                $tujuan_upload = 'images/games/product/fortnite';
+            }
+            $file->move($tujuan_upload, $nama_file);
+            $product->picture = $tujuan_upload.'/'.$nama_file;
+        }
+        $product->save();
+        return back()->with('success', 'Update Product Successfully!');
     }
 
     /**

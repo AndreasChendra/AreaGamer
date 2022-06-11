@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Transaction;
+use App\Product;
 use Auth;
 
 class TransactionController extends Controller
@@ -96,8 +97,11 @@ class TransactionController extends Controller
     public function done($transactionId)
     {
         $transaction = Transaction::find($transactionId);
+        $product = Product::where('id', $transaction->product_id)->first();
+        $product->total_sold = $product->total_sold + 1;
         $transaction->status = 'Success';
         $transaction->save();
+        $product->save();
         return back()->with('toast_success', 'Transaction Done!');
     }
 

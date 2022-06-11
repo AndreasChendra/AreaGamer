@@ -29,7 +29,7 @@ Route::get('/product/detail/{productId}', 'ProductController@show');
 Route::get('/product/type/{typeId}', 'ProductController@type');
 Route::get('/product/category/{categoryId}', 'ProductController@category');
 Route::post('/addProduct', 'ProductController@store');
-Route::post('/updateProduct');
+Route::post('/updateProduct/{productId}', 'ProductController@update');
 Route::delete('/deleteProduct/{productId}', 'ProductController@destroy');
 
 Route::post('/create/store', 'StoreController@create');
