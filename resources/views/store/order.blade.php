@@ -14,31 +14,46 @@
                         <th scope="col">Product Name</th>
                         <th scope="col">Note</th>
                         <th scope="col">Status</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" style="width: 30%">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($transaction as $key => $tr)
                         <tr class="text-center">
                             <th scope="row" class="align-middle">{{ $key + 1 }}</th>
-                            <td class="align-middle"></td>
+                            <td class="align-middle">{{ $tr->user->name }}</td>
                             <td class="align-middle">
-                                <img src="" alt="..." width="80px"
-                                    height="80px">
+                                <img src="{{ asset($tr->product->picture) }}" alt="..." width="80px" height="80px">
                             </td>
-                            <td class="align-middle"></td>
-                            <td class="align-middle"></td>
-                            <td class="align-middle">
+                            <td class="align-middle">{{ $tr->product->name }}</td>
+                            <td class="align-middle">{{ $tr->note }}</td>
+                            <td class="align-middle">{{ $tr->status }}</td>
+                            <td class="align-middle" style="width: 30%">
                                 <div class="input-group">
-                                    <input type="text" id="status" class="form-control"
-                                        name="status" required autocomplete="status"
-                                        placeholder="" value="">
-                                </div>
-                            </td>
-                            <td class="align-middle">
-                                <div class="btn-group" role="group" aria-label="Button Group">
-                                    <a href="#" class="btn btn-primary" style="border-radius: 10px"><i class="bi bi-check-circle"></i>&nbsp;Done</a>&nbsp;
-                                    <a href="#" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i class="bi bi-x-circle"></i></a>
+                                    <div class="input-group-append">
+                                        <form method="POST" action="/done/{{$tr->id}}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('PUT') }}
+                                            <button class="btn btn-primary mr-4" style="border-radius: 10px">
+                                                <i class="bi bi-check-circle"></i>&nbsp;Done
+                                            </button>
+                                        </form>
+                                    </div>
+                                    <input id="status" type="text"
+                                        class="form-control @error('status') is-invalid @enderror" name="status"
+                                        placeholder="" value="" required autocomplete="status" style="border-radius: 10px"
+                                        autofocus>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-danger" style="border-radius: 10px">
+                                            Cancel&nbsp;
+                                            <i class="bi bi-x-circle"></i>
+                                        </button>
+                                    </div>
+                                    @error('status')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </td>
                         </tr>

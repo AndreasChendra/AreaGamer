@@ -89,8 +89,8 @@
                                         <i class="bi bi-sd-card-fill"></i>&nbsp;Pulsa Bersama
                                     </button>&emsp;
                                     <button type="button" class="btn btn-outline-primary" style="border-radius: 10px"
-                                        data-toggle="modal" data-target="#emonber">
-                                        <i class="bi bi-phone-fill"></i>&nbsp;E-Money Bersama
+                                        data-toggle="modal" data-target="#walber">
+                                        <i class="bi bi-phone-fill"></i>&nbsp;Wallet Bersama
                                     </button>
                                 @endif
                             </div>
@@ -236,13 +236,13 @@
                             </div>
                         </div>
 
-                        <!-- Modal Emonber -->
-                        <div class="modal fade" id="emonber" data-backdrop="static" data-keyboard="false" tabindex="-1"
-                            aria-labelledby="emonberLabel" aria-hidden="true">
+                        <!-- Modal Wallber -->
+                        <div class="modal fade" id="walber" data-backdrop="static" data-keyboard="false" tabindex="-1"
+                            aria-labelledby="walberLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="emonberLabel">E-Money Bersama</h5>
+                                        <h5 class="modal-title" id="walberLabel">Wallet Bersama</h5>
                                         <button type="button" class="close" data-dismiss="modal"
                                             aria-label="Close">
                                             <span aria-hidden="true">&times;</span>

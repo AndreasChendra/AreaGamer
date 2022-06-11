@@ -22,7 +22,6 @@ class CreateTransbersTable extends Migration
             $table->string('nominal');
             $table->string('admin_fee');
             $table->string('status');
-            $table->string('proof_payment');
             
             $table->foreign('payment_id')->references('id')->on('payments');
             $table->timestamps();

@@ -103,8 +103,7 @@
                                         tabindex="-1" aria-labelledby="addProductLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
-                                                <form method="POST" action="/addProduct"
-                                                    enctype="multipart/form-data">
+                                                <form method="POST" action="/addProduct" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="addProductLabel">Add Product</h5>
@@ -276,13 +275,14 @@
                                                         <div class="mr-1">
                                                             <button type="button" class="btn btn-primary btn-block"
                                                                 style="border-radius: 10px" data-toggle="modal"
-                                                                data-target="#updateProduct">
+                                                                data-target="#updateProduct{{$p->id}}">
                                                                 <i class="bi bi-cloud-arrow-up"></i>&nbsp;
                                                                 Update
                                                             </button>
                                                         </div>
                                                         <div class="mr-1">
-                                                            <form method="POST" action="/deleteProduct/{{ $p->id }}">
+                                                            <form method="POST"
+                                                                action="/deleteProduct/{{ $p->id }}">
                                                                 {{ csrf_field() }}
                                                                 {{ method_field('DELETE') }}
                                                                 <button type="submit" class="btn btn-danger"
@@ -293,92 +293,97 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                        @endforeach
 
-                                        <!-- Modal Update Product -->
-                                        <div class="modal fade" id="updateProduct" data-backdrop="static"
-                                            data-keyboard="false" tabindex="-1" aria-labelledby="updateProductLabel"
-                                            aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <form method="POST" action="/updateProduct"
-                                                        enctype="multipart/form-data">
-                                                        @csrf
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="updateProductLabel">Update
-                                                                Product</h5>
-                                                            <button type="button" class="close"
-                                                                data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form>
-                                                                <div class="form-group row">
-                                                                    <label for="productName"
-                                                                        class="col-md-4 col-form-label">Product
-                                                                        Name</label>
-                                                                    <div class="col-md-8">
-                                                                        <input id="productName" type="productName"
-                                                                            class="form-control" name="productName"
-                                                                            required autocomplete="productName" autofocus>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <label for="productPrice"
-                                                                        class="col-md-4 col-form-label">Product
-                                                                        Price</label>
-                                                                    <div class="col-md-8">
-                                                                        <input type="text" class="form-control"
-                                                                            id="productPrice" name="productPrice" required
-                                                                            autofocus>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <label for="process"
-                                                                        class="col-md-4 col-form-label">Process</label>
-                                                                    <div class="col-md-8">
-                                                                        <input type="number" class="form-control"
-                                                                            id="process" name="process" required autofocus>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <label for="productPicture"
-                                                                        class="col-md-4 col-form-label">Product
-                                                                        Picture</label>
-                                                                    <div class="col-md-8">
-                                                                        <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input"
-                                                                                id="productPicture" name="productPicture">
-                                                                            <label class="custom-file-label"
-                                                                                for="productPicture">Choose file</label>
+                                            <!-- Modal Update Product -->
+                                            <div class="modal fade" id="updateProduct{{$p->id}}" data-backdrop="static"
+                                                data-keyboard="false" tabindex="-1" aria-labelledby="updateProductLabel"
+                                                aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <form method="POST" action="/updateProduct"
+                                                            enctype="multipart/form-data">
+                                                            @csrf
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="updateProductLabel">Update
+                                                                    Product {{ $p->name }}</h5>
+                                                                <button type="button" class="close"
+                                                                    data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form>
+                                                                    <div class="form-group row">
+                                                                        <label for="productName"
+                                                                            class="col-md-4 col-form-label">Product
+                                                                            Name</label>
+                                                                        <div class="col-md-8">
+                                                                            <input id="productName" type="productName"
+                                                                                class="form-control" name="productName"
+                                                                                required autocomplete="productName"
+                                                                                autofocus>
                                                                         </div>
-                                                                        <small class="text-muted">Ekstensi file yang
-                                                                            diperbolehkan: .JPG .JPEG .PNG</small>
                                                                     </div>
-                                                                </div>
 
-                                                                <div class="form-group row">
-                                                                    <label for="productDescription"
-                                                                        class="col-md-4 col-form-label">Product
-                                                                        Description</label>
-                                                                    <div class="col-md-8">
-                                                                        <textarea class="form-control" id="productDescription" rows="3" name="productDescription"></textarea>
+                                                                    <div class="form-group row">
+                                                                        <label for="productPrice"
+                                                                            class="col-md-4 col-form-label">Product
+                                                                            Price</label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="text" class="form-control"
+                                                                                id="productPrice" name="productPrice"
+                                                                                required autofocus>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="submit" class="btn btn-primary">Update
-                                                                Product</button>
-                                                        </div>
-                                                    </form>
+
+                                                                    <div class="form-group row">
+                                                                        <label for="process"
+                                                                            class="col-md-4 col-form-label">Process</label>
+                                                                        <div class="col-md-8">
+                                                                            <input type="number" class="form-control"
+                                                                                id="process" name="process" required
+                                                                                autofocus>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group row">
+                                                                        <label for="productPicture"
+                                                                            class="col-md-4 col-form-label">Product
+                                                                            Picture</label>
+                                                                        <div class="col-md-8">
+                                                                            <div class="custom-file">
+                                                                                <input type="file"
+                                                                                    class="custom-file-input"
+                                                                                    id="productPicture"
+                                                                                    name="productPicture">
+                                                                                <label class="custom-file-label"
+                                                                                    for="productPicture">Choose file</label>
+                                                                            </div>
+                                                                            <small class="text-muted">Ekstensi file
+                                                                                yang
+                                                                                diperbolehkan: .JPG .JPEG .PNG</small>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="form-group row">
+                                                                        <label for="productDescription"
+                                                                            class="col-md-4 col-form-label">Product
+                                                                            Description</label>
+                                                                        <div class="col-md-8">
+                                                                            <textarea class="form-control" id="productDescription" rows="3" name="productDescription"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-primary">Update
+                                                                    Product</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 <div class="border-top mb-3"></div>

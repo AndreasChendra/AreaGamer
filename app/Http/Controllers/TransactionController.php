@@ -15,7 +15,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::where('user_id', Auth::user()->id)->get();
+        $transaction = Transaction::where('user_id', Auth::user()->id)
+                                    ->where('status', 'A Waiting Seller')->get();
         return view('transaction.transaction', ['transaction' => $transaction]);
     }
 
@@ -85,5 +86,13 @@ class TransactionController extends Controller
         $transaction = Transaction::findOrFail($transactionId);
         $transaction->delete();
         return back()->with('success', 'Cancel Transaction Successfully!');
+    }
+
+    public function done($transactionId)
+    {
+        $transaction = Transaction::find($transactionId);
+        $transaction->status = 'Success';
+        $transaction->save();
+        return back()->with('toast_success', 'Transaction Done!');
     }
 }

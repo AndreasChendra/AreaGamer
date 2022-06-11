@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Store;
 use App\Product;
 use App\ProductCategory;
@@ -78,10 +79,12 @@ class StoreController extends Controller
 
     public function order($storeId)
     {
-        $product = Product::where('store_id', $storeId)->get();
-        foreach ($product as $key => $p) {
-            $transaction = Transaction::where('product_id', $p->id)->where('status', 'A Waiting Seller')->get();
-        }
+        $transaction = Transaction::join('products', 'products.id', '=', 'transactions.product_id')
+            ->join('stores', 'stores.id', '=', 'products.store_id')
+            ->where('products.store_id', $storeId)
+            ->where('transactions.status', 'A Waiting Seller')
+            ->select('transactions.*')
+            ->get();
         return view('store.order', ['transaction' => $transaction]);
     }
 
