@@ -45,7 +45,7 @@ class ProductController extends Controller
         $product->name = $request->input('productName');
         $product->price = $request->input('productPrice');
         $product->process = $request->input('process');
-        $product->sold_out = '0';
+        $product->total_sold = '0';
         $product->description = $request->input('productDescription');
 
         if ($request->file('productPicture') != null) {

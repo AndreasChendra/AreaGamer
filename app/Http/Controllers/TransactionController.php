@@ -49,7 +49,9 @@ class TransactionController extends Controller
      */
     public function show($userId)
     {
-        return view('transaction.transaction_history');
+        $transaction = Transaction::where('user_id', $userId)
+                                    ->where('status', 'Success')->get();
+        return view('transaction.transaction_history', ['transaction' => $transaction]);
     }
 
     /**

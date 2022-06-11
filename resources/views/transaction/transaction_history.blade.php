@@ -6,64 +6,46 @@
         <div class="mt-5 pt-3">
             <h4 class="mt-2 mb-3">Transaction History</h4>
 
-            <table class="table table-hover border-bottom">
-                <thead>
-                    <tr class="text-center">
-                        <th scope="col">Transaction</th>
-                        <th scope="col">Product Picture</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Store</th>
-                        <th scope="col">Payment</th>
-                        <th scope="col">Note</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="text-center">
-                        <td class="align-middle">Friday, 18 March 2022, 23:42:58</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/games/product/moba/diamond-57.jpg') }}" alt="..." width="80px"
-                                height="80px">
-                        </td>
-                        <td class="align-middle">57 Diamond</td>
-                        <td class="align-middle">Chend</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/payment/bank/bca.png') }}" alt="..." width="145px" height="80px">
-                        </td>
-                        <td class="align-middle">Jycho. 123724663 (2607)</td>
-                        <td class="align-middle">Success</td>
-                    </tr>
-                    <tr class="text-center">
-                        <td class="align-middle">Monday, 21 March 2022, 11:55:20</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/games/product/pubg/uc-600.jpg') }}" alt="..." width="80px"
-                                height="80px">
-                        </td>
-                        <td class="align-middle">600 UC</td>
-                        <td class="align-middle">Chend Blaba</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/payment/bank/bni.png') }}" alt="..." width="145px" height="80px">
-                        </td>
-                        <td class="align-middle">Jycho. 123724663 (2607)</td>
-                        <td class="align-middle">Success</td>
-                    </tr>
-                    <tr class="text-center">
-                        <td class="align-middle">Wednesday, 16 March 2022, 19:01:10</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/games/product/moba/diamond-344.jpg') }}" alt="..." width="80px"
-                                height="80px">
-                        </td>
-                        <td class="align-middle">344 Diamond</td>
-                        <td class="align-middle">Yayay Store</td>
-                        <td class="align-middle">
-                            <img src="{{ asset('images/payment/bank/mandiri.png') }}" alt="..." width="145px"
-                                height="80px">
-                        </td>
-                        <td class="align-middle">Jycho. 123724663 (2607)</td>
-                        <td class="align-middle">Success</td>
-                    </tr>
-                </tbody>
-            </table>
+            @if (empty($transaction) || count($transaction) == 0)
+                <div class="border-top mt-2 pb-2"></div>
+                <div class="text-center pt-5 pb-5">
+                    <img src="{{ asset('images/empty/empty-transaction.png') }}" alt="..." width="40%">
+                    <h3>Tidak Ada Transaksi Pada Saat Ini</h3>
+                </div>
+            @else
+                <table class="table table-hover border-bottom">
+                    <thead>
+                        <tr class="text-center">
+                            <th scope="col">Transaction</th>
+                            <th scope="col">Product Picture</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Store</th>
+                            <th scope="col">Payment</th>
+                            <th scope="col">Note</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($transaction->reverse() as $tr)
+                            <tr class="text-center">
+                                <td class="align-middle">{{ date('l, d F Y, H:i:s', strtotime($tr->updated_at)) }}</td>
+                                <td class="align-middle">
+                                    <img src="{{ asset($tr->product->picture) }}" alt="..." width="80px"
+                                        height="80px">
+                                </td>
+                                <td class="align-middle">{{$tr->product->name}}</td>
+                                <td class="align-middle">{{$tr->product->store->name}}</td>
+                                <td class="align-middle">
+                                    <img src="{{ asset($tr->payment->picture) }}" alt="..." width="145px"
+                                        height="80px">
+                                </td>
+                                <td class="align-middle">{{$tr->note}}</td>
+                                <td class="align-middle">{{$tr->status}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
         </div>
     </div>
 @endsection
