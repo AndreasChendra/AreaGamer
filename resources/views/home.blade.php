@@ -72,26 +72,35 @@
                                 netral bertanggung jawab atas transber sehingga proses transaksi antara penjual dan pembeli
                                 terjamin kelancarannya.</p>
                             <div class="text-center">
-                                @if (Auth::user() != null &&
-                                    App\Transber::where('status', 'On Process')->where(function ($query) {
-                                        $query->where('usernameA', Auth::user()->username)->orWhere('usernameB', Auth::user()->username);
-                                    }))
-                                    <a href="/transber/{{ Auth::user()->username }}"
-                                        class="btn btn-outline-primary btn-block" style="border-radius: 10px"><i
-                                            class="bi bi-calculator-fill"></i>&nbsp;My Transber</a>
+                                @if (Auth::user() != null)
+                                    @if (!App\Transber::all()->isEmpty())
+                                        <a href="/transber" class="btn btn-outline-primary btn-block"
+                                            style="border-radius: 10px"><i class="bi bi-calculator-fill"></i>&nbsp;My
+                                            Transber</a>
+                                    @else
+                                        <button type="button" class="btn btn-outline-primary" style="border-radius: 10px"
+                                            data-toggle="modal" data-target="#rekber">
+                                            <i class="bi bi-bank2"></i>&nbsp;Rekening Bersama
+                                        </button>&emsp;
+                                        <button type="button" class="btn btn-outline-primary" style="border-radius: 10px"
+                                            data-toggle="modal" data-target="#pulber">
+                                            <i class="bi bi-sd-card-fill"></i>&nbsp;Pulsa Bersama
+                                        </button>&emsp;
+                                        <button type="button" class="btn btn-outline-primary" style="border-radius: 10px"
+                                            data-toggle="modal" data-target="#walber">
+                                            <i class="bi bi-phone-fill"></i>&nbsp;Wallet Bersama
+                                        </button>
+                                    @endif
                                 @else
-                                    <button type="button" class="btn btn-outline-primary" style="border-radius: 10px"
-                                        data-toggle="modal" data-target="#rekber">
+                                    <a href="/login" class="btn btn-outline-primary" style="border-radius: 10px">
                                         <i class="bi bi-bank2"></i>&nbsp;Rekening Bersama
-                                    </button>&emsp;
-                                    <button type="button" class="btn btn-outline-primary" style="border-radius: 10px"
-                                        data-toggle="modal" data-target="#pulber">
+                                    </a>&emsp;
+                                    <a href="/login" class="btn btn-outline-primary" style="border-radius: 10px">
                                         <i class="bi bi-sd-card-fill"></i>&nbsp;Pulsa Bersama
-                                    </button>&emsp;
-                                    <button type="button" class="btn btn-outline-primary" style="border-radius: 10px"
-                                        data-toggle="modal" data-target="#walber">
+                                    </a>&emsp;
+                                    <a href="/login" class="btn btn-outline-primary" style="border-radius: 10px">
                                         <i class="bi bi-phone-fill"></i>&nbsp;Wallet Bersama
-                                    </button>
+                                    </a>
                                 @endif
                             </div>
                         </div>
@@ -101,67 +110,68 @@
                             aria-labelledby="rekberLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="rekberLabel">Rekening Bersama</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <fieldset disabled>
+                                    <form method="POST" action="/transber/rekber">
+                                        @csrf
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="rekberLabel">Rekening Bersama</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <fieldset disabled>
+                                                <div class="form-group row">
+                                                    <label for="usernameA" class="col-md-4 col-form-label">My
+                                                        Username</label>
+                                                    <div class="col-md-8">
+                                                        @if (Auth::user() != null)
+                                                            <input type="text" id="usernameA" class="form-control"
+                                                                value="{{ Auth::user()->username }}">
+                                                        @else
+                                                            <input type="text" id="usernameA" class="form-control">
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+
+                                            @if (Auth::user() != null)
+                                                <input type="text" id="usernameA" name="usernameA" class="form-control"
+                                                    value="{{ Auth::user()->username }}" hidden>
+                                            @endif
+
                                             <div class="form-group row">
-                                                <label for="usernameA" class="col-md-4 col-form-label">My Username</label>
+                                                <label for="usernameB" class="col-md-4 col-form-label">Target
+                                                    Username</label>
                                                 <div class="col-md-8">
-                                                    @if (Auth::user() != null)
-                                                        <input type="text" id="usernameA" class="form-control"
-                                                            value="{{ Auth::user()->username }}">
-                                                    @else
-                                                        <input type="text" id="usernameA" class="form-control">
-                                                    @endif
+                                                    <input type="text" id="usernameB" name="usernameB"
+                                                        class="form-control">
                                                 </div>
                                             </div>
-                                        </fieldset>
 
-                                        <div class="form-group row">
-                                            <label for="usernameB" class="col-md-4 col-form-label">Target Username</label>
-                                            <div class="col-md-8">
-                                                <input type="text" id="usernameB" class="form-control">
+                                            <div class="form-group row">
+                                                <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" id="nominal" name="nominal" class="form-control">
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group row">
-                                            <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
-                                            <div class="col-md-8">
-                                                <input type="text" id="nominal" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="payment" class="col-md-4 col-form-label">Payment</label>
-                                            <div class="col-md-8">
-                                                <a class="btn btn-block btn-primary" data-toggle="collapse"
-                                                    href="#collapseBank" role="button" aria-expanded="false"
-                                                    aria-controls="collapseBank">
-                                                    <i class="bi bi-bank2"></i>&nbsp;Banking
-                                                </a>
-                                                <div class="collapse" id="collapseBank">
-                                                    @foreach (App\Payment::where('paymentCategory_id', 1)->get() as $pay)
-                                                        <div class="card">
-                                                            <div class="p-2 form-inline">
-                                                                <img src="{{ asset($pay->picture) }}" alt="..."
-                                                                    width="150px" height="50px">
-                                                                <h4 class="pl-3">{{ $pay->name }}</h4>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
+                                            <div class="form-group row">
+                                                <label for="payment" class="col-md-4 col-form-label">Payment</label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" id="payment" name="payment">
+                                                        @foreach (App\Payment::where('paymentCategory_id', 1)->get() as $pay)
+                                                            <option value="{{ $pay->id }}">{{ $pay->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -171,67 +181,68 @@
                             aria-labelledby="pulberLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="pulberLabel">Pulsa Bersama</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <fieldset disabled>
+                                    <form method="POST" action="/transber/pulber">
+                                        @csrf
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="pulberLabel">Pulsa Bersama</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <fieldset disabled>
+                                                <div class="form-group row">
+                                                    <label for="usernameA" class="col-md-4 col-form-label">My
+                                                        Username</label>
+                                                    <div class="col-md-8">
+                                                        @if (Auth::user() != null)
+                                                            <input type="text" id="usernameA" class="form-control"
+                                                                value="{{ Auth::user()->username }}">
+                                                        @else
+                                                            <input type="text" id="usernameA" class="form-control">
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+
+                                            @if (Auth::user() != null)
+                                                <input type="text" id="usernameA" name="usernameA" class="form-control"
+                                                    value="{{ Auth::user()->username }}" hidden>
+                                            @endif
+
                                             <div class="form-group row">
-                                                <label for="usernameA" class="col-md-4 col-form-label">My Username</label>
+                                                <label for="usernameB" class="col-md-4 col-form-label">Target
+                                                    Username</label>
                                                 <div class="col-md-8">
-                                                    @if (Auth::user() != null)
-                                                        <input type="text" id="usernameA" class="form-control"
-                                                            value="{{ Auth::user()->username }}">
-                                                    @else
-                                                        <input type="text" id="usernameA" class="form-control">
-                                                    @endif
+                                                    <input type="text" id="usernameB" name="usernameB"
+                                                        class="form-control">
                                                 </div>
                                             </div>
-                                        </fieldset>
 
-                                        <div class="form-group row">
-                                            <label for="usernameB" class="col-md-4 col-form-label">Target Username</label>
-                                            <div class="col-md-8">
-                                                <input type="text" id="usernameB" class="form-control">
+                                            <div class="form-group row">
+                                                <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" id="nominal" name="nominal" class="form-control">
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group row">
-                                            <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
-                                            <div class="col-md-8">
-                                                <input type="text" id="nominal" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="payment" class="col-md-4 col-form-label">Payment</label>
-                                            <div class="col-md-8">
-                                                <a class="btn btn-block btn-primary" data-toggle="collapse"
-                                                    href="#collapsePulsa" role="button" aria-expanded="false"
-                                                    aria-controls="collapsePulsa">
-                                                    <i class="bi bi-sd-card-fill"></i>&nbsp;Pulsa
-                                                </a>
-                                                <div class="collapse" id="collapsePulsa">
-                                                    @foreach (App\Payment::where('paymentCategory_id', 2)->get() as $pay)
-                                                        <div class="card">
-                                                            <div class="p-2 form-inline">
-                                                                <img src="{{ asset($pay->picture) }}" alt="..."
-                                                                    width="150px" height="50px">
-                                                                <h4 class="pl-3">{{ $pay->name }}</h4>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
+                                            <div class="form-group row">
+                                                <label for="payment" class="col-md-4 col-form-label">Payment</label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" id="payment" name="payment">
+                                                        @foreach (App\Payment::where('paymentCategory_id', 2)->get() as $pay)
+                                                            <option value="{{ $pay->id }}">{{ $pay->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -241,67 +252,68 @@
                             aria-labelledby="walberLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="walberLabel">Wallet Bersama</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <fieldset disabled>
+                                    <form method="POST" action="/transber/walber">
+                                        @csrf
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="walberLabel">Wallet Bersama</h5>
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <fieldset disabled>
+                                                <div class="form-group row">
+                                                    <label for="usernameA" class="col-md-4 col-form-label">My
+                                                        Username</label>
+                                                    <div class="col-md-8">
+                                                        @if (Auth::user() != null)
+                                                            <input type="text" id="usernameA" class="form-control"
+                                                                value="{{ Auth::user()->username }}">
+                                                        @else
+                                                            <input type="text" id="usernameA" class="form-control">
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+
+                                            @if (Auth::user() != null)
+                                                <input type="text" id="usernameA" name="usernameA" class="form-control"
+                                                    value="{{ Auth::user()->username }}" hidden>
+                                            @endif
+
                                             <div class="form-group row">
-                                                <label for="usernameA" class="col-md-4 col-form-label">My Username</label>
+                                                <label for="usernameB" class="col-md-4 col-form-label">Target
+                                                    Username</label>
                                                 <div class="col-md-8">
-                                                    @if (Auth::user() != null)
-                                                        <input type="text" id="usernameA" class="form-control"
-                                                            value="{{ Auth::user()->username }}">
-                                                    @else
-                                                        <input type="text" id="usernameA" class="form-control">
-                                                    @endif
+                                                    <input type="text" id="usernameB" name="usernameB"
+                                                        class="form-control">
                                                 </div>
                                             </div>
-                                        </fieldset>
 
-                                        <div class="form-group row">
-                                            <label for="usernameB" class="col-md-4 col-form-label">Target Username</label>
-                                            <div class="col-md-8">
-                                                <input type="text" id="usernameB" class="form-control">
+                                            <div class="form-group row">
+                                                <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
+                                                <div class="col-md-8">
+                                                    <input type="text" id="nominal" name="nominal" class="form-control">
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="form-group row">
-                                            <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
-                                            <div class="col-md-8">
-                                                <input type="text" id="nominal" class="form-control">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="payment" class="col-md-4 col-form-label">Payment</label>
-                                            <div class="col-md-8">
-                                                <a class="btn btn-block btn-primary" data-toggle="collapse"
-                                                    href="#collapsePulsa" role="button" aria-expanded="false"
-                                                    aria-controls="collapsePulsa">
-                                                    <i class="bi bi-sd-card-fill"></i>&nbsp;E-Money
-                                                </a>
-                                                <div class="collapse" id="collapsePulsa">
-                                                    @foreach (App\Payment::where('paymentCategory_id', 3)->get() as $pay)
-                                                        <div class="card">
-                                                            <div class="p-2 form-inline">
-                                                                <img src="{{ asset($pay->picture) }}" alt="..."
-                                                                    width="150px" height="50px">
-                                                                <h4 class="pl-3">{{ $pay->name }}</h4>
-                                                            </div>
-                                                        </div>
-                                                    @endforeach
+                                            <div class="form-group row">
+                                                <label for="payment" class="col-md-4 col-form-label">Payment</label>
+                                                <div class="col-md-8">
+                                                    <select class="form-control" id="payment" name="payment">
+                                                        @foreach (App\Payment::where('paymentCategory_id', 3)->get() as $pay)
+                                                            <option value="{{ $pay->id }}">{{ $pay->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary">Submit</button>
-                                    </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -342,12 +354,12 @@
                                     <div class="col-md-5 text-left">
                                         <i class="bi bi-star-fill" style="color: orange"></i>
                                         @php
-                                            $avgRating = substr(App\Review::where('product_id', $p->id)->avg('rating'),0,3)
+                                            $avgRating = substr(App\Review::where('product_id', $p->id)->avg('rating'), 0, 3);
                                         @endphp
                                         @if ($avgRating == null)
                                             0
                                         @else
-                                            {{$avgRating}}
+                                            {{ $avgRating }}
                                         @endif
                                     </div>
                                     <div class="col-md-7 text-right">

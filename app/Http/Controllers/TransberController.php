@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Transber;
+use Auth;
 
 class TransberController extends Controller
 {
@@ -12,10 +13,21 @@ class TransberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($userName)
+    public function index()
     {
-        $transber = Transber::where([['usernameA', $userName], ['usernameB', $userName]]);
-        return view('transber.transber', ['transber' => $transber]);
+        $transber = Transber::where('status', '!=', 'Success')
+                            ->where(function ($query) {
+                                $query->where('usernameA', Auth::user()->username)
+                                      ->orWhere('usernameB', Auth::user()->username);
+                            })
+                            ->first();
+        $trSuccess = Transber::where('status', 'Success')
+                            ->where(function ($query) {
+                                $query->where('usernameA', Auth::user()->username)
+                                    ->orWhere('usernameB', Auth::user()->username);
+                            })
+                            ->get();
+        return view('transber.transber', ['transber' => $transber, 'trSuccess' => $trSuccess]);
     }
 
     /**
@@ -47,7 +59,8 @@ class TransberController extends Controller
      */
     public function show($transberId)
     {
-        return view('transber.transber_detail');
+        $transber = Transber::find($transberId);
+        return view('transber.transber_detail', ['transber' => $transber]);
     }
 
     /**
@@ -79,8 +92,49 @@ class TransberController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($transberId)
     {
-        //
+        $transber = Transber::find($transberId);
+        $transber->delete();
+        return back()->with('success', 'Cancel Transber Successfully!');
+    }
+
+    public function transber(Request $request, $category)
+    {
+        $transber = new Transber();
+        $transber->payment_id = $request->input('payment');
+        $transber->usernameA = $request->input('usernameA');
+        $transber->usernameB = $request->input('usernameB');
+        $transber->category = $category;
+        $transber->nominal = $request->input('nominal');
+        $transber->admin_fee = $request->input('nominal') * 3 / 100;
+        $transber->status = 'A Waiting Payment';
+        $transber->save();
+
+        return redirect('/transber')->with('success', 'Transber Created!');
+    }
+
+    public function payment(Request $request, $transberId)
+    {
+        $transber = Transber::find($transberId);
+        $transber->status = 'Payment Accepted';
+        $transber->save();
+
+        return redirect('/transber')->with('success', 'Payment Accepted!');
+    }
+
+    public function done($roleTransber, $transberId)
+    {
+        $transber = Transber::find($transberId);
+        if ($roleTransber == 'buyer') {
+            $transber->status = 'Success';
+            $transber->save();
+            return back()->with('success', 'Your Transber Success!');
+        }
+        elseif ($roleTransber == 'seller') {
+            $transber->status = 'Done From Seller';
+            $transber->save();
+            return back()->with('success', 'Waiting Approval Buyer!');
+        }
     }
 }

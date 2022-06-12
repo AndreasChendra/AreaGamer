@@ -23,12 +23,12 @@
                                 </thead>
                                 <tbody>
                                     <tr class="text-center">
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>Rekber</td>
-                                        <td>Rp. 1.000.000</td>
+                                        <td>{{ $transber->usernameA }}</td>
+                                        <td>{{ $transber->usernameB }}</td>
+                                        <td>{{ ucfirst($transber->category) }}</td>
+                                        <td>Rp. {{ $transber->nominal }}</td>
                                         <td>3%</td>
-                                        <td>Pending</td>
+                                        <td>{{ $transber->status }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -38,108 +38,84 @@
                     <div class="card mt-2">
                         <div class="p-3">
                             <h4 class="mb-3">Payment Transber</h4>
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left" type="button"
-                                                data-toggle="collapse" data-target="#collapseOne" aria-expanded="false"
-                                                aria-controls="collapseOne">
-                                                <img src="{{ asset('images/payment/bank/bca.png') }}" alt="..."
-                                                    width="135px" height="45px">
-                                            </button>
-                                        </h2>
-                                    </div>
 
-                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
-                                        data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="text-center">
-                                                <h5>PT. Area Gamer Technology Tbk</h5>
-                                                <h5>5271955569</h5>
+                            <div class="accordion" id="accordionExample">
+                                @if ($transber->category == 'rekber')
+                                    @foreach (App\Payment::where('paymentCategory_id', 1)->get() as $pay)
+                                        <div class="card">
+                                            <div class="card-header" id="heading{{$pay->id}}">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-link btn-block text-left" type="button"
+                                                        data-toggle="collapse" data-target="#collapse{{$pay->id}}"
+                                                        aria-expanded="false" aria-controls="{{$pay->id}}">
+                                                        <img src="{{ asset($pay->picture) }}" alt="..." width="135px"
+                                                            height="45px">
+                                                    </button>
+                                                </h2>
                                             </div>
-                                            <div class="pt-2">
-                                                <h6>Berikut adalah langkah - langkah pembayaran melalui BCA Mobile</h6>
-                                                <li> Buka BCA mobile.</li>
-                                                <li> Masukkan Kode Akses.</li>
-                                                <li> Pilih menu m-Transfer.</li>
-                                                <li> Klik Antar Rekening di Daftar Transfer.</li>
-                                                <li> Daftarkan Nomor Rekening Tujuan.</li>
-                                                <li> Kembali ke menu Transfer.</li>
-                                                <li> Klik Antar Rekening di Transfer.</li>
-                                                <li> Pilih Daftar Rekening.</li>
-                                                <li> Masukkan nominal transfer BCA.</li>
-                                                <li> Klik Send.</li>
-                                                <li> Masukkan PIN Mobile BCA.</li>
-                                                <li> Tunggu pop up transfer BCA berhasil.</li>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false"
-                                                aria-controls="collapseTwo">
-                                                <img src="{{ asset('images/payment/bank/bni.png') }}" alt="..."
-                                                    width="135px" height="45px">
-                                            </button>
-                                        </h2>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-                                        data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="text-center">
-                                                <h5>PT. Area Gamer Technology Tbk</h5>
-                                                <h5>6359324576</h5>
-                                            </div>
-                                            <div class="pt-2">
-                                                <h6>Berikut adalah langkah - langkah pembayaran melalui BNI Mobile</h6>
-                                                <li> Akses BNI Mobile Banking melalui handphone.</li>
-                                                <li> Masukkan User ID dan Password.</li>
-                                                <li> Pilih menu “Transfer“, lalu pilih “Antar Rekening BNI“, pilih “Input
-                                                    Rekening Baru”.</li>
-                                                <li> Masukkan nomor Virtual Account.</li>
-                                                <li> Di halaman konfirmasi, pastikan data transaksi sudah benar kemudian
-                                                    pilih “Ya“.</li>
-                                                <li> Masukkan password kamu.</li>
+
+                                            <div id="collapse{{$pay->id}}" class="collapse" aria-labelledby="heading{{$pay->id}}"
+                                                data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <h5>{{ $pay->owner_name }}</h5>
+                                                        <h5>{{ $pay->owner_number }}</h5>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
-                                        <h2 class="mb-0">
-                                            <button class="btn btn-link btn-block text-left collapsed" type="button"
-                                                data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"
-                                                aria-controls="collapseThree">
-                                                <img src="{{ asset('images/payment/bank/mandiri.png') }}" alt="..."
-                                                    width="135px" height="45px">
-                                            </button>
-                                        </h2>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
-                                        data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="text-center">
-                                                <h5>PT. Area Gamer Technology Tbk</h5>
-                                                <h5>9635472513258</h5>
+                                    @endforeach
+                                @elseif ($transber->category == 'pulber')
+                                    @foreach (App\Payment::where('paymentCategory_id', 2)->get() as $pay)
+                                        <div class="card">
+                                            <div class="card-header" id="heading{{$pay->id}}">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-link btn-block text-left" type="button"
+                                                        data-toggle="collapse" data-target="#collapse{{$pay->id}}"
+                                                        aria-expanded="false" aria-controls="{{$pay->id}}">
+                                                        <img src="{{ asset($pay->picture) }}" alt="..." width="135px"
+                                                            height="45px">
+                                                    </button>
+                                                </h2>
                                             </div>
-                                            <div class="pt-2">
-                                                <h6>Berikut adalah langkah - langkah pembayaran melalui Mandiri Banking</h6>
-                                                <li> Pada Halaman Utama pilih menu BAYAR.</li>
-                                                <li> Pilih submenu MULTI PAYMENT.</li>
-                                                <li> Cari Penyedia Jasa 'FASPAY'.</li>
-                                                <li> Masukkan Kode Pelanggan 9635472513258.</li>
-                                                <li> Masukkan Jumlah Pembayaran sesuai dengan Jumlah Tagihan anda.</li>
-                                                <li> Pilih LANJUTKAN.</li>
-                                                <li> Pilih Tagihan Anda jika sudah sesuai tekan LANJUTKAN.</li>
-                                                <li> Transaksi selesai, jika perlu CETAK hasil transaksi anda.</li>
+
+                                            <div id="collapse{{$pay->id}}" class="collapse" aria-labelledby="heading{{$pay->id}}"
+                                                data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <h5>{{ $pay->owner_name }}</h5>
+                                                        <h5>{{ $pay->owner_number }}</h5>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    @endforeach
+                                @elseif ($transber->category == 'walber')
+                                    @foreach (App\Payment::where('paymentCategory_id', 3)->get() as $pay)
+                                        <div class="card">
+                                            <div class="card-header" id="heading{{$pay->id}}">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-link btn-block text-left" type="button"
+                                                        data-toggle="collapse" data-target="#collapse{{$pay->id}}"
+                                                        aria-expanded="false" aria-controls="{{$pay->id}}">
+                                                        <img src="{{ asset($pay->picture) }}" alt="..." width="135px"
+                                                            height="45px">
+                                                    </button>
+                                                </h2>
+                                            </div>
+
+                                            <div id="collapse{{$pay->id}}" class="collapse" aria-labelledby="heading{{$pay->id}}"
+                                                data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <div class="text-center">
+                                                        <h5>{{ $pay->owner_name }}</h5>
+                                                        <h5>{{ $pay->owner_number }}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -159,8 +135,8 @@
                                     <span>Rp. </span>
                                 </div>
                                 <div class="col-md-4 text-right">
-                                    <span>1.000.000</span><br>
-                                    <span>30.000</span>
+                                    <span>{{ $transber->nominal }}</span><br>
+                                    <span>{{ $transber->admin_fee }}</span>
                                 </div>
                             </div>
                             <div class="border-top mt-2 mb-2"></div>
@@ -172,27 +148,35 @@
                                     <span>Rp. </span>
                                 </div>
                                 <div class="col-md-4 text-right">
-                                    <span>1.030.000</span>
+                                    <span>{{ $transber->nominal + $transber->admin_fee }}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="card mt-2">
                         <div class="p-3">
-                            <h5>Bukti Transfer</h5>
-                            <div class="border-top mt-3 mb-2"></div>
-                            <span class="text-muted text-justify">Silahkan mengupload bukti transfer supaya transaksi bersama dapat dilanjutkan kepihak tujuan.</span>
-                            <div class="border-top mt-2 mb-3"></div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="pictureReview">
-                                        <label class="custom-file-label" for="pictureReview">Choose file</label>
+                            <form action="/transber/payment/{{ $transber->id }}" method="post">
+                                {{ csrf_field() }}
+                                {{ method_field('PUT') }}
+                                <h5>Bukti Transfer</h5>
+                                <div class="border-top mt-3 mb-2"></div>
+                                <span class="text-muted text-justify">Silahkan mengupload bukti transfer supaya transaksi
+                                    bersama dapat dilanjutkan kepihak tujuan.</span>
+                                <div class="border-top mt-2 mb-3"></div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="proofTransfer"
+                                                name="proofTransfer">
+                                            <label class="custom-file-label" for="proofTransfer">Choose file</label>
+                                        </div>
+                                        <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG
+                                            .PNG</small>
                                     </div>
-                                    <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</small>
                                 </div>
-                            </div>
-                            <button type="button" class="btn btn-primary btn-block"><i class="bi bi-file-earmark-arrow-up"></i>&nbsp;Upload</button>
+                                <button type="submit" class="btn btn-primary btn-block"><i
+                                        class="bi bi-file-earmark-arrow-up"></i>&nbsp;Upload</button>
+                            </form>
                         </div>
                     </div>
                 </div>

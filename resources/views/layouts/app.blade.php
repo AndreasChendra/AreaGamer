@@ -214,6 +214,11 @@
                                         {{ __('Profile') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="/transber">
+                                        <i class="bi bi-calculator"></i>
+                                        {{ __('Transber') }}
+                                    </a>
+
                                     <a class="dropdown-item" href="/transaction">
                                         <i class="bi bi-card-checklist"></i>
                                         {{ __('Transaction') }}

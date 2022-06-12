@@ -50,7 +50,7 @@ Route::post('/buy/{productId}', 'ProductController@cBuy');
 Route::get('/buy/{productId}', 'ProductController@vBuy');
 Route::put('/buy/{transactionId}', 'ProductController@buy');
 
-Route::get('/transber/{userName}', 'TransberController@index');
+Route::get('/transber', 'TransberController@index');
 Route::get('/transber/detail/{transberId}', 'TransberController@show');
 
 Route::get('/transaction', 'TransactionController@index');
@@ -59,3 +59,8 @@ Route::delete('/cancelTransaction/{transactionId}', 'TransactionController@destr
 
 Route::get('/verifKTP', 'UserController@vVerifKTP');
 Route::post('/veritKTP', 'UserController@sVerifKTP');
+
+Route::post('/transber/{category}', 'TransberController@transber');
+Route::put('/transber/payment/{transberId}', 'TransberController@payment');
+Route::delete('/cancelTransber/{transberId}', 'TransberController@destroy');
+Route::put('/done/{roleTransber}/{transberId}', 'TransberController@done');
