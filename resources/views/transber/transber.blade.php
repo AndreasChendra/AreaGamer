@@ -305,6 +305,13 @@
                                             <button type="submit" class="btn btn-primary"><i
                                                     class="bi bi-check-circle"></i>&nbsp;Done</button>
                                         </form>
+
+                                        <form method="POST" action="/cancelTransber/{{ $transber->id }}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i
+                                                    class="bi bi-x-circle"></i></button>
+                                        </form>
                                     @elseif ($transber->usernameA == Auth::user()->username && $transber->status == 'A Waiting Payment')
                                         <a href="/transber/detail/{{ $transber->id }}" class="btn btn-primary"
                                             style="border-radius: 10px"><i
