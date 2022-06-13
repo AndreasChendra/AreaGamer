@@ -20,6 +20,50 @@
                     <img src="{{ asset('images/empty/empty-transaction.png') }}" alt="..." width="40%">
                     <h3>Tidak Ada Transaksi Pada Saat Ini</h3>
                 </div>
+                
+                @if (empty($trCancel) || count($trCancel) == 0)
+                @else
+                    <div class="pt-3">
+                        <h4 class="mt-2 mb-3">Transaction Cancel</h4>
+                        <table class="table table-hover border-bottom mt-2">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Store</th>
+                                    <th scope="col">Product Picture</th>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Payment</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($trCancel as $trc)
+                                    <tr class="text-center">
+                                        <td class="align-middle">{{ $trc->product->store->name }}</td>
+                                        <td class="align-middle">
+                                            <img src="{{ asset($trc->product->picture) }}" alt="..." width="80px"
+                                                height="80px">
+                                        </td>
+                                        <td class="align-middle">{{ $trc->product->name }}</td>
+                                        <td class="align-middle">
+                                            <img src="{{ asset($trc->payment->picture) }}" alt="..." width="145px"
+                                                height="80px">
+                                        </td>
+                                        <td class="align-middle">{{ $trc->status }}</td>
+                                        <td class="align-middle">
+                                            <form method="POST" action="/deleteTransaction/{{ $trc->id }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger" style="border-radius: 10px"><i
+                                                        class="bi bi-trash"></i>&nbsp;Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
             @else
                 <table class="table table-hover border-bottom mt-2">
                     <thead>
@@ -49,12 +93,28 @@
                                 <td class="align-middle">{{ $tr->note }}</td>
                                 <td class="align-middle">{{ $tr->status }}</td>
                                 <td class="align-middle">
-                                    <form method="POST" action="/cancelTransaction/{{ $tr->id }}">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger"
-                                            style="border-radius: 10px">Cancel&nbsp;<i class="bi bi-x-circle"></i></button>
-                                    </form>
+                                    <div class="btn-group" role="group" aria-label="Button Group">
+                                        @if ($tr->status == 'Done From Seller')
+                                            <form method="POST" action="/doneTransaction/{{ $tr->id }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PUT') }}
+                                                <button type="submit" class="btn btn-primary"><i
+                                                    class="bi bi-check-circle"></i>&nbsp;Done</button>
+                                            </form>
+
+                                            <form method="POST" action="/cancelTransaction/{{ $tr->id }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger">Cancel&nbsp;<i class="bi bi-x-circle"></i></button>
+                                            </form>
+                                        @else
+                                            <form method="POST" action="/cancelTransaction/{{ $tr->id }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger">Cancel&nbsp;<i class="bi bi-x-circle"></i></button>
+                                            </form>
+                                        @endif
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -91,7 +151,7 @@
                                         </td>
                                         <td class="align-middle">{{ $trc->status }}</td>
                                         <td class="align-middle">
-                                            <form method="POST" action="/cancelTransaction/{{ $trc->id }}">
+                                            <form method="POST" action="/deleteTransaction/{{ $trc->id }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                                 <button type="submit" class="btn btn-danger" style="border-radius: 10px"><i

@@ -69,7 +69,7 @@
                                             <div class="ml-3 mr-3 mb-3">
                                                 <select class="form-control" id="payment" name="payment">
                                                     @foreach (App\Payment::all() as $pay)
-                                                        <option value="{{ $pay->id }}">{{ $pay->name }}</option>
+                                                        <option value="{{ $pay->id }}">{{ $pay->name }} - {{ $pay->owner_number }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

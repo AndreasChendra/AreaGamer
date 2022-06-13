@@ -17,9 +17,11 @@ class TransactionController extends Controller
     public function index()
     {
         $transaction = Transaction::where('user_id', Auth::user()->id)
-                                    ->where('status', 'A Waiting Seller')->get();
+                                    ->where('status', 'A Waiting Seller')
+                                    ->orWhere('status', 'Done From Seller')->get();
         $trCancel = Transaction::where('user_id', Auth::user()->id)
                                     ->where('status', '!=', 'A Waiting Seller')
+                                    ->where('status', '!=', 'Done From Seller')
                                     ->where('status', '!=', 'Success')
                                     ->where('status', '!=', '-')->get();
         return view('transaction.transaction', ['transaction' => $transaction, 'trCancel' => $trCancel]);
@@ -92,6 +94,21 @@ class TransactionController extends Controller
     {
         $transaction = Transaction::findOrFail($transactionId);
         $transaction->delete();
+        return back()->with('success', 'Delete Transaction Successfully!');
+    }
+
+    public function doneTransaction($transactionId)
+    {
+        $transaction = Transaction::find($transactionId);
+        $transaction->status = 'Success';
+        $transaction->save();
+        return back()->with('success', 'Transaction Done!');
+    }
+
+    public function cancelTransaction($transactionId)
+    {
+        $transaction = Transaction::findOrFail($transactionId);
+        $transaction->delete();
         return back()->with('success', 'Cancel Transaction Successfully!');
     }
 
@@ -100,10 +117,10 @@ class TransactionController extends Controller
         $transaction = Transaction::find($transactionId);
         $product = Product::where('id', $transaction->product_id)->first();
         $product->total_sold = $product->total_sold + 1;
-        $transaction->status = 'Success';
+        $transaction->status = 'Done From Seller';
         $transaction->save();
         $product->save();
-        return back()->with('toast_success', 'Transaction Done!');
+        return back()->with('toast_success', 'Waiting Approval Buyer!');
     }
 
     public function cancel(Request $request, $transactionId)
