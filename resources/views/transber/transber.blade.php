@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <div class="text-center pt-5 pb-5">
-                            <img src="{{ asset('images/empty/empty-transaction.png') }}" alt="..." width="55%">
+                            <img src="{{ asset('images/empty/empty-transber.png') }}" alt="..." width="75%">
                             <h4>Tidak Ada Transber Pada Saat Ini</h4>
                         </div>
                     </div>
