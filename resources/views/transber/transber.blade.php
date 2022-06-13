@@ -299,13 +299,14 @@
                                         <a href="/transber/detail/{{ $transber->id }}" class="btn btn-primary"
                                             style="border-radius: 10px"><i
                                                 class="bi bi-info-circle"></i>&nbsp;Detail</a>&nbsp;
+                                    @elseif ($transber->usernameB == Auth::user()->username && $transber->status == 'Done From Seller')
+                                        <form method="POST" action="/cancelTransber/{{ $transber->id }}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger">Cancel&nbsp;<i
+                                                    class="bi bi-x-circle"></i></button>
+                                        </form>
                                     @endif
-                                    <form method="POST" action="/cancelTransber/{{ $transber->id }}">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-danger">Cancel&nbsp;<i
-                                                class="bi bi-x-circle"></i></button>
-                                    </form>
                                 </div>
                             </td>
                         </tr>
