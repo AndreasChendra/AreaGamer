@@ -259,7 +259,7 @@
                     </div>
                 </div>
             @else
-                <table class="table border-bottom border-left border-right">
+                <table class="table border-top border-bottom border-left border-right">
                     <thead>
                         <tr class="text-center">
                             <th scope="col">Username Buyer</th>
@@ -268,7 +268,10 @@
                             <th scope="col">Nominal</th>
                             <th scope="col">Fee</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Action</th>
+                            @if ($transber->usernameB == Auth::user()->username && $transber->status == 'Done From Seller')
+                            @else
+                                <th scope="col">Action</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -288,6 +291,13 @@
                                             <button type="submit" class="btn btn-primary"><i
                                                     class="bi bi-check-circle"></i>&nbsp;Done</button>
                                         </form>
+                                        
+                                        <form method="POST" action="/cancelTransber/{{ $transber->id }}">
+                                            {{ csrf_field() }}
+                                            {{ method_field('DELETE') }}
+                                            <button type="submit" class="btn btn-danger">Cancel&nbsp;<i
+                                                    class="bi bi-x-circle"></i></button>
+                                        </form>
                                     @elseif ($transber->usernameA == Auth::user()->username && $transber->status == 'Done From Seller')
                                         <form action="/done/buyer/{{ $transber->id }}" method="post">
                                             {{ csrf_field() }}
@@ -299,13 +309,23 @@
                                         <a href="/transber/detail/{{ $transber->id }}" class="btn btn-primary"
                                             style="border-radius: 10px"><i
                                                 class="bi bi-info-circle"></i>&nbsp;Detail</a>&nbsp;
-                                    @elseif ($transber->usernameB == Auth::user()->username && $transber->status == 'Done From Seller')
+
                                         <form method="POST" action="/cancelTransber/{{ $transber->id }}">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger">Cancel&nbsp;<i
+                                            <button type="submit" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i
                                                     class="bi bi-x-circle"></i></button>
                                         </form>
+                                    @else
+                                        @if ($transber->usernameB == Auth::user()->username && $transber->status == 'Done From Seller')
+                                        @else
+                                            <form method="POST" action="/cancelTransber/{{ $transber->id }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger">Cancel&nbsp;<i
+                                                        class="bi bi-x-circle"></i></button>
+                                            </form>
+                                        @endif
                                     @endif
                                 </div>
                             </td>
