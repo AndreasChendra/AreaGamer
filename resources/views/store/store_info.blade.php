@@ -49,9 +49,15 @@
                                                     <label for="storeName" class="col-md-4 col-form-label">Store
                                                         Name</label>
                                                     <div class="col-md-8">
-                                                        <input id="storeName" type="storeName" class="form-control"
+                                                        <input id="storeName" type="storeName" class="form-control @error('storeName') is-invalid @enderror"
                                                             name="storeName" value="{{ $store->name }}" required
                                                             autocomplete="storeName" autofocus>
+                                                        
+                                                        @error('storeName')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
@@ -60,10 +66,16 @@
                                                         Picture</label>
                                                     <div class="col-md-8">
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="storePicture"
+                                                            <input type="file" class="custom-file-input @error('storePicture') is-invalid @enderror" id="storePicture"
                                                                 name="storePicture">
                                                             <label class="custom-file-label" for="storePicture">Choose
                                                                 file</label>
+
+                                                            @error('storePicture')
+                                                                <span class="invalid-feedback" role="alert">
+                                                                    <strong>{{ $message }}</strong>
+                                                                </span>
+                                                            @enderror
                                                         </div>
                                                         <small class="text-muted">Ekstensi file yang
                                                             diperbolehkan: .JPG .JPEG .PNG</small>
@@ -210,34 +222,31 @@
                             </div>
                             <div class="border-top mb-3"></div>
                             <div class="form-inline pb-3">
-                                <form class="form-inline" action="#">
+                                <form method="GET" id="trigger" class="form-inline" action="/store/info/{{Auth::user()->id}}">
                                     <input class="form-control" type="search" style="width: 250px;"
                                         placeholder="Search Product" name="search" value="{{ Request::input('search') }}"
                                         aria-label="Search">
                                     <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+
+                                    <div class="pl-3">
+                                        <select id="filterType" name="filterType" class="form-control" onchange="DoSubmit();">
+                                            <option value="">Type</option>
+                                            @foreach (\App\ProductType::all() as $ptype)
+                                                <option value="{{ $ptype->id }}" {{ ( $ptype->id == Request::input('filterType')) ? 'selected' : '' }}>{{$ptype->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+    
+                                    <div class="pl-3">
+                                        <select id="filterCategory" name="filterCategory" class="form-control" onchange="DoSubmit();">
+                                            <option value="">Category</option>
+                                            @foreach (\App\ProductCategory::all() as $pcategory)
+                                                <option value="{{ $pcategory->id }}" {{ ( $pcategory->id == Request::input('filterCategory')) ? 'selected' : '' }}>{{$pcategory->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </form>
-
-                                <div class="pl-3">
-                                    <select id="inputType" class="form-control">
-                                        <option selected>Type</option>
-                                        <option>Mobile</option>
-                                        <option>PC</option>
-                                    </select>
-                                </div>
-
-                                <div class="pl-3">
-                                    <select id="inputCategory" class="form-control">
-                                        <option selected>Kategori</option>
-                                        <option>Mobile Legend</option>
-                                        <option>PUBG Mobile</option>
-                                        <option>Free Fire</option>
-                                        <option>Valorant</option>
-                                        <option>Genshin Impact</option>
-                                        <option>Fortnite</option>
-                                    </select>
-                                </div>
                             </div>
-
 
                             @if (empty($product) || count($product) == 0)
                                 <div class="text-center pt-3 pb-4">
@@ -398,4 +407,19 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // var type = document.getElementById('filterType');
+        // type
+        // console.log(type);
+        // $('#filterType').change(function() {
+        //     var value = $(this).val();
+        //     // do something...
+        // });
+        function DoSubmit() {
+            // this.form.submit();
+            var form = document.getElementById('trigger');
+            form.submit();
+        }
+    </script>
 @endsection

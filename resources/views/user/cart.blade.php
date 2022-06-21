@@ -7,21 +7,19 @@
             <div class="row">
                 @if (empty($cart) || count($cart) == 0)
                     <div class="col-md-8">
-                        <h4 class="pt-4">Cart</h4>
-                        <div class="border-top mt-4"></div>
-                        <div class="text-center pt-5 pb-5">
+                        <h4 class="pt-2">Cart</h4>
+                        <div class="border-top mt-3"></div>
+                        <div class="text-center pt-4">
                             <img src="{{ asset('images/empty/empty-cart.png') }}" alt="..." width="50%">
                             <h3>Tidak Ada Cart Pada Saat Ini</h3>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div style="right: auto; position: fixed; width: 350px;">
-                            <div class="card">
-                                <div class="p-3">
-                                    <button type="button" class="btn btn-outline-primary btn-block" disabled>Promo</button>
-                                </div>
+                            <div class="card shadow-sm">
+                                <img src="{{ asset('images/coming-soon.png') }}" alt="..." width="100%">
                             </div>
-                            <div class="card mt-2">
+                            <div class="card shadow-sm mt-2">
                                 <div class="p-3">
                                     <h5>Ringkasan Belanja</h5>
                                     <span class="text-muted">Product yang dibeli (0 product)</span>
@@ -102,16 +100,19 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            @if (count($cart) == 1)
+                                <div class="padCart"></div>
+                            @else
+                                <div class="pb-4"></div>
+                            @endif
                         </form>
                     </div>
                     <div class="col-md-4">
                         <div style="right: auto; position: fixed; width: 350px;">
-                            <div class="card">
-                                <div class="p-3">
-                                    <button type="button" class="btn btn-outline-primary btn-block">Promo</button>
-                                </div>
+                            <div class="card shadow-sm">
+                                <img src="{{ asset('images/coming-soon.png') }}" alt="..." width="100%">
                             </div>
-                            <div class="card mt-2">
+                            <div class="card shadow-sm mt-2">
                                 <div class="p-3">
                                     <h5>Ringkasan Belanja</h5>
                                     <span class="text-muted">Product yang dibeli (<span id="produkCheck">0</span>

@@ -67,6 +67,12 @@
                                                 </a>
                                             </div>
                                         </div>
+
+                                        @error('password-confirm')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
 

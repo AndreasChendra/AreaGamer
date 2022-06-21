@@ -123,7 +123,7 @@
                 <div class="col-md-4">
                     <div class="card">
                         <div class="p-3">
-                            <h5>SubTotal</h5>
+                            <h4 class="mb-3">SubTotal</h4>
                             <div class="border-top mt-3 mb-2"></div>
                             <div class="row">
                                 <div class="col-md-6">
@@ -155,7 +155,7 @@
                     </div>
                     <div class="card mt-2">
                         <div class="p-3">
-                            <form action="/transber/payment/{{ $transber->id }}" method="post">
+                            <form action="/transber/payment/{{ $transber->id }}" method="post" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 {{ method_field('PUT') }}
                                 <h5>Bukti Transfer</h5>
@@ -166,9 +166,15 @@
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="proofTransfer"
-                                                name="proofTransfer">
-                                            <label class="custom-file-label" for="proofTransfer">Choose file</label>
+                                            <input type="file" class="custom-file-input @error('picTransfer') is-invalid @enderror" id="picTransfer"
+                                                name="picTransfer">
+                                            <label class="custom-file-label" for="picTransfer">Choose file</label>
+                                            
+                                            @error('picTransfer')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                         <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG
                                             .PNG</small>

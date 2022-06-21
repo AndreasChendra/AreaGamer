@@ -31,8 +31,8 @@ class StoreController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'storeName' => ['required'],
-            'storePicture' => ['file', 'image', 'mimes:jpg,jpeg,png'],
+            'storeName' => ['required', 'min:5'],
+            'storePicture' => ['required', 'image', 'mimes:jpg,jpeg,png'],
         ]);
 
         $store = new Store();
@@ -68,13 +68,22 @@ class StoreController extends Controller
      */
     public function show(Request $request, $storeId)
     {
+        // dd($request->input('filterType'));
         $store = Store::find($storeId);
         $search = $request->input('search');
         $product = Product::where('store_id', $storeId)
-            ->where('name', 'like', "%$search%")
-            ->paginate(4);
+            ->where('name', 'like', "%$search%");
+
+        if ($request->input('filterType') != null) {
+            $product = $product->where('productType_id', '=', $request->input('filterType'));
+            
+        }
+        if ($request->input('filterCategory') != null) {
+            $product = $product->where('productCategory_id', '=', $request->input('filterCategory'));
+        }
+            
         $pCategory = ProductCategory::all();
-        return view('store.store_info', ['store' => $store, 'product' => $product, 'pCategory' => $pCategory]);
+        return view('store.store_info', ['store' => $store, 'product' => $product->paginate(4), 'pCategory' => $pCategory]);
     }
 
     public function order($storeId)
@@ -97,8 +106,8 @@ class StoreController extends Controller
     public function edit(Request $request, $storeId)
     {
         $this->validate($request, [
-            'storeName' => ['required'],
-            'storePicture' => ['file', 'image', 'mimes:jpg,jpeg,png'],
+            'storeName' => ['required', 'min:5'],
+            'storePicture' => ['required', 'image', 'mimes:jpg,jpeg,png'],
         ]);
 
         $store = Store::find($storeId);

@@ -38,10 +38,11 @@ class ReviewController extends Controller
      */
     public function review(Request $request, $productId)
     {
-        // $this->validate($request,[
-        //     'rating' => ['required', 'not_in:0'],
-        //     'description' => ['required', 'string'],
-        // ]);
+        $this->validate($request,[
+            'rating' => ['required', 'not_in:0'],
+            'pictureReview' => ['required', 'file', 'image', 'mimes:jpg,jpeg,png'],
+            'description' => ['required', 'string'],
+        ]);
 
         $product = Product::find($productId);
 

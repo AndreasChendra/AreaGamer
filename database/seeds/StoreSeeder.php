@@ -25,7 +25,7 @@ class StoreSeeder extends Seeder
             [
                 'user_id' => 2,
                 'name' => 'Vin Store',
-                'picture' => '-',
+                'picture' => 'images/store/profile/vin_store.jpg',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -33,7 +33,7 @@ class StoreSeeder extends Seeder
             [
                 'user_id' => 3,
                 'name' => 'Jess Jess Store',
-                'picture' => '-',
+                'picture' => 'images/store/profile/jessjess_store.png',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -41,7 +41,7 @@ class StoreSeeder extends Seeder
             [
                 'user_id' => 4,
                 'name' => 'Mellaini Store',
-                'picture' => '-',
+                'picture' => 'images/store/profile/mellaini_store.png',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -49,7 +49,7 @@ class StoreSeeder extends Seeder
             [
                 'user_id' => 5,
                 'name' => 'Zasura Store',
-                'picture' => '-',
+                'picture' => 'images/store/profile/zasura_store.png',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],
@@ -57,7 +57,7 @@ class StoreSeeder extends Seeder
             [
                 'user_id' => 6,
                 'name' => 'Son Nel Store',
-                'picture' => '-',
+                'picture' => 'images/store/profile/sonnel_store.png',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
             ],

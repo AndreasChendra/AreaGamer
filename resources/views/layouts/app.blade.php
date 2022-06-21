@@ -181,10 +181,16 @@
                                                                 Picture</label>
                                                             <div class="col-md-9">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input"
+                                                                    <input type="file" class="custom-file-input @error('storePicture') is-invalid @enderror"
                                                                         id="storePicture" name="storePicture">
                                                                     <label class="custom-file-label" for="storePicture">Choose
                                                                         file</label>
+
+                                                                    @error('storePicture')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                                 <small id="pictureHelp" class="form-text text-muted">Ekstensi
                                                                     file yang diperbolehkan: .JPG .JPEG .PNG</small>

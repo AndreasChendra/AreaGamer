@@ -65,7 +65,7 @@
                                             <label for="rating"
                                                 class="col-md-4 col-form-label">{{ __('Rating') }}</label>
                                             <div class="col-md-8">
-                                                <select class="form-control" id="rating" name="rating">
+                                                <select class="form-control @error('rating') is-invalid @enderror" id="rating" name="rating">
                                                     <option value="0">-- Select Rating --</option>
                                                     <option value="1" style="color: orange; font-size: 16px">&#9733;
                                                     </option>
@@ -91,9 +91,15 @@
                                             <label for="pictureReview" class="col-md-4 col-form-label">Picture</label>
                                             <div class="col-md-8">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="pictureReview"
+                                                    <input type="file" class="custom-file-input @error('pictureReview') is-invalid @enderror" id="pictureReview"
                                                         name="pictureReview">
                                                     <label class="custom-file-label" for="pictureReview">Choose file</label>
+                                                    
+                                                    @error('pictureReview')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
                                                 </div>
                                                 <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG
                                                     .PNG</small>
@@ -103,7 +109,13 @@
                                         <div class="form-group row">
                                             <label for="description" class="col-md-4 col-form-label">Description</label>
                                             <div class="col-md-8">
-                                                <textarea id="description" class="form-control" rows="4" name="description"></textarea>
+                                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" rows="4" name="description"></textarea>
+
+                                                @error('description')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
@@ -219,7 +231,12 @@
                                                         </div>
                                                         <div class="col-md-5 pt-2 text-center">
                                                             <div class="input-group">
-                                                                <textarea class="form-control" id="note" name="note" rows="3" placeholder="Jycho. 123724663 (2601)"></textarea>
+                                                                <textarea class="form-control @error('noteBuy') is-invalid @enderror" id="note" name="noteBuy" rows="3" placeholder="Jycho. 123724663 (2601)"></textarea>
+                                                                @error('noteBuy')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>

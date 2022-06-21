@@ -78,7 +78,13 @@
                                                         Username</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="usernameB" name="usernameB"
-                                                            class="form-control">
+                                                            class="form-control @error('usernameB') is-invalid @enderror">
+
+                                                        @error('usernameB')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
@@ -86,7 +92,13 @@
                                                     <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="nominal" name="nominal"
-                                                            class="form-control">
+                                                            class="form-control @error('nominal') is-invalid @enderror">
+
+                                                        @error('nominal')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
@@ -151,7 +163,13 @@
                                                         Username</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="usernameB" name="usernameB"
-                                                            class="form-control">
+                                                            class="form-control @error('usernameB') is-invalid @enderror">
+
+                                                        @error('usernameB')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
@@ -159,7 +177,13 @@
                                                     <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="nominal" name="nominal"
-                                                            class="form-control">
+                                                            class="form-control @error('nominal') is-invalid @enderror">
+
+                                                        @error('nominal')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
@@ -224,7 +248,13 @@
                                                         Username</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="usernameB" name="usernameB"
-                                                            class="form-control">
+                                                            class="form-control @error('usernameB') is-invalid @enderror">
+
+                                                        @error('usernameB')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 
@@ -232,7 +262,13 @@
                                                     <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="nominal" name="nominal"
-                                                            class="form-control">
+                                                            class="form-control @error('nominal') is-invalid @enderror">
+
+                                                        @error('nominal')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
 

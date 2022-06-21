@@ -35,11 +35,6 @@
                                         <i class="bi bi-person-plus"></i>
                                         {{ __('Verif KTP') }}
                                     </a>
-                                @else
-                                    <a id="verifKTP" href="/verifKTP" class="btn btn-primary btn-block disabled">
-                                        <i class="bi bi-person-plus"></i>
-                                        {{ __('Verif KTP') }}
-                                    </a>
                                 @endif
                             </div>
                         </div>
@@ -87,8 +82,14 @@
                                     <label for="uploadPhoto" class="col-md-4 col-form-label">Upload Photo</label>
                                     <div class="col-md-8">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="uploadPhoto" name="uploadPhoto">
+                                            <input type="file" class="custom-file-input @error('uploadPhoto') is-invalid @enderror" id="uploadPhoto" name="uploadPhoto">
                                             <label class="custom-file-label" for="uploadPhoto">Choose file</label>
+
+                                            @error('uploadPhoto')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                         <small class="text-muted">Ekstensi file yang diperbolehkan: .JPG .JPEG .PNG</small>
                                     </div>
@@ -131,7 +132,7 @@
                                             </div>
                                         </div>
 
-                                        @error('password')
+                                        @error('new-password')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -142,7 +143,7 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label">Confirm Password</label>
                                     <div class="input-group col-md-8">
-                                        <input id="password-confirm" type="password" class="form-control"
+                                        <input id="password-confirm" type="password" class="form-control @error('password-confirm') is-invalid @enderror"
                                             name="password-confirm" placeholder="Confirm Password" required
                                             autocomplete="password-confirm">
                                         <div class="input-group-append">
@@ -152,6 +153,12 @@
                                                 </a>
                                             </div>
                                         </div>
+
+                                        @error('password-confirm')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -179,9 +186,16 @@
                             <div class="modal-body">
                                 @if ($user->username == '-')
                                     <div class="form-group row">
-                                        <label for="username" class="col-md-2 col-form-label">Username</label>
+                                        <label for="name" class="col-md-2 col-form-label">Username</label>
                                         <div class="col-md-10">
-                                            <input type="text" id="username" class="form-control" name="username" placeholder="{{ $user->username }}">
+                                            <input id="username" type="text"
+                                                class="form-control @error('username') is-invalid @enderror" name="username" placeholder="{{ $user->username }}">
+
+                                            @error('username')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         </div>
                                     </div>
                                 @else
@@ -257,11 +271,17 @@
                                                 <option value="female" selected>Female</option>
                                             </select>
                                         @else
-                                            <select id="gender" name="gender" class="form-control">
+                                            <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror">
                                                 <option value="0" selected>-- Select Gender --</option>
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
                                             </select>
+
+                                            @error('gender')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                         @endif
                                     </div>
                                 </div>

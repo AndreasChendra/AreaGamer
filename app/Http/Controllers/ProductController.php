@@ -132,13 +132,17 @@ class ProductController extends Controller
 
     public function cBuy(Request $request, $productId)
     {
+        $this->validate($request,[
+            'noteBuy' => ['required', 'string', 'max:255'],
+        ]);
+
         $product = Product::find($productId);
         $transaction = new Transaction();
         $transaction->user_id = Auth::user()->id;
         $transaction->product_id = $product->id;
         $transaction->payment_id = 1;
         $transaction->status = '-';
-        $transaction->note = $request->input('note');
+        $transaction->note = $request->input('noteBuy');
         $transaction->save();
         $tr = Transaction::where('product_id', $productId)
                             ->where('status', '-')->first();

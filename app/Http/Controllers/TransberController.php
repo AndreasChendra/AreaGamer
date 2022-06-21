@@ -101,6 +101,11 @@ class TransberController extends Controller
 
     public function transber(Request $request, $category)
     {
+        $this->validate($request, [
+            'usernameB' => ['required', 'exists:users,username'],
+            'nominal' => ['required', 'numeric'],
+        ]);
+
         $transber = new Transber();
         $transber->payment_id = $request->input('payment');
         $transber->usernameA = $request->input('usernameA');
@@ -116,8 +121,14 @@ class TransberController extends Controller
 
     public function payment(Request $request, $transberId)
     {
+        $this->validate($request, [
+            'picTransfer' => ['required', 'image', 'mimes:jpg,jpeg,png'],
+        ]);
+
         $transber = Transber::find($transberId);
-        $transber->status = 'Payment Accepted';
+        if ($request->file('picTransfer') != null) {
+            $transber->status = 'Payment Accepted';
+        }
         $transber->save();
 
         return redirect('/transber')->with('success', 'Payment Accepted!');

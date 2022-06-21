@@ -39,6 +39,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'uploadPhoto' => ['required', 'image', 'mimes:jpg,jpeg,png'],
+        ]);
+
         $user = User::find(Auth::user()->id);
 
         if ($request->file('uploadPhoto') != null) {
@@ -84,8 +88,8 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $this->validate($request, [
-            'username' => ['max:255'],
-            'name' => ['required', 'max:255'],
+            'username' => ['required', 'unique:users', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
             'phone' => ['required', 'min:10', 'numeric'],
             'gender' => ['required', 'not_in:0'],
@@ -145,8 +149,8 @@ class UserController extends Controller
     public function changePass(Request $request)
     {
         $this->validate($request, [
-            'new-password' => ['required'],
-            'password-confirm' => ['required', 'same:new-password'],
+            'new-password' => ['required', 'string', 'min:8'],
+            'password-confirm' => ['required', 'string', 'min:8', 'same:new-password'],
         ]);
 
         $user = User::find(Auth::user()->id);
@@ -164,8 +168,8 @@ class UserController extends Controller
     public function resetPass(Request $request)
     {
         $this->validate($request, [
-            'new-password' => ['required'],
-            'password-confirm' => ['required', 'same:new-password'],
+            'new-password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password-confirm' => ['required', 'string', 'min:8', 'same:new-password'],
         ]);
 
         $user = User::select()->where('email', $request->input('email'))->first();
