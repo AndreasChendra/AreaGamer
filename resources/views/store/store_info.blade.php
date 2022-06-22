@@ -130,8 +130,14 @@
                                                                 Name</label>
                                                             <div class="col-md-8">
                                                                 <input id="productName" type="productName"
-                                                                    class="form-control" name="productName" required
-                                                                    autocomplete="productName" autofocus>
+                                                                    class="form-control @error('productName') is-invalid @enderror" name="productName"
+                                                                    autocomplete="productName" required autofocus>
+
+                                                                    @error('productName')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                             </div>
                                                         </div>
 
@@ -139,8 +145,14 @@
                                                             <label for="productPrice"
                                                                 class="col-md-4 col-form-label">Product Price</label>
                                                             <div class="col-md-8">
-                                                                <input type="text" class="form-control" id="productPrice"
+                                                                <input type="text" class="form-control @error('productPrice') is-invalid @enderror" id="productPrice"
                                                                     name="productPrice" required autofocus>
+
+                                                                @error('productPrice')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
 
@@ -148,8 +160,14 @@
                                                             <label for="process"
                                                                 class="col-md-4 col-form-label">Process</label>
                                                             <div class="col-md-8">
-                                                                <input type="number" class="form-control" id="process"
+                                                                <input type="number" class="form-control @error('process') is-invalid @enderror" id="process"
                                                                     name="process" required autofocus>
+
+                                                                @error('process')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
 
@@ -158,15 +176,18 @@
                                                                 Type</label>
                                                             <div class="col-md-8 pt-2">
                                                                 <div class="form-check-inline">
-                                                                    <input class="form-check-input" type="radio"
-                                                                        name="productType" value="1">
-                                                                    <label class="form-check-label"
-                                                                        for="mobile">Mobile</label>
-                                                                </div>
-                                                                <div class="form-check-inline">
-                                                                    <input class="form-check-input" type="radio"
-                                                                        name="productType" value="2">
-                                                                    <label class="form-check-label" for="pc">PC</label>
+                                                                    @foreach (App\ProductType::all() as $ptype)
+                                                                        <input class="form-check-input @error('productType') is-invalid @enderror" type="radio"
+                                                                            name="productType" value="{{$ptype->id}}" required>
+                                                                        <label class="form-check-label"
+                                                                            for="mobile">{{$ptype->name}}&emsp;</label>
+                                                                    @endforeach
+
+                                                                    @error('productType')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -175,15 +196,19 @@
                                                             <label for="productCategory"
                                                                 class="col-md-4 col-form-label">Product Category</label>
                                                             <div class="col-md-8">
-                                                                <select id="productCategory" class="form-control"
+                                                                <select id="productCategory" class="form-control @error('productCategory') is-invalid @enderror"
                                                                     name="productCategory">
-                                                                    <option selected value="0">-- Select Category --
-                                                                    </option>
-                                                                    @foreach ($pCategory as $pc)
-                                                                        <option value="{{ $pc->id }}">
-                                                                            {{ $pc->name }}</option>
+                                                                    <option value="0">-- Select Category --</option>
+                                                                    @foreach (\App\ProductCategory::all() as $pcategory)
+                                                                        <option value="{{ $pcategory->id }}" {{ ( $pcategory->id == Request::input('filterCategory')) ? 'selected' : '' }}>{{$pcategory->name}}</option>
                                                                     @endforeach
                                                                 </select>
+
+                                                                @error('productCategory')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
 
@@ -192,10 +217,16 @@
                                                                 class="col-md-4 col-form-label">Product Picture</label>
                                                             <div class="col-md-8">
                                                                 <div class="custom-file">
-                                                                    <input type="file" class="custom-file-input"
-                                                                        id="productPicture" name="productPicture">
+                                                                    <input type="file" class="custom-file-input @error('productPicture') is-invalid @enderror"
+                                                                        id="productPicture" name="productPicture" required>
                                                                     <label class="custom-file-label"
                                                                         for="productPicture">Choose file</label>
+
+                                                                    @error('productPicture')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
                                                                 </div>
                                                                 <small class="text-muted">Ekstensi file yang
                                                                     diperbolehkan: .JPG .JPEG .PNG</small>
@@ -207,7 +238,13 @@
                                                                 class="col-md-4 col-form-label">Product
                                                                 Description</label>
                                                             <div class="col-md-8">
-                                                                <textarea class="form-control" id="productDescription" rows="3" name="productDescription"></textarea>
+                                                                <textarea class="form-control @error('productDescription') is-invalid @enderror" id="productDescription" rows="3" name="productDescription" required></textarea>
+
+                                                                @error('productDescription')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -322,51 +359,75 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <div class="form-group row">
-                                                                    <label for="productName"
+                                                                    <label for="updateProductName"
                                                                         class="col-md-4 col-form-label">Product
                                                                         Name</label>
                                                                     <div class="col-md-8">
-                                                                        <input id="productName" type="productName"
-                                                                            class="form-control" name="productName"
-                                                                            required autocomplete="productName"
+                                                                        <input id="updateProductName" type="updateProductName"
+                                                                            class="form-control @error('updateProductName') is-invalid @enderror" name="updateProductName"
+                                                                            required autocomplete="updateProductName"
                                                                             placeholder="{{ $p->name }}"
                                                                             value="{{ $p->name }}" autofocus>
+
+                                                                        @error('updateProductName')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <label for="productPrice"
+                                                                    <label for="updateProductPrice"
                                                                         class="col-md-4 col-form-label">Product
                                                                         Price</label>
                                                                     <div class="col-md-8">
-                                                                        <input type="text" class="form-control"
-                                                                            id="productPrice" name="productPrice"
+                                                                        <input type="text" class="form-control @error('updateProductPrice') is-invalid @enderror"
+                                                                            id="updateProductPrice" name="updateProductPrice"
                                                                             placeholder="{{ $p->price }}"
                                                                             value="{{ $p->price }}" required autofocus>
+
+                                                                        @error('updateProductPrice')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <label for="process"
+                                                                    <label for="updateProcess"
                                                                         class="col-md-4 col-form-label">Process</label>
                                                                     <div class="col-md-8">
-                                                                        <input type="number" class="form-control"
-                                                                            id="process" name="process"
+                                                                        <input type="number" class="form-control @error('updateProcess') is-invalid @enderror"
+                                                                            id="updateProcess" name="updateProcess"
                                                                             placeholder="{{ $p->process }}"
                                                                             value="{{ $p->process }}" required autofocus>
+
+                                                                        @error('updateProcess')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <label for="productPicture"
+                                                                    <label for="updateProductPicture"
                                                                         class="col-md-4 col-form-label">Product
                                                                         Picture</label>
                                                                     <div class="col-md-8">
                                                                         <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input"
-                                                                                id="productPicture" name="productPicture">
+                                                                            <input type="file" class="custom-file-input @error('updateProductPicture') is-invalid @enderror"
+                                                                                id="updateProductPicture" name="updateProductPicture">
                                                                             <label class="custom-file-label"
-                                                                                for="productPicture">Choose file</label>
+                                                                                for="updateProductPicture">Choose file</label>
+                                                                            
+                                                                            @error('updateProductPicture')
+                                                                                <span class="invalid-feedback" role="alert">
+                                                                                    <strong>{{ $message }}</strong>
+                                                                                </span>
+                                                                            @enderror
                                                                         </div>
                                                                         <small class="text-muted">Ekstensi file
                                                                             yang
@@ -375,11 +436,17 @@
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <label for="productDescription"
+                                                                    <label for="updateProductDescription"
                                                                         class="col-md-4 col-form-label">Product
                                                                         Description</label>
                                                                     <div class="col-md-8">
-                                                                        <textarea class="form-control" id="productDescription" rows="3" name="productDescription"></textarea>
+                                                                        <textarea class="form-control @error('updateProductDescription') is-invalid @enderror" id="updateProductDescription" rows="3" name="updateProductDescription"></textarea>
+
+                                                                        @error('updateProductDescription')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
                                                                     </div>
                                                                 </div>
                                                             </div>

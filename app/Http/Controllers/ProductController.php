@@ -39,6 +39,16 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'productName' => ['required', 'string', 'max:255'],
+            'productPrice' => ['required', 'numeric'],
+            'process' => ['required', 'numeric'],
+            'productType' => ['required', 'not_in:0'],
+            'productCategory' => ['required', 'not_in:0'],
+            'productPicture' => ['required', 'image', 'mimes:jpg,jpeg,png'],
+            'productDescription' => ['required', 'string'],
+        ]);
+
         $product = new Product();
         $product->store_id = Auth::user()->store->id;
         $product->productType_id = $request->input('productType');
@@ -168,12 +178,20 @@ class ProductController extends Controller
      */
     public function update(Request $request, $productId)
     {
+        $this->validate($request, [
+            'updateProductName' => ['required', 'string', 'max:255'],
+            'updateProductPrice' => ['required', 'numeric'],
+            'updateProcess' => ['required', 'numeric'],
+            'updateProductPicture' => ['required', 'image', 'mimes:jpg,jpeg,png'],
+            'updateProductDescription' => ['required', 'string'],
+        ]);
+
         $product = Product::find($productId);
-        $product->name = $request->input('productName');
-        $product->price = $request->input('productPrice');
-        $product->process = $request->input('process');
-        if ($request->file('productPicture') != null) {
-            $file = $request->file('productPicture');
+        $product->name = $request->input('updateProductName');
+        $product->price = $request->input('updateProductPrice');
+        $product->process = $request->input('updateProcess');
+        if ($request->file('updateProductPicture') != null) {
+            $file = $request->file('updateProductPicture');
             $nama_file = time()."_".$file->getClientOriginalName();
             if ($product->productCategory_id == 1) {
                 $tujuan_upload = 'images/games/product/moba';

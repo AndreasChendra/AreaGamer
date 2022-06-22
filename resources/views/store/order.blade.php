@@ -74,7 +74,13 @@
                                                 <div class="form-group row">
                                                     <label for="status" class="col-md-4 col-form-label">Status Cancel</label>
                                                     <div class="col-md-8">
-                                                        <textarea id="status" class="form-control" rows="2" name="status"></textarea>
+                                                        <textarea id="status" class="form-control @error('status') is-invalid @enderror" rows="2" name="status"></textarea>
+
+                                                        @error('status')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>

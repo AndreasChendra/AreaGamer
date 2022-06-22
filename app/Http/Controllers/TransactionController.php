@@ -17,8 +17,11 @@ class TransactionController extends Controller
     public function index()
     {
         $transaction = Transaction::where('user_id', Auth::user()->id)
-                                    ->where('status', 'A Waiting Seller')
-                                    ->orWhere('status', 'Done From Seller')->get();
+                                    ->where(function ($query) {
+                                        $query->where('status', 'A Waiting Seller')
+                                              ->orWhere('status', 'Done From Seller');
+                                    })
+                                    ->get();
         $trCancel = Transaction::where('user_id', Auth::user()->id)
                                     ->where('status', '!=', 'A Waiting Seller')
                                     ->where('status', '!=', 'Done From Seller')
@@ -125,6 +128,10 @@ class TransactionController extends Controller
 
     public function cancel(Request $request, $transactionId)
     {
+        $this->validate($request, [
+            'status' => ['required', 'string', 'min:6', 'max:255'],
+        ]);
+
         $transaction = Transaction::find($transactionId);
         $transaction->status = $request->input('status');
         $transaction->save();

@@ -57,7 +57,7 @@
 
                                 <div class="form-group row">
                                     <div class="input-group col-md-12">
-                                        <input id="password-confirm" type="password" class="form-control"
+                                        <input id="password-confirm" type="password" class="form-control @error('password-confirm') is-invalid @enderror"
                                             name="password-confirm" placeholder="Confirm Password" required
                                             autocomplete="password-confirm">
                                         <div class="input-group-append">

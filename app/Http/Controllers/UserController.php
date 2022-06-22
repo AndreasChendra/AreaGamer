@@ -87,11 +87,15 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
+        if(Auth::user()->username == '-') {
+            $this->validate($request, [
+                'username' => ['required', 'unique:users', 'max:255'],
+            ]);
+        }
         $this->validate($request, [
-            'username' => ['required', 'unique:users', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
-            'phone' => ['required', 'min:10', 'numeric'],
+            'phone' => ['required', 'numeric', 'digits_between:11,12'],
             'gender' => ['required', 'not_in:0'],
         ]);
 
@@ -149,7 +153,7 @@ class UserController extends Controller
     public function changePass(Request $request)
     {
         $this->validate($request, [
-            'new-password' => ['required', 'string', 'min:8'],
+            'new-password' => ['required', 'string', 'min:8', 'same:password-confirm'],
             'password-confirm' => ['required', 'string', 'min:8', 'same:new-password'],
         ]);
 
@@ -168,7 +172,7 @@ class UserController extends Controller
     public function resetPass(Request $request)
     {
         $this->validate($request, [
-            'new-password' => ['required', 'string', 'min:8', 'confirmed'],
+            'new-password' => ['required', 'string', 'min:8', 'same:password-confirm'],
             'password-confirm' => ['required', 'string', 'min:8', 'same:new-password'],
         ]);
 

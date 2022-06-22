@@ -192,9 +192,9 @@
                                         name="note" required autocomplete="note"
                                         placeholder="Contoh : Jycho. 123724663 (2601)">
                                 </div>
-                                <button class="btn btn-block btn-primary mb-2">
-                                    <i class="bi bi-cart-plus"></i>
-                                    Keranjang</button>
+                                <a href="/login" class="btn btn-block btn-primary mb-2">
+                                    <i class="bi bi-cart-plus"></i>Keranjang
+                                </a>
                             @endif
                             <button class="btn btn-block btn-primary mb-2" data-toggle="modal" data-target="#buyNow">
                                 <i class="bi bi-bag"></i> Beli
@@ -247,49 +247,6 @@
                                             <button type="submit" class="btn btn-primary">Beli</button>
                                         </div>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Modal Cart -->
-                        <div class="modal fade" id="addToCart" data-backdrop="static" data-keyboard="false"
-                            tabindex="-1" aria-labelledby="addToCartLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="addToCartLabel">Berhasil Ditambahkan</h5>
-                                        <button type="button" class="close" data-dismiss="modal"
-                                            aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="card">
-                                            <div class="p-3">
-                                                <div class="row">
-                                                    <div class="col-md-3">
-                                                        <img src="{{ asset($product->picture) }}" alt="..." width="100px"
-                                                            height="100px">
-                                                    </div>
-                                                    <div class="col-md-4 pt-3">
-                                                        <strong style="font-size: 17px">{{ $product->name }}</strong><br>
-                                                        <span style="font-size: 17px" class="text-muted">Rp.
-                                                            {{ $product->price }}</span>
-                                                    </div>
-                                                    <div class="col-md-5 pt-3 text-center">
-                                                        <strong
-                                                            style="font-size: 17px">{{ $product->pcategory->name }}</strong><br>
-                                                        <span class="badge badge-success">{{ $product->process }} Menit
-                                                            Proses</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="#"><button type="button" class="btn btn-primary">Lihat
-                                                Keranjang</button></a>
-                                    </div>
                                 </div>
                             </div>
                         </div>

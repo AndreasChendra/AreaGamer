@@ -103,7 +103,7 @@ class TransberController extends Controller
     {
         $this->validate($request, [
             'usernameB' => ['required', 'exists:users,username'],
-            'nominal' => ['required', 'numeric'],
+            'nominal' => ['required', 'numeric', 'min:50000'],
         ]);
 
         $transber = new Transber();

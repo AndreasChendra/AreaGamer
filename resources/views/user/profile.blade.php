@@ -201,9 +201,9 @@
                                 @else
                                     <fieldset disabled>
                                         <div class="form-group row">
-                                            <label for="username" class="col-md-2 col-form-label">Username</label>
+                                            <label for="usernameDisabled" class="col-md-2 col-form-label">Username</label>
                                             <div class="col-md-10">
-                                                <input type="text" id="username" class="form-control" name="username"
+                                                <input type="text" id="usernameDisabled" class="form-control" name="usernameDisabled"
                                                     value="{{ $user->username }}" placeholder="{{ $user->username }}">
                                             </div>
                                         </div>
