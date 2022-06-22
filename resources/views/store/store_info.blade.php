@@ -180,7 +180,7 @@
                                                                         <input class="form-check-input @error('productType') is-invalid @enderror" type="radio"
                                                                             name="productType" value="{{$ptype->id}}" required>
                                                                         <label class="form-check-label"
-                                                                            for="mobile">{{$ptype->name}}&emsp;</label>
+                                                                            for="productType">{{$ptype->name}}&emsp;</label>
                                                                     @endforeach
 
                                                                     @error('productType')
@@ -200,7 +200,7 @@
                                                                     name="productCategory">
                                                                     <option value="0">-- Select Category --</option>
                                                                     @foreach (\App\ProductCategory::all() as $pcategory)
-                                                                        <option value="{{ $pcategory->id }}" {{ ( $pcategory->id == Request::input('filterCategory')) ? 'selected' : '' }}>{{$pcategory->name}}</option>
+                                                                        <option value="{{ $pcategory->id }}">{{$pcategory->name}}</option>
                                                                     @endforeach
                                                                 </select>
 
@@ -405,6 +405,47 @@
                                                                             value="{{ $p->process }}" required autofocus>
 
                                                                         @error('updateProcess')
+                                                                            <span class="invalid-feedback" role="alert">
+                                                                                <strong>{{ $message }}</strong>
+                                                                            </span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="updateProductType" class="col-md-4 col-form-label">Product
+                                                                        Type</label>
+                                                                    <div class="col-md-8 pt-2">
+                                                                        <div class="form-check-inline">
+                                                                            @foreach (App\ProductType::all() as $ptype)
+                                                                                <input class="form-check-input @error('updateProductType') is-invalid @enderror" type="radio"
+                                                                                    name="updateProductType" value="{{$ptype->id}}" {{ ( $ptype->id == $p->ptype->id) ? 'checked' : '' }} required>
+                                                                                <label class="form-check-label"
+                                                                                    for="updateProductType">{{$ptype->name}}&emsp;</label>
+                                                                            @endforeach
+        
+                                                                            @error('updateProductType')
+                                                                                <span class="invalid-feedback" role="alert">
+                                                                                    <strong>{{ $message }}</strong>
+                                                                                </span>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row">
+                                                                    <label for="updateProductCategory"
+                                                                        class="col-md-4 col-form-label">Product Category</label>
+                                                                    <div class="col-md-8">
+                                                                        <select id="updateProductCategory" class="form-control @error('updateProductCategory') is-invalid @enderror"
+                                                                            name="updateProductCategory">
+                                                                            <option value="0">-- Select Category --</option>
+                                                                            @foreach (\App\ProductCategory::all() as $pcategory)
+                                                                                <option value="{{ $pcategory->id }}" {{ ( $pcategory->id == $p->pcategory->id) ? 'selected' : '' }}>{{$pcategory->name}}</option>
+                                                                            @endforeach
+                                                                        </select>
+        
+                                                                        @error('updateProductCategory')
                                                                             <span class="invalid-feedback" role="alert">
                                                                                 <strong>{{ $message }}</strong>
                                                                             </span>

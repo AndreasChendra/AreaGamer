@@ -182,14 +182,19 @@ class ProductController extends Controller
             'updateProductName' => ['required', 'string', 'max:255'],
             'updateProductPrice' => ['required', 'numeric'],
             'updateProcess' => ['required', 'numeric'],
+            'updateProductType' => ['required', 'not_in:0'],
+            'updateProductCategory' => ['required', 'not_in:0'],
             'updateProductPicture' => ['required', 'image', 'mimes:jpg,jpeg,png'],
             'updateProductDescription' => ['required', 'string'],
         ]);
 
         $product = Product::find($productId);
+        $product->productType_id = $request->input('updateProductType');
+        $product->productCategory_id = $request->input('updateProductCategory');
         $product->name = $request->input('updateProductName');
         $product->price = $request->input('updateProductPrice');
         $product->process = $request->input('updateProcess');
+        $product->description = $request->input('updateProductDescription');
         if ($request->file('updateProductPicture') != null) {
             $file = $request->file('updateProductPicture');
             $nama_file = time()."_".$file->getClientOriginalName();
