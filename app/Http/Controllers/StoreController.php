@@ -68,9 +68,8 @@ class StoreController extends Controller
      */
     public function show(Request $request, $storeId)
     {
-        // dd($request->input('filterType'));
         $store = Store::find($storeId);
-        $search = $request->input('search');
+        $search = $request->input('searchProduct');
         $product = Product::where('store_id', $storeId)
             ->where('name', 'like', "%$search%");
 

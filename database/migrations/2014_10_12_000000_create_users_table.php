@@ -23,7 +23,6 @@ class CreateUsersTable extends Migration
             $table->string('phone');
             $table->string('gender');
             $table->string('picture');
-            $table->string('verif_idcard');
             $table->string('selfie_idcard');
             $table->rememberToken();
             $table->timestamps();

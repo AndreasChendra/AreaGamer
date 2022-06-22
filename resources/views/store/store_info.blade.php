@@ -224,7 +224,7 @@
                             <div class="form-inline pb-3">
                                 <form method="GET" id="trigger" class="form-inline" action="/store/info/{{Auth::user()->id}}">
                                     <input class="form-control" type="search" style="width: 250px;"
-                                        placeholder="Search Product" name="search" value="{{ Request::input('search') }}"
+                                        placeholder="Search Product" name="searchProduct" value="{{ Request::input('searchProduct') }}"
                                         aria-label="Search">
                                     <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
 

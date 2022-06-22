@@ -22,8 +22,7 @@ class UserSeeder extends Seeder
                 'phone' => '081236988569',
                 'gender' => 'male',
                 'picture' => 'images/user/profile/profile.png',
-                'verif_idcard' => '-',
-                'selfie_idcard' => '-'
+                'selfie_idcard' => 'images/user/idcard/example-selfie-idcard.jpg'
             ],
 
             [
@@ -35,8 +34,7 @@ class UserSeeder extends Seeder
                 'phone' => '085698234571',
                 'gender' => 'male',
                 'picture' => 'images/user/profile/profile.png',
-                'verif_idcard' => '-',
-                'selfie_idcard' => '-'
+                'selfie_idcard' => 'images/user/idcard/example-selfie-idcard.jpg'
             ],
 
             [
@@ -48,8 +46,7 @@ class UserSeeder extends Seeder
                 'phone' => '081236547896',
                 'gender' => 'male',
                 'picture' => 'images/user/profile/profile.png',
-                'verif_idcard' => '-',
-                'selfie_idcard' => '-'
+                'selfie_idcard' => 'images/user/idcard/example-selfie-idcard.jpg'
             ],
 
             [
@@ -61,8 +58,7 @@ class UserSeeder extends Seeder
                 'phone' => '085933625578',
                 'gender' => 'female',
                 'picture' => 'images/user/profile/profile.png',
-                'verif_idcard' => '-',
-                'selfie_idcard' => '-'
+                'selfie_idcard' => 'images/user/idcard/example-selfie-idcard.jpg'
             ],
 
             [
@@ -74,8 +70,7 @@ class UserSeeder extends Seeder
                 'phone' => '089788574123',
                 'gender' => 'male',
                 'picture' => 'images/user/profile/profile.png',
-                'verif_idcard' => '-',
-                'selfie_idcard' => '-'
+                'selfie_idcard' => 'images/user/idcard/example-selfie-idcard.jpg'
             ],
 
             [
@@ -87,8 +82,7 @@ class UserSeeder extends Seeder
                 'phone' => '089855667748',
                 'gender' => 'male',
                 'picture' => 'images/user/profile/profile.png',
-                'verif_idcard' => '-',
-                'selfie_idcard' => '-'
+                'selfie_idcard' => 'images/user/idcard/example-selfie-idcard.jpg'
             ],
 
         ]);
