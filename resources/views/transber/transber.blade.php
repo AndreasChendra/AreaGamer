@@ -318,72 +318,79 @@
                             <td class="align-middle">Rp. {{ $transber->nominal }}</td>
                             <td class="align-middle">3%</td>
                             <td class="align-middle">{{ $transber->status }}</td>
-                            <td class="align-middle">
-                                <div class="btn-group" role="group" aria-label="Button Group">
-                                    @if ($transber->usernameB == Auth::user()->username && $transber->status == 'Payment Accepted')
-                                        <form action="/done/seller/{{ $transber->id }}" method="post">
-                                            {{ csrf_field() }}
-                                            {{ method_field('PUT') }}
-                                            <button type="submit" class="btn btn-primary"><i
-                                                    class="bi bi-check-circle"></i>&nbsp;Done</button>
-                                        </form>
-                                        
-                                        <form method="POST" action="/cancelTransber/{{ $transber->id }}">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger">Cancel&nbsp;<i
-                                                    class="bi bi-x-circle"></i></button>
-                                        </form>
-                                    @elseif ($transber->usernameA == Auth::user()->username && $transber->status == 'Done From Seller')
-                                        <form action="/done/buyer/{{ $transber->id }}" method="post">
-                                            {{ csrf_field() }}
-                                            {{ method_field('PUT') }}
-                                            <button type="submit" class="btn btn-primary"><i
-                                                    class="bi bi-check-circle"></i>&nbsp;Done</button>
-                                        </form>
-
-                                        <form method="POST" action="/cancelTransber/{{ $transber->id }}">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i
-                                                    class="bi bi-x-circle"></i></button>
-                                        </form>
-                                    @elseif ($transber->usernameA == Auth::user()->username && $transber->status == 'A Waiting Payment')
-                                        <a href="/transber/detail/{{ $transber->id }}" class="btn btn-primary"
-                                            style="border-radius: 10px"><i
-                                                class="bi bi-info-circle"></i>&nbsp;Detail</a>&nbsp;
-
-                                        <form method="POST" action="/cancelTransber/{{ $transber->id }}">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <button type="submit" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i
-                                                    class="bi bi-x-circle"></i></button>
-                                        </form>
-                                    @else
-                                        @if ($transber->usernameB == Auth::user()->username && $transber->status == 'Done From Seller')
-                                        @else
+                            @if ($transber->usernameB == Auth::user()->username && $transber->status == 'Done From Seller')
+                            @else
+                                <td class="align-middle">
+                                    <div class="btn-group" role="group" aria-label="Button Group">
+                                        @if ($transber->usernameB == Auth::user()->username && $transber->status == 'Payment Accepted')
+                                            <form action="/done/seller/{{ $transber->id }}" method="post">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PUT') }}
+                                                <button type="submit" class="btn btn-primary"><i
+                                                        class="bi bi-check-circle"></i>&nbsp;Done</button>
+                                            </form>
+                                            
                                             <form method="POST" action="/cancelTransber/{{ $transber->id }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
                                                 <button type="submit" class="btn btn-danger">Cancel&nbsp;<i
                                                         class="bi bi-x-circle"></i></button>
                                             </form>
+                                        @elseif ($transber->usernameA == Auth::user()->username && $transber->status == 'Done From Seller')
+                                            <form action="/done/buyer/{{ $transber->id }}" method="post">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PUT') }}
+                                                <button type="submit" class="btn btn-primary"><i
+                                                        class="bi bi-check-circle"></i>&nbsp;Done</button>
+                                            </form>
+
+                                            <form method="POST" action="/cancelTransber/{{ $transber->id }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i
+                                                        class="bi bi-x-circle"></i></button>
+                                            </form>
+                                        @elseif ($transber->usernameA == Auth::user()->username && $transber->status == 'A Waiting Payment')
+                                            <a href="/transber/detail/{{ $transber->id }}" class="btn btn-primary"
+                                                style="border-radius: 10px"><i
+                                                    class="bi bi-info-circle"></i>&nbsp;Detail</a>&nbsp;
+
+                                            <form method="POST" action="/cancelTransber/{{ $transber->id }}">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i
+                                                        class="bi bi-x-circle"></i></button>
+                                            </form>
+                                        @else
+                                            @if ($transber->usernameB == Auth::user()->username && $transber->status == 'Done From Seller')
+                                            @else
+                                                <form method="POST" action="/cancelTransber/{{ $transber->id }}">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <button type="submit" class="btn btn-danger">Cancel&nbsp;<i
+                                                            class="bi bi-x-circle"></i></button>
+                                                </form>
+                                            @endif
                                         @endif
-                                    @endif
-                                </div>
-                            </td>
+                                    </div>
+                                </td>
+                            @endif
                         </tr>
                     </tbody>
                 </table>
             @endif
 
             @if (empty($trSuccess) || count($trSuccess) == 0)
+                <div class="padTransber"></div>
             @else
+                @if (count($trSuccess) == 1)
+                    <div class="padTransHis"></div>
+                @endif
                 <h4 class="mt-4 mb-3">My History Transber</h4>
                 <table class="table table-hover border-bottom border-left border-right">
                     <thead>
                         <tr class="text-center">
-                            <th scope="col">#</th>
+                            <th scope="col">Transber Date</th>
                             <th scope="col">Username Buyer</th>
                             <th scope="col">Username Seller</th>
                             <th scope="col">Category</th>
@@ -393,9 +400,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($trSuccess as $key => $trs)
+                        @foreach ($trSuccess->reverse() as $trs)
                             <tr class="text-center">
-                                <th scope="row" class="align-middle">{{ $key + 1 }}</th>
+                                <td class="align-middle">{{ date('l, d F Y, H:i:s', strtotime($trs->updated_at)) }}</td>
                                 <td class="align-middle">{{ $trs->usernameA }}</td>
                                 <td class="align-middle">{{ $trs->usernameB }}</td>
                                 <td class="align-middle">{{ ucfirst($trs->category) }}</td>

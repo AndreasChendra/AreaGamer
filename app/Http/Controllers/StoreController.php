@@ -75,14 +75,12 @@ class StoreController extends Controller
 
         if ($request->input('filterType') != null) {
             $product = $product->where('productType_id', '=', $request->input('filterType'));
-            
         }
         if ($request->input('filterCategory') != null) {
             $product = $product->where('productCategory_id', '=', $request->input('filterCategory'));
         }
-            
-        $pCategory = ProductCategory::all();
-        return view('store.store_info', ['store' => $store, 'product' => $product->paginate(4), 'pCategory' => $pCategory]);
+        
+        return view('store.store_info', ['store' => $store, 'product' => $product->paginate(4)]);
     }
 
     public function order($storeId)

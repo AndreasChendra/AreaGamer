@@ -16,7 +16,7 @@
                 <table class="table table-hover border-bottom">
                     <thead>
                         <tr class="text-center">
-                            <th scope="col">Transaction</th>
+                            <th scope="col">Transaction Date</th>
                             <th scope="col">Product Picture</th>
                             <th scope="col">Product Name</th>
                             <th scope="col">Store</th>
