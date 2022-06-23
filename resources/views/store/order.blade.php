@@ -9,7 +9,7 @@
             @if (empty($transaction) || count($transaction) == 0)
                 <div class="border-top mt-2 pb-2"></div>
                 <div class="text-center pt-5 pb-5">
-                    <img src="{{ asset('images/empty/empty-order.png') }}" alt="..." width="55%">
+                    <img src="{{ asset('images/empty/empty-order.png') }}" alt="..." width="35%">
                     <h3>Tidak Ada Pesanan Pada Saat Ini</h3>
                 </div>
             @else

@@ -11,12 +11,12 @@
                 <div class="row">
                     <div class="col-md-7">
                         <div class="text-center pt-5 pb-5">
-                            <img src="{{ asset('images/empty/empty-transber.png') }}" alt="..." width="75%">
+                            <img src="{{ asset('images/empty/empty-transber.png') }}" alt="..." width="65%">
                             <h4>Tidak Ada Transber Pada Saat Ini</h4>
                         </div>
                     </div>
                     <div class="col-md-5">
-                        <div style="padding-top: 105px">
+                        <div style="padding-top: 165px">
                             <div class="card shadow-sm">
                                 <div class="p-3">
                                     <h3 class="text-center">Transaksi Bersama</h3>

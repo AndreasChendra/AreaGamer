@@ -287,8 +287,7 @@
 
                             @if (empty($product) || count($product) == 0)
                                 <div class="text-center pt-3 pb-4">
-                                    <img src="{{ asset('images/empty/empty-product.png') }}" alt="..." width="25%"
-                                        height="300px">
+                                    <img src="{{ asset('images/empty/empty-product.png') }}" alt="..." width="28%">
                                     <h3 class="pt-4">Tidak Ada Product Pada {{ $store->name }}</h3>
                                 </div>
                             @else
