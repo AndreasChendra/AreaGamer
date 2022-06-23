@@ -101,7 +101,7 @@ class UserController extends Controller
 
         $user = User::find(Auth::user()->id);
         if($user->username == '-') {
-            $user->username = $request->input('username');
+            $user->username = strtolower($request->input('username'));
         }
         $user->name = $request->input('name');
         $user->email = $request->input('email');

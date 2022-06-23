@@ -109,7 +109,7 @@ class TransberController extends Controller
         $transber = new Transber();
         $transber->payment_id = $request->input('payment');
         $transber->usernameA = $request->input('usernameA');
-        $transber->usernameB = $request->input('usernameB');
+        $transber->usernameB = strtolower($request->input('usernameB'));
         $transber->category = $category;
         $transber->nominal = $request->input('nominal');
         $transber->admin_fee = $request->input('nominal') * 3 / 100;
