@@ -122,6 +122,7 @@
                 </table>
 
                 @if (empty($trCancel) || count($trCancel) == 0)
+                    <div class="padCart pt-3"></div>
                 @else
                     <div class="pt-3">
                         <h4 class="mt-2 mb-3">Transaction Cancel</h4>

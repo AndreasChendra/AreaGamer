@@ -45,6 +45,12 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                @if (count($transaction) == 1)
+                    <div class="padCart pt-4"></div>
+                @elseif (count($transaction) == 2)
+                    <div class="pt-5"></div>
+                @endif
             @endif
         </div>
     </div>
