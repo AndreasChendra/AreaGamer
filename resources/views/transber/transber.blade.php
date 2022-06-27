@@ -78,7 +78,7 @@
                                                         Username</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="usernameB" name="usernameB"
-                                                            class="form-control @error('usernameB') is-invalid @enderror">
+                                                            class="form-control @error('usernameB') is-invalid @enderror" required>
 
                                                         @error('usernameB')
                                                             <span class="invalid-feedback" role="alert">
@@ -92,7 +92,7 @@
                                                     <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="nominal" name="nominal"
-                                                            class="form-control @error('nominal') is-invalid @enderror">
+                                                            class="form-control @error('nominal') is-invalid @enderror" required>
 
                                                         @error('nominal')
                                                             <span class="invalid-feedback" role="alert">
@@ -163,7 +163,7 @@
                                                         Username</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="usernameB" name="usernameB"
-                                                            class="form-control @error('usernameB') is-invalid @enderror">
+                                                            class="form-control @error('usernameB') is-invalid @enderror" required>
 
                                                         @error('usernameB')
                                                             <span class="invalid-feedback" role="alert">
@@ -177,7 +177,7 @@
                                                     <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="nominal" name="nominal"
-                                                            class="form-control @error('nominal') is-invalid @enderror">
+                                                            class="form-control @error('nominal') is-invalid @enderror" required>
 
                                                         @error('nominal')
                                                             <span class="invalid-feedback" role="alert">
@@ -248,7 +248,7 @@
                                                         Username</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="usernameB" name="usernameB"
-                                                            class="form-control @error('usernameB') is-invalid @enderror">
+                                                            class="form-control @error('usernameB') is-invalid @enderror" required>
 
                                                         @error('usernameB')
                                                             <span class="invalid-feedback" role="alert">
@@ -262,7 +262,7 @@
                                                     <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
                                                     <div class="col-md-8">
                                                         <input type="text" id="nominal" name="nominal"
-                                                            class="form-control @error('nominal') is-invalid @enderror">
+                                                            class="form-control @error('nominal') is-invalid @enderror" required>
 
                                                         @error('nominal')
                                                             <span class="invalid-feedback" role="alert">
@@ -347,18 +347,17 @@
                                             <form method="POST" action="/cancelTransber/{{ $transber->id }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i
+                                                <button type="submit" class="btn btn-danger">Cancel&nbsp;<i
                                                         class="bi bi-x-circle"></i></button>
                                             </form>
                                         @elseif ($transber->usernameA == Auth::user()->username && $transber->status == 'A Waiting Payment')
-                                            <a href="/transber/detail/{{ $transber->id }}" class="btn btn-primary"
-                                                style="border-radius: 10px"><i
-                                                    class="bi bi-info-circle"></i>&nbsp;Detail</a>&nbsp;
+                                            <a href="/transber/detail/{{ $transber->id }}" class="btn btn-primary"><i
+                                                    class="bi bi-info-circle"></i>&nbsp;Detail</a>
 
                                             <form method="POST" action="/cancelTransber/{{ $transber->id }}">
                                                 {{ csrf_field() }}
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" class="btn btn-danger" style="border-radius: 10px">Cancel&nbsp;<i
+                                                <button type="submit" class="btn btn-danger">Cancel&nbsp;<i
                                                         class="bi bi-x-circle"></i></button>
                                             </form>
                                         @else
@@ -386,7 +385,7 @@
                 @if (count($trSuccess) == 1)
                     <div class="padTransHis"></div>
                 @endif
-                <h4 class="mt-4 mb-3">My History Transber</h4>
+                <h4 class="mt-4 mb-3">My Transber History</h4>
                 <table class="table table-hover border-bottom border-left border-right">
                     <thead>
                         <tr class="text-center">

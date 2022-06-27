@@ -19,9 +19,15 @@
                 <div class="col-md-3">
                     <img class="card-img" src="{{ asset($product->picture) }}" alt="..." width="100%" height="250px">
 
-                    <button class="btn btn-block btn-primary mt-5" data-toggle="modal" data-target="#sendReview">
-                        <i class="bi bi-gift"></i>&nbsp;Send Review
-                    </button>
+                    @if (Auth::user() != null)
+                        <button class="btn btn-block btn-primary mt-5" data-toggle="modal" data-target="#sendReview">
+                            <i class="bi bi-gift"></i>&nbsp;Send Review
+                        </button>
+                    @else
+                        <a href="/login" class="btn btn-block btn-primary mt-5">
+                            <i class="bi bi-gift"></i>&nbsp;Send Review
+                        </a>
+                    @endif
 
                     <!-- Modal Review -->
                     <div class="modal fade" id="sendReview" data-backdrop="static" data-keyboard="false" tabindex="-1"
@@ -65,7 +71,7 @@
                                             <label for="rating"
                                                 class="col-md-4 col-form-label">{{ __('Rating') }}</label>
                                             <div class="col-md-8">
-                                                <select class="form-control @error('rating') is-invalid @enderror" id="rating" name="rating">
+                                                <select class="form-control @error('rating') is-invalid @enderror" id="rating" name="rating" required>
                                                     <option value="0">-- Select Rating --</option>
                                                     <option value="1" style="color: orange; font-size: 16px">&#9733;
                                                     </option>
@@ -92,7 +98,7 @@
                                             <div class="col-md-8">
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input @error('pictureReview') is-invalid @enderror" id="pictureReview"
-                                                        name="pictureReview">
+                                                        name="pictureReview" required>
                                                     <label class="custom-file-label" for="pictureReview">Choose file</label>
                                                     
                                                     @error('pictureReview')
@@ -109,7 +115,7 @@
                                         <div class="form-group row">
                                             <label for="description" class="col-md-4 col-form-label">Description</label>
                                             <div class="col-md-8">
-                                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" rows="4" name="description"></textarea>
+                                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" rows="4" name="description" required></textarea>
 
                                                 @error('description')
                                                     <span class="invalid-feedback" role="alert">
@@ -183,9 +189,12 @@
                                             autocomplete="note" placeholder="Contoh : Jycho. 123724663 (2601)">
                                     </div>
                                     <button class="btn btn-block btn-primary mb-2">
-                                        <i class="bi bi-cart-plus"></i>
-                                        Keranjang</button>
+                                        <i class="bi bi-cart-plus"></i>&nbsp;Keranjang</button>
                                 </form>
+
+                                <button class="btn btn-block btn-primary mb-2" data-toggle="modal" data-target="#buyNow">
+                                    <i class="bi bi-bag"></i>&nbsp;Beli
+                                    Langsung</button>
                             @else
                                 <div class="input-group mb-3">
                                     <input type="text" id="note" class="form-control @error('note') is-invalid @enderror"
@@ -193,12 +202,12 @@
                                         placeholder="Contoh : Jycho. 123724663 (2601)">
                                 </div>
                                 <a href="/login" class="btn btn-block btn-primary mb-2">
-                                    <i class="bi bi-cart-plus"></i>Keranjang
+                                    <i class="bi bi-cart-plus"></i>&nbsp;Keranjang
+                                </a>
+                                <a href="/login" class="btn btn-block btn-primary mb-2">
+                                    <i class="bi bi-bag"></i>&nbsp;Beli Langsung
                                 </a>
                             @endif
-                            <button class="btn btn-block btn-primary mb-2" data-toggle="modal" data-target="#buyNow">
-                                <i class="bi bi-bag"></i> Beli
-                                Langsung</button>
                         </div>
 
                         <!-- Modal Beli Langsung -->

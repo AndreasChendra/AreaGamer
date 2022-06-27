@@ -167,7 +167,7 @@
                                     <div class="col-md-12">
                                         <div class="custom-file">
                                             <input type="file" class="custom-file-input @error('picTransfer') is-invalid @enderror" id="picTransfer"
-                                                name="picTransfer">
+                                                name="picTransfer" required>
                                             <label class="custom-file-label" for="picTransfer">Choose file</label>
                                             
                                             @error('picTransfer')

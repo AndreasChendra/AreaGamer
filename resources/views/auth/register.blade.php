@@ -83,12 +83,19 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row mb-2">
+                                <div class="form-group row">
                                     <div class="col-md-12">
                                         <button type="submit" class="btn btn-block btn-primary text-color">
                                             {{ __('Register') }}
                                         </button>
                                     </div>
+                                </div>
+
+                                <div class="form-group row justify-content-center mb-0">
+                                    <p>Sudah punya akun?</p>
+                                    <a class="pl-1" href="{{ route('login') }}">
+                                        {{ __('Login') }}
+                                    </a>
                                 </div>
                             </form>
                         </div>

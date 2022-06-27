@@ -145,7 +145,7 @@
                                                     Username</label>
                                                 <div class="col-md-8">
                                                     <input type="text" id="usernameB" name="usernameB"
-                                                        class="form-control @error('usernameB') is-invalid @enderror">
+                                                        class="form-control @error('usernameB') is-invalid @enderror" required>
 
                                                     @error('usernameB')
                                                         <span class="invalid-feedback" role="alert">
@@ -158,7 +158,7 @@
                                             <div class="form-group row">
                                                 <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" id="nominal" name="nominal" class="form-control @error('nominal') is-invalid @enderror">
+                                                    <input type="text" id="nominal" name="nominal" class="form-control @error('nominal') is-invalid @enderror" required>
 
                                                     @error('nominal')
                                                         <span class="invalid-feedback" role="alert">
@@ -228,7 +228,7 @@
                                                     Username</label>
                                                 <div class="col-md-8">
                                                     <input type="text" id="usernameB" name="usernameB"
-                                                        class="form-control @error('usernameB') is-invalid @enderror">
+                                                        class="form-control @error('usernameB') is-invalid @enderror" required>
 
                                                     @error('usernameB')
                                                         <span class="invalid-feedback" role="alert">
@@ -241,7 +241,7 @@
                                             <div class="form-group row">
                                                 <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" id="nominal" name="nominal" class="form-control @error('nominal') is-invalid @enderror">
+                                                    <input type="text" id="nominal" name="nominal" class="form-control @error('nominal') is-invalid @enderror" required>
 
                                                     @error('nominal')
                                                         <span class="invalid-feedback" role="alert">
@@ -311,7 +311,7 @@
                                                     Username</label>
                                                 <div class="col-md-8">
                                                     <input type="text" id="usernameB" name="usernameB"
-                                                        class="form-control @error('usernameB') is-invalid @enderror">
+                                                        class="form-control @error('usernameB') is-invalid @enderror" required>
 
                                                     @error('usernameB')
                                                         <span class="invalid-feedback" role="alert">
@@ -324,7 +324,7 @@
                                             <div class="form-group row">
                                                 <label for="nominal" class="col-md-4 col-form-label">Nominal</label>
                                                 <div class="col-md-8">
-                                                    <input type="text" id="nominal" name="nominal" class="form-control @error('nominal') is-invalid @enderror">
+                                                    <input type="text" id="nominal" name="nominal" class="form-control @error('nominal') is-invalid @enderror" required>
 
                                                     @error('nominal')
                                                         <span class="invalid-feedback" role="alert">
