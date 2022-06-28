@@ -182,7 +182,7 @@
                                                             <div class="col-md-9">
                                                                 <div class="custom-file">
                                                                     <input type="file" class="custom-file-input @error('storePicture') is-invalid @enderror"
-                                                                        id="storePicture" name="storePicture">
+                                                                        id="storePicture" name="storePicture" required>
                                                                     <label class="custom-file-label" for="storePicture">Choose
                                                                         file</label>
 

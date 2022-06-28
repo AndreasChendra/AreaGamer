@@ -67,7 +67,7 @@
                                                     <div class="col-md-8">
                                                         <div class="custom-file">
                                                             <input type="file" class="custom-file-input @error('storePicture') is-invalid @enderror" id="storePicture"
-                                                                name="storePicture">
+                                                                name="storePicture" required>
                                                             <label class="custom-file-label" for="storePicture">Choose
                                                                 file</label>
 
@@ -107,7 +107,7 @@
                                     <button type="button" class="btn btn-outline-primary btn-block"
                                         style="border-radius: 10px" data-toggle="modal" data-target="#addProduct">
                                         <i class="bi bi-bag-plus-fill"></i>&nbsp;
-                                        Tambah Produk
+                                        Add Product
                                     </button>
 
                                     <!-- Modal Add Product -->
@@ -197,7 +197,7 @@
                                                                 class="col-md-4 col-form-label">Product Category</label>
                                                             <div class="col-md-8">
                                                                 <select id="productCategory" class="form-control @error('productCategory') is-invalid @enderror"
-                                                                    name="productCategory">
+                                                                    name="productCategory" required>
                                                                     <option value="0">-- Select Category --</option>
                                                                     @foreach (\App\ProductCategory::all() as $pcategory)
                                                                         <option value="{{ $pcategory->id }}">{{$pcategory->name}}</option>
@@ -440,7 +440,7 @@
                                                                             name="updateProductCategory">
                                                                             <option value="0">-- Select Category --</option>
                                                                             @foreach (\App\ProductCategory::all() as $pcategory)
-                                                                                <option value="{{ $pcategory->id }}" {{ ( $pcategory->id == $p->pcategory->id) ? 'selected' : '' }}>{{$pcategory->name}}</option>
+                                                                                <option value="{{ $pcategory->id }}" {{ ( $pcategory->id == $p->pcategory->id) ? 'selected' : '' }} required>{{$pcategory->name}}</option>
                                                                             @endforeach
                                                                         </select>
         
@@ -459,7 +459,7 @@
                                                                     <div class="col-md-8">
                                                                         <div class="custom-file">
                                                                             <input type="file" class="custom-file-input @error('updateProductPicture') is-invalid @enderror"
-                                                                                id="updateProductPicture" name="updateProductPicture">
+                                                                                id="updateProductPicture" name="updateProductPicture" required>
                                                                             <label class="custom-file-label"
                                                                                 for="updateProductPicture">Choose file</label>
                                                                             
@@ -480,7 +480,7 @@
                                                                         class="col-md-4 col-form-label">Product
                                                                         Description</label>
                                                                     <div class="col-md-8">
-                                                                        <textarea class="form-control @error('updateProductDescription') is-invalid @enderror" id="updateProductDescription" rows="3" name="updateProductDescription"></textarea>
+                                                                        <textarea class="form-control @error('updateProductDescription') is-invalid @enderror" id="updateProductDescription" rows="3" name="updateProductDescription" required></textarea>
 
                                                                         @error('updateProductDescription')
                                                                             <span class="invalid-feedback" role="alert">

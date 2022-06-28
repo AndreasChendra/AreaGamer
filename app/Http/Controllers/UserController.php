@@ -147,7 +147,7 @@ class UserController extends Controller
         $user->save();
         Storage::put($file, $image_base64);
         
-        return redirect('/profile')->with('success', 'Upload Image Successfully!');
+        return redirect('/profile')->with('success', 'Upload Verification Photo Successfully!');
     }
 
     public function changePass(Request $request)

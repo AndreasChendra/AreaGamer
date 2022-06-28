@@ -240,7 +240,7 @@
                                                         </div>
                                                         <div class="col-md-5 pt-2 text-center">
                                                             <div class="input-group">
-                                                                <textarea class="form-control @error('noteBuy') is-invalid @enderror" id="note" name="noteBuy" rows="3" placeholder="Jycho. 123724663 (2601)"></textarea>
+                                                                <textarea class="form-control @error('noteBuy') is-invalid @enderror" id="note" name="noteBuy" rows="3" placeholder="Jycho. 123724663 (2601)" required></textarea>
                                                                 @error('noteBuy')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>

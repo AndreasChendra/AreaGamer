@@ -77,7 +77,7 @@
                                                     <input class="form-check-input position-static" type="checkbox"
                                                         id="selectedProducts{{ $c->id }}" name="check[]"
                                                         onchange="myFunction('{{ $c->id }}')"
-                                                        value="{{ $c->id }}">
+                                                        value="{{ $c->id }}" required>
                                                 </div>
                                             </th>
                                             <td class="align-middle">{{ $c->product->store->name }}</td>

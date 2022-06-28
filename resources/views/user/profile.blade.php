@@ -82,7 +82,7 @@
                                     <label for="uploadPhoto" class="col-md-4 col-form-label">Upload Photo</label>
                                     <div class="col-md-8">
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input @error('uploadPhoto') is-invalid @enderror" id="uploadPhoto" name="uploadPhoto">
+                                            <input type="file" class="custom-file-input @error('uploadPhoto') is-invalid @enderror" id="uploadPhoto" name="uploadPhoto" required>
                                             <label class="custom-file-label" for="uploadPhoto">Choose file</label>
 
                                             @error('uploadPhoto')
@@ -189,7 +189,7 @@
                                         <label for="name" class="col-md-2 col-form-label">Username</label>
                                         <div class="col-md-10">
                                             <input id="username" type="text"
-                                                class="form-control @error('username') is-invalid @enderror" name="username" placeholder="{{ $user->username }}">
+                                                class="form-control @error('username') is-invalid @enderror" name="username" placeholder="{{ $user->username }}" required>
 
                                             @error('username')
                                                 <span class="invalid-feedback" role="alert">
@@ -261,17 +261,17 @@
                                     <label for="inputState" class="col-md-2 col-form-label">Gender</label>
                                     <div class="col-md-10">
                                         @if ($user->gender == 'male')
-                                            <select id="gender" name="gender" class="form-control">
+                                            <select id="gender" name="gender" class="form-control" required>
                                                 <option value="male" selected>Male</option>
                                                 <option value="female">Female</option>
                                             </select>
                                         @elseif ($user->gender == 'female')
-                                            <select id="gender" name="gender" class="form-control">
+                                            <select id="gender" name="gender" class="form-control" required>
                                                 <option value="male">Male</option>
                                                 <option value="female" selected>Female</option>
                                             </select>
                                         @else
-                                            <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror">
+                                            <select id="gender" name="gender" class="form-control @error('gender') is-invalid @enderror" required>
                                                 <option value="0" selected>-- Select Gender --</option>
                                                 <option value="male">Male</option>
                                                 <option value="female">Female</option>
