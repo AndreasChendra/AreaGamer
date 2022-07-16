@@ -4,7 +4,7 @@
 @section('content')
     <div class="container pt-4">
         <div class="mt-5 pt-3">
-            <h4 class="mt-2 mb-3">My Order</h4>
+            <h4 class="mt-2 mb-3">Order List</h4>
 
             @if (empty($transaction) || count($transaction) == 0)
                 <div class="border-top mt-2 pb-2"></div>

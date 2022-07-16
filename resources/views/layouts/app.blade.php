@@ -72,10 +72,12 @@
                                             <div class="col-4">
                                                 <a href="/product/type/1"><i class="bi bi-phone"
                                                         style="font-size: 70px"></i></a>
+                                                <p style="font-size: 15px"><b>Mobile</b></p>
                                             </div>
                                             <div class="col-4">
                                                 <a href="/product/type/2"><i class="bi bi-pc-display-horizontal"
                                                         style="font-size: 70px"></i></a>
+                                                <p style="font-size: 15px"><b>PC</b></p>
                                             </div>
                                         </div>
                                     </div>
