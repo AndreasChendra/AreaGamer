@@ -272,7 +272,7 @@
                             <div class="col-sm-6 col-md mb-4 mb-md-0">
                                 <h3>About</h3>
                                 <ul class="list-unstyled nav-links">
-                                    <li><a href="#">Contact</a></li>
+                                    <li><a href="mailto:areagamer.store@gmail.com">Contact</a></li>
                                     <li><a href="#">Services</a></li>
                                     <li><a href="#">Team</a></li>
                                 </ul>
