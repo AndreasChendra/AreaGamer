@@ -46,8 +46,9 @@
                                         </td>
                                         <td class="align-middle">{{ $trc->product->name }}</td>
                                         <td class="align-middle">
-                                            <img src="{{ asset($trc->payment->picture) }}" alt="..." width="145px"
-                                                height="80px">
+                                            {{ $trc->payment->name }} <br>
+                                            {{ $trc->payment->owner_number }} <br>
+                                            {{ $trc->payment->owner_name }} <br>
                                         </td>
                                         <td class="align-middle">{{ $trc->status }}</td>
                                         <td class="align-middle">
@@ -88,7 +89,9 @@
                                 </td>
                                 <td class="align-middle">{{ $tr->product->name }}</td>
                                 <td class="align-middle">
-                                    <img src="{{ asset($tr->payment->picture) }}" alt="..." width="145px" height="80px">
+                                    {{ $tr->payment->name }} <br>
+                                    {{ $tr->payment->owner_number }} <br>
+                                    {{ $tr->payment->owner_name }} <br>
                                 </td>
                                 <td class="align-middle">{{ $tr->note }}</td>
                                 <td class="align-middle">{{ $tr->status }}</td>
@@ -147,8 +150,9 @@
                                         </td>
                                         <td class="align-middle">{{ $trc->product->name }}</td>
                                         <td class="align-middle">
-                                            <img src="{{ asset($trc->payment->picture) }}" alt="..." width="145px"
-                                                height="80px">
+                                            {{ $trc->payment->name }} <br>
+                                            {{ $trc->payment->owner_number }} <br>
+                                            {{ $trc->payment->owner_name }} <br>
                                         </td>
                                         <td class="align-middle">{{ $trc->status }}</td>
                                         <td class="align-middle">
